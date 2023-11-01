@@ -1,0 +1,202 @@
+/* ============================ */
+/*  advance-search box start */
+/* ============================ */
+
+.advance-search__wraper {
+    width: 100%;
+    @include flexbox($a: center, $jc: center);
+    margin-top: -50px;
+}
+
+.advance-search {
+    padding: 20px 40px;
+    background-color: $white;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.06);
+    border-radius: 0px 16px 16px 16px;
+    position: relative;
+
+
+    @include respond(tabland) {
+        padding: 16px 24px;
+    }
+
+    .search__type {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        @include flexbox($jc: flex-start, $a: center);
+        flex-wrap: nowrap;
+
+        input[name="search-type"] {
+            display: none;
+
+            &:checked {
+                &+label {
+                    background-color: #E0EAFF;
+                }
+            }
+        }
+
+        label {
+            font-family: $default;
+            width: 120px;
+            height: 50px;
+            font-size: 18px;
+            line-height: 50px;
+            font-weight: $semibold;
+            color: $heading;
+            background: $border;
+            letter-spacing: 0em;
+            text-align: center;
+            cursor: pointer;
+
+            @include respond(tabport) {
+                width: 75px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 15px;
+            }
+
+            &:first-of-type {
+                border-radius: 16px 0 0 0;
+            }
+
+            &:last-of-type {
+                border-radius: 0 16px 0 0;
+            }
+        }
+    }
+
+    .inline-form {
+        @include flexbox($a: flex-end, $jc: space-between);
+
+        .input__wrapper {
+            @include flexbox($a: flex-end, $jc: space-between);
+        }
+
+        .input-group {
+            padding: 10px;
+            flex: 1;
+
+            @include respond(tabland) {
+                flex-basis: 50%;
+            }
+
+            @include respond(phone) {
+                flex-basis: 100%;
+            }
+
+            &:last-of-type {
+                display: inline-block;
+                flex: 0;
+
+                @include respond(tabland) {
+                    flex-basis: 50%;
+
+                    button {
+                        width: 100%;
+                    }
+                }
+
+                @include respond(phone) {
+                    flex-basis: 100%;
+                }
+            }
+
+            label {
+                font-family: $default;
+                font-size: 14px;
+                font-weight: $medium;
+                line-height: 20px;
+                letter-spacing: 0em;
+                color: $heading;
+                margin-bottom: 6px;
+            }
+
+            .icon {
+                position: absolute;
+                right: 16px;
+                bottom: 0;
+                transform: translate(-50%, -22px);
+                color: $primary;
+            }
+
+
+            input,
+            select,
+            button,
+            .nice-select {
+                width: 100%;
+                height: inherit;
+                border: 1px solid $border;
+                border-radius: 8px !important;
+                padding: 12px 14px !important;
+                font-family: $default;
+                font-size: 16px;
+                line-height: 22px;
+                font-weight: $regular;
+                background-color: transparent;
+                color: $heading;
+                box-shadow: 0px 1px 2px rgba(#101828, 0.05);
+
+                &:focus {
+                    outline: none;
+                }
+
+                &::placeholder {
+                    color: $content;
+                }
+
+                @include respond(tabland) {
+                    padding: 13px 8px;
+                    font-size: 15px;
+                }
+
+                &.btn {
+                    @extend .btn-primary;
+                }
+            }
+
+            button {
+                width: 150px;
+            }
+
+            .nice-select {
+                @include flexbox($a: center);
+
+                &::after {
+                    height: 8px;
+                    width: 8px;
+                    // border-color: $heading;
+                    border-color: transparent;
+                    right: 15px;
+                }
+
+                &.open {
+                    .list {
+                        width: 100%;
+                        background-color: $white;
+
+                        .option {
+                            font-weight: $regular;
+
+                            &:hover {
+                                background-color: $primary;
+                                color: $white;
+                            }
+
+                            &.focus {
+                                background-color: $primary;
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ============================ */
+/*  advance-search box End */
+/* ============================ */

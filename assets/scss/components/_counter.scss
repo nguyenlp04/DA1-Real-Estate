@@ -1,0 +1,30 @@
+.counter {
+    font-family: $default;
+    text-align: left;
+
+    &:not(:last-child) {
+        margin-right: 60px;
+    }
+
+    &__number {
+        font-size: 24px;
+        font-weight: $semibold;
+        line-height: 32px;
+        letter-spacing: 0em;
+        color: $heading;
+    }
+
+    &__title {
+        font-size: 14px;
+        font-weight: $regular;
+        line-height: 20px;
+        letter-spacing: 0em;
+        color: $content;
+    }
+
+    // wrapper styles
+    &__wrapper {
+        margin-top: 40px;
+        @include flexbox($jc: flex-start, $a: center);
+    }
+}

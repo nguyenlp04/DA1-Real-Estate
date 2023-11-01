@@ -1,0 +1,50 @@
+/*********************************
+/*  Common Css Start
+*********************************/
+.border-none {
+    border: none !important;
+}
+
+.btn-round {
+    border-radius: 4px !important;
+}
+
+.bg-white {
+    background-color: $white  !important;
+}
+
+.bg-color {
+    background: #fafafb !important;
+}
+
+button {
+
+    &:hover,
+    &:focus {
+        outline: 0px;
+    }
+}
+
+/*********************************
+/*  row Custom
+*********************************/
+
+.row>* {
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 1);
+    padding-left: calc(var(--bs-gutter-x) * 1);
+    margin-top: var(--bs-gutter-y);
+}
+
+.column-reverse {
+    @media screen and (max-width: 768px) {
+        flex-direction: column-reverse !important;
+    }
+}
+
+@media (min-width: 479px) and (max-width: 575px) {
+    .col-xs-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}

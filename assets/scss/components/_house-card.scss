@@ -1,0 +1,204 @@
+/*---------------------------------
++  house-card Start
++---------------------------------*/
+.house-card {
+    border-radius: 16px;
+    overflow: hidden;
+    font-family: $default;
+    box-shadow: 0px 4px 30px 0px rgba($black, 0.05);
+    margin-bottom: 30px;
+
+    .house__thumb {
+        aspect-ratio: 42/28;
+        position: relative;
+        overflow: hidden;
+
+        img {
+            width: calc(100% + 1px);
+            object-fit: cover;
+            object-position: center;
+            transition: $transition;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.07);
+            }
+        }
+    }
+
+    .house__meta {
+        position: absolute;
+        top: 25px;
+        left: 21px;
+
+        a {
+            font-size: 14px;
+            font-weight: $medium;
+            line-height: 20px;
+            letter-spacing: 0em;
+            padding: 6px 15px;
+            border-radius: 8px;
+            color: $white;
+            background: $primary;
+
+            &:hover {
+                transform: scale(1.05, 1.1);
+            }
+        }
+
+        margin-bottom: 10px;
+    }
+
+    .house__content {
+        padding: 25px 22px;
+
+        @include respond(tabland) {
+            padding: 16px;
+        }
+
+
+        &__top {
+            margin-bottom: 16px;
+            @include flexbox($jc: flex-start, $a: center);
+
+            .price {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 28px;
+                letter-spacing: 0em;
+                color: $content;
+                margin-right: 20px;
+                margin-bottom: 0;
+
+                @include respond(phone) {
+                    font-size: 16px;
+                    margin-right: 12px;
+                }
+
+            }
+
+            .status {
+                font-size: 14px;
+                font-weight: $regular;
+                line-height: 20px;
+                letter-spacing: 0em;
+                padding: 2px 10px;
+                border-radius: 4px;
+                color: $primary;
+                background: $primary-bg;
+                text-transform: capitalize;
+            }
+        }
+
+        &__main {
+            .title {
+                font-size: 20px;
+                font-weight: $medium;
+                line-height: 24px;
+                letter-spacing: 0em;
+                color: $heading;
+                margin-bottom: 20px;
+
+                @include respond(tabland) {
+                    font-size: 18px;
+                    line-height: 22px;
+                    margin-bottom: 16px;
+                }
+
+
+                a {
+                    color: currentColor;
+                    transition: $transition;
+
+                    &:hover {
+                        color: $primary;
+                    }
+                }
+            }
+
+            .location {
+                font-size: 14px;
+                font-weight: $regular;
+                line-height: 17px;
+                letter-spacing: 0em;
+                color: $content;
+                margin-bottom: 0;
+                @include flexbox($jc: flex-start, $a: center);
+                flex-wrap: nowrap;
+
+                .icon {
+                    margin-right: 8px;
+
+                    img {
+                        display: inline-block;
+                        width: 16px;
+                        aspect-ratio: 1/1;
+                    }
+                }
+
+            }
+        }
+
+        &__bottom {
+            padding: 22px;
+            border-top: 1px solid $border;
+
+            @include respond(tabland) {
+                padding: 16px;
+            }
+
+
+        }
+    }
+}
+
+.info {
+    margin-right: 25px;
+    font-size: 16px;
+    line-height: 20px;
+    @include flexbox($jc: flex-start, $a: center);
+
+    @media (min-width: 575px) and (max-width: 991px) {
+        flex: 1;
+    }
+
+    @include respond(medium) {
+        margin-right: 8px;
+        font-size: 15px;
+    }
+
+    @include respond(phone) {
+        font-size: 14px;
+        line-height: 15px;
+        margin-right: 16px;
+    }
+
+    .icon {
+        margin-right: 8px;
+
+        img {
+            width: 18px;
+            aspect-ratio: 1/1;
+
+            @include respond(phone) {
+                width: 14px;
+            }
+        }
+    }
+
+    &-wrap {
+        @include flexbox($jc: flex-start, $a: center);
+    }
+
+    &-right {
+        margin-left: auto;
+        margin-right: 0;
+
+        @media (min-width: 575px) and (max-width: 991px) {
+            flex-basis: 100%;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+    }
+}

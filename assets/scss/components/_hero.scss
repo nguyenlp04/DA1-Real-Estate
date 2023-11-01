@@ -1,0 +1,76 @@
+.hero {
+    width: 100%;
+    background: $primary-bg;
+    position: relative;
+    overflow: hidden;
+
+    @include respond(tabport) {
+        background: rgba($primary-bg, 0.9);
+    }
+
+    &-bg {
+        width: auto;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+        top: 0;
+        left: 50%;
+
+        @include respond(tabport) {
+            left: 0;
+            z-index: -1;
+
+            &::after {
+                @include bg-overlay;
+            }
+        }
+    }
+
+    &__content {
+        font-family: $default;
+        text-align: left;
+        min-height: calc(100vh - 100px);
+        @include flexbox($jc: center, $a: flex-start);
+        flex-direction: column;
+
+        @include respond (xl) {
+            min-height: 100vh;
+        }
+        @include respond (tabport) {
+            min-height: initial;
+            padding: 150px 0 200px;
+        }
+        @include respond (phone) {
+            min-height: initial;
+            padding: 130px 0 150px;
+        }
+    }
+
+    &__title {
+        font-size: 56px;
+        font-weight: $semibold;
+        line-height: 70px;
+        letter-spacing: -0.02em;
+        color: $heading;
+        margin-bottom: 15px;
+
+        @include respond (xl) {
+            font-size: 48px;
+            line-height: 60px;
+        }
+
+        @include respond(tabport) {
+            font-size: 36px;
+            line-height: 48px;
+        }
+    }
+
+    &__desc {
+        font-size: 16px;
+        font-weight: $regular;
+        line-height: 24px;
+        letter-spacing: 0em;
+        color: $content;
+    }
+}

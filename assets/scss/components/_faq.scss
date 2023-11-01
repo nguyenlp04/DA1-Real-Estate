@@ -1,0 +1,115 @@
+.accordion__wrapper__v2 {
+    .accordion {
+        &-item {
+            background: $white;
+            border: 1px solid $border;
+            border-radius: 8px !important;
+            margin-bottom: 20px;
+        }
+
+        &-header {
+            .accordion-button {
+                font-family: $default;
+                font-size: 16px;
+                line-height: 19px;
+                letter-spacing: 0em;
+                background: $white;
+                color: $heading;
+                font-weight: $medium;
+                position: relative;
+                border-radius: 8px !important;
+                display: block;
+                padding: 20px;
+                padding-right: 30px;
+                transition: $transition;
+
+                &:not(.collapsed) {
+                    background: $primary;
+                    box-shadow: none;
+                    color: $white;
+                    border-radius: 8px 8px 0 0 !important;
+
+                    &::after {
+                        background: $white;
+                    }
+
+                    &::before {
+                        height: 0;
+                        background: $white;
+                    }
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    height: 2px;
+                    width: 20px;
+                    background: $content;
+                    transform: translateY(-50%);
+                    right: 20px;
+                    background-image: none;
+                    transition: $transition;
+                }
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    height: 20px;
+                    width: 2px;
+                    background: $content;
+                    transform: translateY(-50%);
+                    right: 29px;
+                    background-image: none;
+                    transition: $transition;
+                }
+
+                &:hover {
+                    z-index: inherit;
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+
+                @include respond(phone-sm) {
+                    font-size: 18px;
+                    padding-right: 32px;
+                    line-height: 27px;
+                }
+            }
+        }
+
+        &-body {
+            // border-top: 1px solid #ededed;
+            padding: 13px 30px 16px 20px;
+
+            p {
+                font-family: $default;
+                color: $content;
+                font-size: 14px;
+                font-weight: $regular;
+                line-height: 24px;
+                letter-spacing: 0em;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+/* ============================ */
+/* Accordion End */
+/* ============================ */
+
+section.faqs {
+    background-color: $gray-bg;
+
+    .faq-2nd-col {
+        margin-top: -82px;
+
+        @include respond(tabport) {
+            margin-top: 0;
+        }
+    }
+}

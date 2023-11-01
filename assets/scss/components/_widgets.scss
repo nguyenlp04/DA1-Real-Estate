@@ -1,0 +1,60 @@
+.widget {
+    font-family: $default;
+    margin-bottom: 25px;
+
+    .logo {
+        display: block;
+        margin-bottom: 100px;
+
+        @include respond(tabport) {
+            margin-bottom: 50px;
+        }
+
+        img {
+            width: 200px;
+
+        }
+
+    }
+
+    &__title {
+        font-size: 20px;
+        font-weight: $semibold;
+        line-height: 30px;
+        letter-spacing: 0em;
+        color: $heading;
+        margin-bottom: 14px;
+    }
+
+    &__list {
+        list-style: none;
+
+        li {
+            font-size: 14px;
+            font-weight: $regular;
+            line-height: 14px;
+            letter-spacing: 0em;
+            color: $content;
+            margin-bottom: 14px;
+            color: $content;
+
+            a {
+                color: currentColor;
+                transition: $transition;
+
+                &:hover {
+                    color: $primary;
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+
+    &__address {
+        font-size: 14px;
+        font-weight: $regular;
+        line-height: 14px;
+        letter-spacing: 0em;
+        color: $content;
+    }
+}

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Primary Meta Tags -->
+    <title>NguyenLP Land - Property Buy & Seles</title>
+    <meta name="title" content="Property Buy & Seles HTML Template" />
+    <meta name="description"
+        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://xirosoft.com/demo/rents-html/" />
+    <meta property="og:title" content="Property Buy & Seles HTML Template" />
+    <meta property="og:description"
+        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
+    <meta property="og:image" content="https://xirosoft.com/demo/rents-html/assets/images/preview.jpeg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://xirosoft.com/demo/rents-html/" />
+    <meta property="twitter:title" content="Property Buy & Seles HTML Template" />
+    <meta property="twitter:description"
+        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
+    <meta property="twitter:image" content="https://xirosoft.com/demo/rents-html/assets/images/preview.jpeg" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/f-icon" />
+    <meta name="keywords" content="rents, template, property" />
+    <meta name="author" content="https://xirosoft.com" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/products.css">
+    <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
+
+    <style>
+        .header-menu .main-menu li a.active {
+    color: #444ce7;
+}
+.card-product{
+}
+.container-products{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+}
+    </style>
+</head>
+
+<body>
+    <div class="creat-form-signup" style="display: none;">
+        <form class="form-signup" onsubmit="signup()">
+            <div class="title-close">
+                <h1>Đăng Ký</h1>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="icon-form-signup">
+               <p class="with-social"><i class="fa-brands fa-google"></i>Đăng ký với Google</p> 
+               <p class="with-social"><i class="fa-brands fa-facebook-f"></i>Đăng ký với Facebook</p> 
+            </div>
+            <hr>
+            <label><h4>Họ và tên</h4> <input class="name-signup" type="text" placeholder="Họ và tên"></label>
+            <label><h4>Tài khoản</h4> <input class="user-signup" type="text" placeholder="Username"></label>
+            <label><h4>Mật khẩu</h4> <input class="pass-signup" type="password" placeholder="Password"></label>
+            <div class="btn-signup">
+                <button class="btn-login">Đăng Ký</button>
+            </div>
+            <hr>
+            <div class="have-account">
+                <p>Bạn đã tạo tài khoản rồi? <p class="next-page-form page-account-login">&nbsp; Đăng nhập</p></p>
+            </div>
+        </form>
+    </div>
+    <div class="creat-form-login" style="display: none;">
+        <form class="form-signup" onsubmit="login()">
+          
+
+            <div class="title-close">
+                <h1>Đăng Nhập</h1>
+                <i class="fa-solid fa-xmark  cloese-login"></i>
+            </div>
+
+            <div class="icon-form-signup">
+                <p class="with-social"><i class="fa-brands fa-google"></i>Đăng nhập với Google</p> 
+                <p class="with-social"><i class="fa-brands fa-facebook-f"></i>Đăng nhập với Facebook</p> 
+            </div>
+            <hr>
+
+            <label><h4>Tài khoản</h4> <input class="user-login" type="text" placeholder="Username"></label>
+            <label><h4>Mật khẩu</h4> <input class="pass-login" type="password" placeholder="Password"></label>
+           <div class="save-pass-login"> <input type="checkbox"> <p>&nbsp;Lưu mật khẩu</p> </div>
+            <div class="btn-signup">
+                <button class="btn-login">Đăng Nhập</button>
+            </div>
+            <hr>
+            <div class="have-account">
+                <p>Bạn chưa tạo tài khoản rồi? <p class="next-page-form page-account-signup">&nbsp; Đăng ký</p></p>
+            </div>
+        </form>
+    </div>
+    <!-- Header Start  -->
+    <header class="header-section">
+        <nav class="nav">
+            <div class="container">
+                <!-- Header Wrap Start  -->
+                <div class="header-wrap">
+                    <div class="header-logo">
+                        <a href="index.html">
+                            <img src="assets/images/logo.png" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="header-menu">
+                        <ul class="main-menu">
+                            <li><a href="index.html">Trang Chủ</a></li>
+                            <li><a href="introduce.html">Giới Thiệu</a></li>
+                            <li><a href="#" class="active">Sản Phẩm</a></li>
+                            <li><a href="news.html">Tin Tức</a></li>
+                            <li><a href="contact.html">Liên Hệ</a></li>
+                        </ul>
+                    </div>
+                    <div class="header-meta">
+                        <a href="#contact" class="btn btn-outline me-3 btn-login-form">Đăng Nhập</a>
+                        <a href="#contact" class="btn btn-primary btn-signup-form">Đăng Ký</a>
+                        <!-- Header Toggle Start -->
+                        <div class="header-toggle d-lg-none">
+                            <button class="toggler-btn">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                        </div>
+                        <!-- Header Toggle End -->
+                    </div>
+                </div>
+                <!-- Header Wrap End  -->
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div class="container">
+        <div class="path-page"><a href="index.html">Trang chủ </a><i class="fa-solid fa-angle-right"></i> <p>Sản Phẩm</p></div>
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9103837.511775466!2d100.61540368373728!3d15.74048014411591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31157a4d736a1e5f%3A0xb03bb0c9e2fe62be!2zVmnhu4d0IE5hbQ!5e1!3m2!1svi!2s!4v1685888231342!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+        <div class="search-products">
+            <div class="advance-search">
+                <form action="#" class="inline-form">
+                    <div class="input-group">
+                        <label for="services">Dịch vụ</label>
+                        <select name="services" id="services">
+                          <option value="">---</option>
+                          <option value="Thuê">Thuê</option>
+                          <option value="Mua">Mua</option>
+                          <option value="Bán">Bán</option>
+                        </select>
+                        <div class="icon">
+                            <i class="fa-solid fa-panorama"></i>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <label for="city">Vị trí</label>
+                        <input type="text" name="" id="city">
+                        <div class="icon">
+                          <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <label for="apartment">Loại</label>
+                        <select name="apartment" id="apartment">
+                          <option value="">---</option>
+                          <option value="Biệt thự">Biệt thự</option>
+                          <option value="Nhà ở thương mại">Nhà ở thương mại</option>
+                          <option value="Nhà ở chung cư">Nhà ở chung cư</option>
+                        </select>
+                        <div class="icon">
+                          <i class="fa-solid fa-house"></i>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <label for="price">Ngân Sách</label>
+                        <select name="price" id="price">
+                          <option value="---">---</option>
+                          <option value="1000-">dưới $1,000.00</option>
+                          <option value="1000-10000">$1,000.00 - $10,000.00</option>
+                          <option value="10000-30000">$10,000.00 - $30,000.00</option>
+                          <option value="30000-50000">$30,000.00 - $50,000.00</option>
+                          <option value="50000+">$Trên $50,000.00</option>
+                        </select>
+                        <div class="icon">
+                          <i class="fa-solid fa-dollar-sign"></i>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <label for="acreage">Diện Tích</label>
+                        <select name="acreage" id="acreage">
+                          <option value="---">---</option>
+                          <option value="50-">dưới 50m<sup>2</sup></option>
+                          <option value="50-100">50m<sup>2</sup> - 100m<sup>2</sup></option>
+                          <option value="100-150">100m<sup>2</sup> - 150m<sup>2</sup></option>
+                          <option value="150-200">150m<sup>2</sup> - 200m<sup>2</sup></option>
+                          <option value="200+">Trên 200m<sup>2</sup></option>
+                        </select>
+                        <div class="icon">
+                          <i class="fa-solid fa-vector-square"></i>
+                        </div>
+                      </div>
+                </form>
+               
+            </div>
+        </div>
+       
+        <section class="section-products ">
+            <div class="container">
+                <div class="section-content ">
+                    <div class="section-header search-products-title">
+                        <div class="section-header__content">
+                            <h2 class="title">Sản Phẩm Nổi Bật</h2>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card-product">
+                            <div class="house-card">
+                                <div class="house__thumb">
+                                    <img src="./assets/images/house-03.jpeg" alt="house-03" />
+                                    <div class="house__meta">
+                                        <a href="#">Bất Động Sản</a>
+                                    </div>
+                                </div>
+        
+                                <div class="house__content">
+                                    <div class="house__content__top">
+                                        <h4 class="price">$4,600.00</h4>
+                                        <span class="services">Thuê</span>
+                                    </div>
+                                    <div class="house__content__main">
+                                        <h3 class="title"><a href="#">Nhà Ở Chung Cư</a></h3>
+                                        <p class="location">
+                                            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                                            <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="house__content__bottom">
+                                    <div class="info-wrap">
+                                        <div class="info">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-bed"></i>
+                                            </div>
+                                            <span>2</span>
+                                        </div>
+                                        <div class="info">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-house"></i>
+                                            </div>
+                                            <span>2</span>
+                                        </div>
+                                        <div class="info">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-car-tunnel"></i>
+                                            </div>
+                                            <span>2</span>
+                                        </div>
+                                        <div class="info info-right">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-vector-square"></i>
+                                            </div>
+                                            <span class="acreage">49</span><span>M<sup>2</sup></span> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card-product">
+                            <div class="house-card">
+                                <div class="house__thumb">
+                                    <img src="./assets/images/house-03.jpeg" alt="house-03" />
+                                    <div class="house__meta">
+                                        <a href="#">Bất Động Sản</a>
+                                    </div>
+                                </div>
+        
+                                <div class="house__content">
+                                    <div class="house__content__top">
+                                        <h4 class="price">$4,600.00</h4>
+                                        <span class="services">Thuê</span>
+                                    </div>
+                                    <div class="house__content__main">
+                                        <h3 class="title"><a href="#">Nhà Ở Chung Cư</a></h3>
+                                        <p class="location">
+                                            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                                            <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="house__content__bottom">
+                                    <div class="info-wrap">
+                                        <div class="info">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-bed"></i>
+                                            </div>
+                                            <span>2</span>
+                                        </div>
+                                        <div class="info">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-house"></i>
+                                            </div>
+                                            <span>2</span>
+                                        </div>
+                                        <div class="info">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-car-tunnel"></i>
+                                            </div>
+                                            <span>2</span>
+                                        </div>
+                                        <div class="info info-right">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-vector-square"></i>
+                                            </div>
+                                            <span class="acreage">49</span><span>M<sup>2</sup></span> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="next-prev">
+                    <div class="box active">1</div>
+                    <div class="box">2</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="widget">
+                        <a href="#" class="logo">
+                            <img src="assets/images/logo.png" alt="logo" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="widget">
+                                <h5 class="widget__title">THÔNG TIN</h5>
+                                <ul class="widget__list">
+                                    <li>TT. Gio Linh, Gio Linh, Quảng Trị 520000, Việt Nam</li>
+                                    <li>0763 636 535</li>
+                                    <li>lphuonguye.ecn.2182004@gmail.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="widget">
+                                <h5 class="widget__title">LIÊN KẾT</h5>
+                                <ul class="widget__list">
+                                    <li><a href="">Giới thiệu</a></li>
+                                    <li><a href="">Blogs</a></li>
+                                    <li><a href="">Liên hệ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="widget">
+                                <h5 class="widget__title">HỖ TRỢ</h5>
+                                <ul class="widget__list">
+                                    <li>Chính sách</li>
+
+                                    <li>Tư vấn khách hàng</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section end -->
+
+    <!-- copyright arean start -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright__wrapper">
+                        <p class="text">Copyright © 2023 All Rights Reserved</p>
+                        <img class="payment-image" src="assets/images/payment.png" alt="payment-image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright arean end -->
+
+
+    
+    <!-- JS -->
+    <script src="assets/js/filter-products.js"></script>
+    <!-- <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.waypoints.js"></script>
+    <script src="assets/js/counterup.min.js"></script>
+    <script src="assets/js/jquery.fancybox.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/jquery.nice-select.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/main.js"></script> -->
+
+</body>
+
+</html>

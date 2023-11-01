@@ -1,0 +1,82 @@
+/*---------------------------------
++  testimonioal -card Start
++---------------------------------*/
+.testimonial {
+    width: 100%;
+    font-family: $default;
+    text-align: left;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid $border;
+    margin-bottom: 30px;
+
+    &__header {
+        margin-bottom: 30px;
+        @include flexbox($jc: flex-start, $a: center);
+
+        .avater {
+            img {
+                width: 70px;
+                aspect-ratio: 1/1;
+                border-radius: 8px;
+            }
+
+            margin-right: 24px;
+
+        }
+
+        .user-info {
+            .name {
+                font-size: 20px;
+                font-weight: $medium;
+                line-height: 24px;
+                letter-spacing: 0em;
+                color: $content2;
+                margin-bottom: 8px;
+            }
+
+            .designation {
+                font-size: 16px;
+                font-weight: $regular;
+                line-height: 19px;
+                letter-spacing: 0em;
+                margin-bottom: 0px;
+                color: $content;
+            }
+        }
+    }
+
+    &__body {
+        font-size: 16px;
+        font-weight: $regular;
+        line-height: 26px;
+        letter-spacing: 0em;
+        color: $content;
+
+        .content {
+            margin-bottom: 30px;
+        }
+
+        .meta {
+            color: $content2;
+            margin-bottom: 0;
+        }
+    }
+}
+
+// testimonial wrapper
+section.testimonials {
+    .slider-nav {
+        button {
+            color: $heading;
+
+            path {
+                transition: $transition;
+            }
+
+            &.swiper-button-disabled {
+                color: #D0D5DD;
+            }
+        }
+    }
+}
