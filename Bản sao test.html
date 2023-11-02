@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8&callback=initMap"
+        async defer></script>
+</head>
+<body>
+    <input type="text" id="address">
+    <input type="submit" value="Get" id="submit">
+    <div id="map" style="height: 400px; width: 100%;"></div>
+    <script>
+        document.querySelector('#submit').addEventListener('click', function () {
+            const getAddress = document.querySelector('#address').value;
+            // const address = '262 Đ. Tôn Đản, Hoà An, Cẩm Lệ, Đà Nẵng 550000, Việt Nam';
+            fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(getAddress)}&apiKey=70a97adee56547329de91aa39b2e0665`)
+                .then(resp => resp.json())
+                .then((geocodingResult) => {
+                    console.log(geocodingResult);
+                    var longitude = geocodingResult.features[0].geometry.coordinates[0]; // Kinh độ
+                    var latitude = geocodingResult.features[0].geometry.coordinates[1]; // Vĩ độ
+                    console.log("Kinh độ:", longitude);
+                    console.log("Vĩ độ:", latitude);
+
+                });
+        })
+        function initMap(latitude, longitude) {
+        const myLatLng = { lat: latitude, lng: longitude };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: myLatLng,
+        });
+
+        new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+        });
+        }
+    </script>
+</body>
+</html>

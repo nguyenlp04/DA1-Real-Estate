@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        let latitude; // Khai báo biến latitude và longitude ở đây
+        let longitude;
+
+        function initMap() {
+            const myLatLng = { lat: latitude, lng: longitude };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: myLatLng,
+                // center: { lat: 40.7128, lng: -74.0060 },
+
+                mapTypeId: google.maps.MapTypeId.SATELLITE, 
+            });
+
+            new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+            });
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="address">
+    <input type="submit" value="Get" id="submit">
+    <div id="map" style="height: 400px; width: 70%;"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8&callback=initMap" async defer></script>
+    <script>
+        document.querySelector('#submit').addEventListener('click', function(){
+            const getAddress = document.querySelector('#address').value;
+            fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(getAddress)}&apiKey=70a97adee56547329de91aa39b2e0665`)
+            .then(resp => resp.json())
+            .then((geocodingResult) => {
+                console.log(geocodingResult);
+                latitude = geocodingResult.features[0].geometry.coordinates[1]; // Lưu trữ kinh độ và vĩ độ
+                longitude = geocodingResult.features[0].geometry.coordinates[0];
+                console.log("Kinh độ:", longitude);
+                console.log("Vĩ độ:", latitude);
+                initMap(latitude, longitude); // Gọi hàm initMap sau khi có kinh độ và vĩ độ
+            });
+        });
+    </script>
+</body>
+</html>
