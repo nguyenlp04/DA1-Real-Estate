@@ -662,6 +662,46 @@ itemscope itemtype="https://schema.org/WebPage">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <script>
+                                                                function initMap(latitude, longitude) {
+                                                                    const myLatLng = { lat: latitude, lng: longitude };
+                                                                    const map = new google.maps.Map(document.getElementById("map"), {
+                                                                        zoom: 16,
+                                                                        center: myLatLng,
+                                                                        center: { lat: latitude, lng: longitude }, // Nếu thêm address rồi thì xoá cái này
+                                                                        // mapTypeId: google.maps.MapTypeId.SATELLITE,  // Bản đồ vệ tinh
+                                                                    });
+                                                                    // const iconPath = './snapedit_1698892191370.png';
+                                                                    new google.maps.Marker({
+                                                                        position: myLatLng,
+                                                                        map: map,
+                                                                        // icon: {
+                                                                        //     url: iconPath,
+                                                                        //     scaledSize: new google.maps.Size(50, 50) // Kích thước biểu tượng
+                                                                        // },
+                                                                    });
+                                                                }
+                                                            </script>
+
+                                                <div id="map" style="height: 400px; width: 100%;"></div>
+                                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8&callback=initMap" async defer></script>
+                                                    <script>
+                                                            const getAddress = "3112 Bayview Ave, Brooklyn, NY 11224, USA Brooklyn New York";
+                                                            fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(getAddress)}&apiKey=70a97adee56547329de91aa39b2e0665`)
+                                                            .then(resp => resp.json())
+                                                            .then((geocodingResult) => {
+                                                                console.log(geocodingResult);
+                                                                var latitude = geocodingResult.features[0].geometry.coordinates[1]; // Lưu trữ kinh độ và vĩ độ
+                                                                var longitude = geocodingResult.features[0].geometry.coordinates[0];
+                                                                console.log("Kinh độ:", longitude);
+                                                                console.log("Vĩ độ:", latitude);
+                                                                initMap(latitude, longitude); // Gọi hàm initMap sau khi có kinh độ và vĩ độ
+                                                            });
+                                                    </script>
+
+
+
+                                                            123123
                                                         </div>
                                                     </section>
     
