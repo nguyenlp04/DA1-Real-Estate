@@ -20,6 +20,8 @@
         new google.maps.Marker({
             position: myLatLng,
             map: map,
+            icon: `https://api.geoapify.com/v1/icon/?type=material&color=red&size=small&iconType=awesome&noWhiteCircle&scaleFactor=2&apiKey=70a97adee56547329de91aa39b2e0665`,
+             
         });
         }
     </script>
@@ -27,10 +29,16 @@
     <input type="submit" value="Get" id="submit">
     <div id="map" style="height: 400px; width: 100%;"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8&callback=initMap" async defer></script>
+    <img width="600" height="400" 
+    src="https://maps.geoapify.com/v1/staticmap?style=osm-liberty&width=600&height=400&center=lonlat:16.05092026461254,108.18012576751839&zoom=14&apiKey=70a97adee56547329de91aa39b2e0665"
+    alt="8531 East Marginal Way South, Tukwila, WA 98108, United States of America">
+
+
     <script>
         document.querySelector('#submit').addEventListener('click', function () {
             const getAddress = document.querySelector('#address').value;
             console.log(getAddress);
+
             fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(getAddress)}&apiKey=70a97adee56547329de91aa39b2e0665`)
                 .then(resp => resp.json())
                 .then((geocodingResult) => {
