@@ -112,3 +112,10 @@
     background: #f5f8ff;
     text-transform: capitalize;
 }
+.header-menu .main-menu li a.active {
+    color: #444ce7;
+}
+.container-products{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+}

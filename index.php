@@ -1,139 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-
-    <!-- Primary Meta Tags -->
-    <title>NguyenLP Land - Property Buy & Seles</title>
-    <meta name="title" content="Property Buy & Seles HTML Template" />
-    <meta name="description"
-        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://xirosoft.com/demo/rents-html/" />
-    <meta property="og:title" content="Property Buy & Seles HTML Template" />
-    <meta property="og:description"
-        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
-    <meta property="og:image" content="https://xirosoft.com/demo/rents-html/assets/images/preview.jpeg" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://xirosoft.com/demo/rents-html/" />
-    <meta property="twitter:title" content="Property Buy & Seles HTML Template" />
-    <meta property="twitter:description"
-        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
-    <meta property="twitter:image" content="https://xirosoft.com/demo/rents-html/assets/images/preview.jpeg" />
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo.png" type="image/f-icon" />
-    <meta name="keywords" content="rents, template, property" />
-    <meta name="author" content="https://xirosoft.com" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/all.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/nice-select.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-</head>
-
-<body>
-    <div class="creat-form-signup" style="display: none;">
-        <form class="form-signup" onsubmit="signup()">
-            <div class="title-close">
-                <h1>Đăng Ký</h1>
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-            <div class="icon-form-signup">
-               <p class="with-social"><i class="fa-brands fa-google"></i>Đăng ký với Google</p> 
-               <p class="with-social"><i class="fa-brands fa-facebook-f"></i>Đăng ký với Facebook</p> 
-            </div>
-            <hr>
-            <label><h4>Họ và tên</h4> <input class="name-signup" type="text" placeholder="Họ và tên"></label>
-            <label><h4>Tài khoản</h4> <input class="user-signup" type="text" placeholder="Username"></label>
-            <label><h4>Mật khẩu</h4> <input class="pass-signup" type="password" placeholder="Password"></label>
-            <div class="btn-signup">
-                <button class="btn-login">Đăng Ký</button>
-            </div>
-            <hr>
-            <div class="have-account">
-                <p>Bạn đã tạo tài khoản rồi? <p class="next-page-form page-account-login">&nbsp; Đăng nhập</p></p>
-            </div>
-        </form>
-    </div>
-    <div class="creat-form-login" style="display: none;">
-        <form class="form-signup" onsubmit="login()">
-          
-
-            <div class="title-close">
-                <h1>Đăng Nhập</h1>
-                <i class="fa-solid fa-xmark  cloese-login"></i>
-            </div>
-
-            <div class="icon-form-signup">
-                <p class="with-social"><i class="fa-brands fa-google"></i>Đăng nhập với Google</p> 
-                <p class="with-social"><i class="fa-brands fa-facebook-f"></i>Đăng nhập với Facebook</p> 
-            </div>
-            <hr>
-
-            <label><h4>Tài khoản</h4> <input class="user-login" type="text" placeholder="Username"></label>
-            <label><h4>Mật khẩu</h4> <input class="pass-login" type="password" placeholder="Password"></label>
-           <div class="save-pass-login"> <input type="checkbox"> <p>&nbsp;Lưu mật khẩu</p> </div>
-            <div class="btn-signup">
-                <button class="btn-login">Đăng Nhập</button>
-            </div>
-            <hr>
-            <div class="have-account">
-                <p>Bạn chưa tạo tài khoản rồi? <p class="next-page-form page-account-signup">&nbsp; Đăng ký</p></p>
-            </div>
-        </form>
-    </div>
-    <!-- Header Start  -->
-    <header class="header-section">
-        <nav class="nav">
-            <div class="container">
-                <!-- Header Wrap Start  -->
-                <div class="header-wrap">
-                    <div class="header-logo">
-                        <a href="index.html">
-                            <img src="assets/images/logo.png" alt="logo" />
-                        </a>
-                    </div>
-                    <div class="header-menu">
-                        <ul class="main-menu">
-                            <li><a href="#" class="active">Trang Chủ</a></li>
-                            <li><a href="introduce.html">Giới Thiệu</a></li>
-                            <li><a href="products.html">Sản Phẩm</a></li>
-                            <li><a href="news.html">Tin Tức</a></li>
-                            <li><a href="contact.html">Liên Hệ</a></li>
-                        </ul>
-                    </div>
-                    <div class="header-meta">
-                        <a href="#contact" class="btn btn-outline me-3 btn-login-form">Đăng Nhập</a>
-                        <a href="#contact" class="btn btn-primary btn-signup-form">Đăng Ký</a>
-                        <!-- Header Toggle Start -->
-                        <div class="header-toggle d-lg-none">
-                            <button class="toggler-btn">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>
-                        </div>
-                        <!-- Header Toggle End -->
-                    </div>
-                </div>
-                <!-- Header Wrap End  -->
-            </div>
-        </nav>
-    </header>
-    <!-- Header End -->
+<?php
+include './routes/routes.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+<?php include 'views/inc/header.php' ?>
 
     <!-- hero section start -->
     <div class="hero">
@@ -265,7 +135,7 @@
                     <h2 class="title">Ngôi Nhà Phổ Biến Của Chúng Tôi</h2>
                 </div>
                 <div class="section-header__action">
-                    <a href="./products.html">Xem Tất Cả <span class="icon"><img src="assets/images/icons/arrow-right.svg"
+                    <a href="./products">Xem Tất Cả <span class="icon"><img src="assets/images/icons/arrow-right.svg"
                                 alt="arrow-right" /></span></a>
                 </div>
             </div>
@@ -583,7 +453,7 @@
                             </li>
                         </ul>
 
-                        <a href="./contact.html" class="btn btn-primary">Liên Hệ Chúng Tôi</a>
+                        <a href="./contact" class="btn btn-primary">Liên Hệ Chúng Tôi</a>
                     </div>
                 </div>
             </div>
@@ -919,7 +789,7 @@
                     <h2 class="title">Tin Tức Bất Động Sản Mới Nhất</h2>
                 </div>
                 <div class="section-header__action">
-                    <a href="./news.html">Xem Tất Cả <span class="icon"><img src="assets/images/icons/arrow-right.svg"
+                    <a href="./news">Xem Tất Cả <span class="icon"><img src="assets/images/icons/arrow-right.svg"
                                 alt="arrow-right" /></span></a>
                 </div>
             </div>
@@ -989,68 +859,7 @@
     <!-- blog section end -->
 
     <!-- footer section start -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <div class="widget">
-                        <a href="#" class="logo">
-                            <img src="assets/images/logo.png" alt="logo" />
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-8">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="widget">
-                                <h5 class="widget__title">THÔNG TIN</h5>
-                                <ul class="widget__list">
-                                    <li>TT. Gio Linh, Gio Linh, Quảng Trị 520000, Việt Nam</li>
-                                    <li>0763 636 535</li>
-                                    <li>lphuonguye.ecn.2182004@gmail.com</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="widget">
-                                <h5 class="widget__title">LIÊN KẾT</h5>
-                                <ul class="widget__list">
-                                    <li><a href="">Giới thiệu</a></li>
-                                    <li><a href="">Blogs</a></li>
-                                    <li><a href="">Liên hệ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="widget">
-                                <h5 class="widget__title">HỖ TRỢ</h5>
-                                <ul class="widget__list">
-                                    <li>Chính sách</li>
-
-                                    <li>Tư vấn khách hàng</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer section end -->
-
-    <!-- copyright arean start -->
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="copyright__wrapper">
-                        <p class="text">Copyright © 2023 All Rights Reserved</p>
-                        <img class="payment-image" src="assets/images/payment.png" alt="payment-image" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ <?php include 'views/inc/footer.php' ?>
     <!-- copyright arean end -->
 
     <!-- JS -->
