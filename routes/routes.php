@@ -46,8 +46,8 @@ $router->addRoute('admin/addTags', __DIR__ . '/../admin/controllers/property/add
 $router->addRoute('admin/contract', __DIR__ . '/../admin/controllers/transactions/contract.php');
 $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transactions/negotiations.php');
 
-$router->addRoute('admin/post', __DIR__ . '/../admin/controllers/post/addPost.php');
-$router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/post/updatePost.php');
+$router->addRoute('admin/post', __DIR__ . '/../admin/controllers/posts/listPost.php');
+$router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/posts/addPost.php');
 
 $router->addRoute('admin/user', __DIR__ . '/../admin/controllers/user/addUser.php');
 $router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/listUser.php');
