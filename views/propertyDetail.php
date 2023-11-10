@@ -13,22 +13,6 @@
     <meta name="description"
         content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://xirosoft.com/demo/rents-html/" />
-    <meta property="og:title" content="Property Buy & Seles HTML Template" />
-    <meta property="og:description"
-        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
-    <meta property="og:image" content="https://xirosoft.com/demo/rents-html/../assets/images/preview.jpeg" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://xirosoft.com/demo/rents-html/" />
-    <meta property="twitter:title" content="Property Buy & Seles HTML Template" />
-    <meta property="twitter:description"
-        content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
-    <meta property="twitter:image" content="https://xirosoft.com/demo/rents-html/../assets/images/preview.jpeg" />
-
     <!-- Favicon -->
     <link rel="shortcut icon" href="./assets/images/logo.png" type="image/f-icon" />
     <meta name="keywords" content="rents, template, property" />
@@ -57,72 +41,7 @@
 <body
     class="property-template-default single single-property postid-2459 theme-newhome qi-blocks-1.2.1 qodef-gutenberg--no-touch qode-framework-1.2.2 woocommerce-no-js qodef-qi--no-touch qi-addons-for-elementor-1.6.2 qodef-back-to-top--enabled  qodef--passepartout qodef-header--standard qodef-header-appearance--none qodef-mobile-header--standard qodef-drop-down-second--full-width qodef-drop-down-second--default qodef-title-area--enabled newhome-core-1.0.4 newhome-membership-1.0 newhome-1.2.2 qodef-content-grid-1400 qodef-property-item-layout--gallery qodef-header-standard--center elementor-default elementor-kit-4"
     itemscope itemtype="https://schema.org/WebPage">
-    <div class="creat-form-signup" style="display: none;">
-        <form class="form-signup" onsubmit="signup()">
-            <div class="title-close">
-                <h1>Đăng Ký</h1>
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-            <div class="icon-form-signup">
-                <p class="with-social"><i class="fa-brands fa-google"></i>Đăng ký với Google</p>
-                <p class="with-social"><i class="fa-brands fa-facebook-f"></i>Đăng ký với Facebook</p>
-            </div>
-            <hr>
-            <label>
-                <h4>Họ và tên</h4> <input class="name-signup" type="text" placeholder="Họ và tên">
-            </label>
-            <label>
-                <h4>Tài khoản</h4> <input class="user-signup" type="text" placeholder="Username">
-            </label>
-            <label>
-                <h4>Mật khẩu</h4> <input class="pass-signup" type="password" placeholder="Password">
-            </label>
-            <div class="btn-signup">
-                <button class="btn-login">Đăng Ký</button>
-            </div>
-            <hr>
-            <div class="have-account">
-                <p>Bạn đã tạo tài khoản rồi?
-                <p class="next-page-form page-account-login">&nbsp; Đăng nhập</p>
-                </p>
-            </div>
-        </form>
-    </div>
-    <div class="creat-form-login" style="display: none;">
-        <form class="form-signup" onsubmit="login()">
-
-
-            <div class="title-close">
-                <h1>Đăng Nhập</h1>
-                <i class="fa-solid fa-xmark  cloese-login"></i>
-            </div>
-
-            <div class="icon-form-signup">
-                <p class="with-social"><i class="fa-brands fa-google"></i>Đăng nhập với Google</p>
-                <p class="with-social"><i class="fa-brands fa-facebook-f"></i>Đăng nhập với Facebook</p>
-            </div>
-            <hr>
-
-            <label>
-                <h4>Tài khoản</h4> <input class="user-login" type="text" placeholder="Username">
-            </label>
-            <label>
-                <h4>Mật khẩu</h4> <input class="pass-login" type="password" placeholder="Password">
-            </label>
-            <div class="save-pass-login"> <input type="checkbox">
-                <p>&nbsp;Lưu mật khẩu</p>
-            </div>
-            <div class="btn-signup">
-                <button class="btn-login">Đăng Nhập</button>
-            </div>
-            <hr>
-            <div class="have-account">
-                <p>Bạn chưa tạo tài khoản rồi?
-                <p class="next-page-form page-account-signup">&nbsp; Đăng ký</p>
-                </p>
-            </div>
-        </form>
-    </div>
+    
     <!-- Header Start  -->
     <header class="header-section">
         <nav class="nav">
@@ -130,22 +49,22 @@
                 <!-- Header Wrap Start  -->
                 <div class="header-wrap">
                     <div class="header-logo">
-                        <a href="../ home">
-                            <img src="../assets/images/logo.png" alt="logo" />
+                        <a href="home">
+                            <img src="assets/images/logo.png" alt="logo" />
                         </a>
                     </div>
                     <div class="header-menu">
                         <ul class="main-menu">
-                            <li><a href="../ home">Trang Chủ</a></li>
-                            <li><a href="../#" class="active">Giới Thiệu</a></li>
-                            <li><a href="../products">Sản Phẩm</a></li>
-                            <li><a href="../news">Tin Tức</a></li>
-                            <li><a href="../contact">Liên Hệ</a></li>
+                            <li><a href="home">Trang Chủ</a></li>
+                            <li><a href="introduce">Giới Thiệu</a></li>
+                            <li><a href="products">Sản Phẩm</a></li>
+                            <li><a href="news">Tin Tức</a></li>
+                            <li><a href="contact">Liên Hệ</a></li>
                         </ul>
                     </div>
                     <div class="header-meta">
-                        <a href="#contact" class="btn btn-outline me-3 btn-login-form">Đăng Nhập</a>
-                        <a href="#contact" class="btn btn-primary btn-signup-form">Đăng Ký</a>
+                        <a href="auth/login.pho" class="btn btn-outline me-3 btn-login-form">Đăng Nhập</a>
+                        <a href="auth/signUp.php" class="btn btn-primary btn-signup-form">Đăng Ký</a>
                         <!-- Header Toggle Start -->
                         <div class="header-toggle d-lg-none">
                             <button class="toggler-btn">
@@ -208,7 +127,7 @@
                                             <article
                                                 class="qodef-property-item qodef-m post-2459 property type-property status-publish has-post-thumbnail hentry property-type-for-rent property-category-villas property-location-brooklyn property-tag-swimming-pool">
                                                 <div class="qodef-m-inner">
-                                                    <section class="qodef-m-heading">
+                                                    <section class="qodef-m-heading m-0">
                                                         <div class="qodef-m-heading-top">
                                                             <div class="qodef-m-types ">
                                                                 <a href="https://newhome.qodeinteractive.com/property-type/for-rent/"
@@ -258,7 +177,7 @@
 
                                                         </div>
                                                     </section>
-                                                    <section class="qodef-m-description">
+                                                    <section class="qodef-m-description m-0 p-0">
                                                         <h4 class="qodef-m-description-title">Mô tả</h4>
                                                         <div class="qodef-m-description-content">
                                                             <p>Lorem ipsum dolor sit amet, wisi nemore fastidii at vis,
@@ -969,82 +888,8 @@
 
 
     </section>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <div class="widget">
-                        <a href="#" class="logo">
-                            <img src="../assets/images/logo.png" alt="logo" />
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-8">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="widget">
-                                <h5 class="widget__title">THÔNG TIN</h5>
-                                <ul class="widget__list">
-                                    <li>TT. Gio Linh, Gio Linh, Quảng Trị 520000, Việt Nam</li>
-                                    <li>0763 636 535</li>
-                                    <li>lphuonguye.ecn.2182004@gmail.com</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="widget">
-                                <h5 class="widget__title">LIÊN KẾT</h5>
-                                <ul class="widget__list">
-                                    <li><a href="">Giới thiệu</a></li>
-                                    <li><a href="">Blogs</a></li>
-                                    <li><a href="">Liên hệ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="widget">
-                                <h5 class="widget__title">HỖ TRỢ</h5>
-                                <ul class="widget__list">
-                                    <li>Chính sách</li>
-
-                                    <li>Tư vấn khách hàng</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer section end -->
-
-    <!-- copyright arean start -->
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="copyright__wrapper">
-                        <p class="text">Copyright © 2023 All Rights Reserved</p>
-                        <img class="payment-image" src="../assets/images/payment.png" alt="payment-image" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- copyright arean end -->
-
-    <!-- JS -->
-    <script src="../assets/js/jquery-3.6.0.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/jquery.waypoints.js"></script>
-    <script src="../assets/js/counterup.min.js"></script>
-    <script src="../assets/js/jquery.fancybox.min.js"></script>
-    <script src="../assets/js/swiper-bundle.min.js"></script>
-    <script src="../assets/js/jquery.nice-select.js"></script>
-    <script src="../assets/js/scripts.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <?php include 'inc/footer.php' ?>
+  
 </body>
 
 </html>

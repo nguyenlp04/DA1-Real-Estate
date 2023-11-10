@@ -51,49 +51,7 @@ function dragStart(ev) {
     }
   }
 
-  const close_signup = document.querySelector('.fa-xmark')
-  close_signup.addEventListener('click',function(){
-    document.querySelector('.creat-form-signup').style.display = 'none'
-    document.body.style.overflow = 'auto'
-  })
-
-  const close_login = document.querySelector('.cloese-login')
-  close_login.addEventListener('click',function(){
-    document.querySelector('.creat-form-login').style.display = 'none'
-    document.body.style.overflow = 'auto'
-  })
 
 
-  const btn_signup = document.querySelectorAll('.btn-signup-form')
-  for (let i = 0; i < btn_signup.length; i++) {
-    
-    btn_signup[i].addEventListener('click',function(){
-      document.querySelector('.creat-form-signup').style.display = ''
-      document.body.style.overflow = 'hidden'
-    })
-    
-  }
-
-  const btn_login = document.querySelectorAll('.btn-login-form')
-  for (let i = 0; i < btn_login.length; i++) {
-    
-    btn_login[i].addEventListener('click',function(){
-      document.querySelector('.creat-form-login').style.display = ''
-      document.body.style.overflow = 'hidden'
-    })
-    
-  }
 
 
-  // From Dang Ky _ btn Dang Nhap
-const next_page_login = document.querySelector('.page-account-login')
-next_page_login.addEventListener('click', function(){
-  document.querySelector('.creat-form-login').style.display = ''
-  document.querySelector('.creat-form-signup').style.display = 'none'
-})
-
-const next_page_signup = document.querySelector('.page-account-signup')
-next_page_signup.addEventListener('click', function(){
-  document.querySelector('.creat-form-signup').style.display = ''
-  document.querySelector('.creat-form-login').style.display = 'none'
-})

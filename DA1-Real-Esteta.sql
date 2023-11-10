@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th10 09, 2023 lúc 04:53 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Nov 10, 2023 at 07:04 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `DA1-Real-Estate`
+-- Database: `da1-real-estate`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `images`
+-- Table structure for table `images`
 --
 
 CREATE TABLE `images` (
@@ -34,7 +34,7 @@ CREATE TABLE `images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `images`
+-- Dumping data for table `images`
 --
 
 INSERT INTO `images` (`image_id`, `property_id`, `image_url`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `images` (`image_id`, `property_id`, `image_url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `negotiations`
+-- Table structure for table `negotiations`
 --
 
 CREATE TABLE `negotiations` (
@@ -62,7 +62,7 @@ CREATE TABLE `negotiations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `negotiations`
+-- Dumping data for table `negotiations`
 --
 
 INSERT INTO `negotiations` (`negotiation_id`, `property_id`, `seller_id`, `customer_id`, `price_offered`, `status`, `created_at`) VALUES
@@ -74,7 +74,7 @@ INSERT INTO `negotiations` (`negotiation_id`, `property_id`, `seller_id`, `custo
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -88,7 +88,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `posts`
+-- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`post_id`, `user_id`, `title`, `category`, `description`, `content`, `created_at`) VALUES
@@ -98,7 +98,7 @@ INSERT INTO `posts` (`post_id`, `user_id`, `title`, `category`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `properties`
+-- Table structure for table `properties`
 --
 
 CREATE TABLE `properties` (
@@ -123,7 +123,7 @@ CREATE TABLE `properties` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `properties`
+-- Dumping data for table `properties`
 --
 
 INSERT INTO `properties` (`property_id`, `tag_id`, `user_id`, `description`, `price`, `location`, `status`, `title`, `views`, `beds`, `baths`, `acreage`, `floor_plans`, `tivis`, `cameras`, `built_in`, `conditioner`, `wifi`) VALUES
@@ -135,7 +135,7 @@ INSERT INTO `properties` (`property_id`, `tag_id`, `user_id`, `description`, `pr
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `property_tags`
+-- Table structure for table `property_tags`
 --
 
 CREATE TABLE `property_tags` (
@@ -144,7 +144,7 @@ CREATE TABLE `property_tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `property_tags`
+-- Dumping data for table `property_tags`
 --
 
 INSERT INTO `property_tags` (`tag_id`, `tag_name`) VALUES
@@ -155,7 +155,7 @@ INSERT INTO `property_tags` (`tag_id`, `tag_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `transactions`
+-- Table structure for table `transactions`
 --
 
 CREATE TABLE `transactions` (
@@ -168,7 +168,7 @@ CREATE TABLE `transactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `transactions`
+-- Dumping data for table `transactions`
 --
 
 INSERT INTO `transactions` (`transaction_id`, `property_id`, `customer_id`, `seller_id`, `transaction_type`, `transaction_date`) VALUES
@@ -178,7 +178,7 @@ INSERT INTO `transactions` (`transaction_id`, `property_id`, `customer_id`, `sel
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -193,7 +193,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `full_name`, `roles`, `phone_number`, `avatar`) VALUES
@@ -203,18 +203,18 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `full_name`, `r
 (4, 24680, 'pass789', 'user4@example.com', 'Bob Johnson', 'User', '123-987-4567', 'user4_avatar.jpg');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `images`
+-- Indexes for table `images`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`image_id`),
   ADD KEY `property_id` (`property_id`);
 
 --
--- Chỉ mục cho bảng `negotiations`
+-- Indexes for table `negotiations`
 --
 ALTER TABLE `negotiations`
   ADD PRIMARY KEY (`negotiation_id`),
@@ -223,27 +223,27 @@ ALTER TABLE `negotiations`
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Chỉ mục cho bảng `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`post_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Chỉ mục cho bảng `properties`
+-- Indexes for table `properties`
 --
 ALTER TABLE `properties`
   ADD PRIMARY KEY (`property_id`),
   ADD KEY `fk_tag_id` (`tag_id`);
 
 --
--- Chỉ mục cho bảng `property_tags`
+-- Indexes for table `property_tags`
 --
 ALTER TABLE `property_tags`
   ADD PRIMARY KEY (`tag_id`);
 
 --
--- Chỉ mục cho bảng `transactions`
+-- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`transaction_id`),
@@ -252,23 +252,69 @@ ALTER TABLE `transactions`
   ADD KEY `seller_id` (`seller_id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `images`
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `negotiations`
+--
+ALTER TABLE `negotiations`
+  MODIFY `negotiation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `properties`
+--
+ALTER TABLE `properties`
+  MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `property_tags`
+--
+ALTER TABLE `property_tags`
+  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `images`
 --
 ALTER TABLE `images`
   ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`);
 
 --
--- Các ràng buộc cho bảng `negotiations`
+-- Constraints for table `negotiations`
 --
 ALTER TABLE `negotiations`
   ADD CONSTRAINT `negotiations_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`),
@@ -276,19 +322,19 @@ ALTER TABLE `negotiations`
   ADD CONSTRAINT `negotiations_ibfk_3` FOREIGN KEY (`customer_id`) REFERENCES `users` (`user_id`);
 
 --
--- Các ràng buộc cho bảng `posts`
+-- Constraints for table `posts`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Các ràng buộc cho bảng `properties`
+-- Constraints for table `properties`
 --
 ALTER TABLE `properties`
   ADD CONSTRAINT `fk_tag_id` FOREIGN KEY (`tag_id`) REFERENCES `property_tags` (`tag_id`);
 
 --
--- Các ràng buộc cho bảng `transactions`
+-- Constraints for table `transactions`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`),

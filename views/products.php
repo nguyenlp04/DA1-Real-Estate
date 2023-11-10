@@ -1,4 +1,5 @@
 <?php 
+
 include 'inc/header.php'
 ?>
     <section>
@@ -88,7 +89,7 @@ include 'inc/header.php'
                                 <div class="house__thumb">
                                     <img src="./assets/images/house-03.jpeg" alt="house-03" />
                                     <div class="house__meta">
-                                        <a href="#">Bất Động Sản</a>
+                                        <a href="propertyDetail">Bất Động Sản</a>
                                     </div>
                                 </div>
         
@@ -206,20 +207,7 @@ include 'inc/header.php'
     <!-- copyright arean end -->
 
 
-    
-    <!-- JS -->
-    <script src="assets/js/filter-products.js"></script>
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.waypoints.js"></script>
-    <script src="assets/js/counterup.min.js"></script>
-    <script src="assets/js/jquery.fancybox.min.js"></script>
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/jquery.nice-select.js"></script>
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/main.js"></script>
+  
 
 </body>
 

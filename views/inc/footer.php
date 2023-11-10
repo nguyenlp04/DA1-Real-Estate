@@ -60,3 +60,22 @@
             </div>
         </div>
     </div>
+<script src="assets/js/filter-products.js"></script>
+
+ <script src="assets/js/jquery-3.6.0.min.js"></script>
+ <!-- hiển thị popper video -->
+    <script src="assets/js/popper.min.js"></script>
+    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+<!-- question -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+<!-- đánh giá -->
+    <script src="assets/js/jquery.waypoints.js"></script>
+    <script src="assets/js/counterup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/jquery.nice-select.js"></script>
+    
+    <script src="assets/js/jquery.fancybox.min.js"></script>
+<!-- số banner -->
+    <!-- <script src="assets/js/scripts.js"></script> -->
+
+    <script src="assets/js/main.js"></script>
