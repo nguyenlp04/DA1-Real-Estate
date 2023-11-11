@@ -101,10 +101,3 @@ include 'inc/header.php'
 </div>
     </section>
     <?php include 'inc/footer.php' ?>
-
-    <!-- copyright arean end -->
-
-   
-</body>
-
-</html>

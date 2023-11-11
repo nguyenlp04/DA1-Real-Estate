@@ -29,6 +29,7 @@ class Router {
 }
 $router = new Router();
 $router->addRoute('/', __DIR__ . '/../index.php');
+$router->addRoute('home', __DIR__ . '/../index.php');
 $router->addRoute('introduce', __DIR__ . '/../views/introduce.php');
 $router->addRoute('products', __DIR__ . '/../views/products.php');
 $router->addRoute('news', __DIR__ . '/../views/news.php');
