@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Kiểm tra kết quả và hiển thị thông báo cho người dùng
     if ($result === true) {
-        echo '<div class="w-1/2 mx-11"><div class=" alert bg-green-500 text-white font-bold rounded-t px-4 py-2"> Thêm bài viết thành công ! .</div></div>';
+        echo '<div class=" bg-green-500" style="margin-left: 30px; width:300px; border-radius: 0.25rem;"><div class="alert text-white font-bold rounded-t px-4 py-2"> Thêm bài viết thành công <i class="fa-solid fa-circle-check"></i></div></div>';
     } else {
         echo "Lỗi khi thêm bài viết: " . $result;
     }

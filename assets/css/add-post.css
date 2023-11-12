@@ -197,3 +197,9 @@
     row-gap: 0px;
   }
 }
+.bg-green-500 {
+  background-color: green;
+}
+.px-4 {
+  padding-left: 30px;
+}
