@@ -63,7 +63,7 @@
                         </ul>
                     </div>
                     <div class="header-meta">
-                        <a href="auth/login.pho" class="btn btn-outline me-3 btn-login-form">Đăng Nhập</a>
+                        <a href="auth/login.php" class="btn btn-outline me-3 btn-login-form">Đăng Nhập</a>
                         <a href="auth/signUp.php" class="btn btn-primary btn-signup-form">Đăng Ký</a>
                         <!-- Header Toggle Start -->
                         <div class="header-toggle d-lg-none">
