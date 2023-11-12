@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+
     <div class="flex justify-center xl:w-11/13">
         <div class="w-11/12 xl:w-11/13 mt-4 mb-8">
             <div class="w-full bg-white rounded-lg min-h-screen">
