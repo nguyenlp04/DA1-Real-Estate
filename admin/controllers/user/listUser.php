@@ -1,10 +1,4 @@
 <?php
-<<<<<<< HEAD
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
-  include(__DIR__ . '/../../inc/sideBar.php');
-  include(__DIR__ . '/../../inc/navBar.php');
-=======
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
@@ -18,7 +12,6 @@ include(__DIR__ . '/../../../config/config.php');
             <div class="w-full bg-white rounded-lg min-h-screen">
                 <div class="w-full flex justify-center h-auto">
                     <div class="w-11/12">
->>>>>>> PhuocNguyen-User
 
                         <div class="title-container flex items-center">
                             <p class="text-[#0957CB] font-semibold  text-2xl py-4">Tất Cả Người Dùng</p>
@@ -75,14 +68,9 @@ include(__DIR__ . '/../../../config/config.php');
     </div>
 </div>
 
-<<<<<<< HEAD
- 
- <?php include(__DIR__ . '/../../inc/footerDashboard.php');  ?>
-=======
 
 
 
 <?php
 include(__DIR__ . '/../../inc/footerDashboard.php');
 ?>
->>>>>>> PhuocNguyen-User
