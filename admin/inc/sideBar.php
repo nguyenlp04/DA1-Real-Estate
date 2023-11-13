@@ -7,11 +7,21 @@
 
     <title>SB Admin 2 - Dashboard</title>
     <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
-
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/Chart.min.js"></script>
+
+    <link rel="stylesheet" href="../vendor/dataTables/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/dataTables/dataTables.bootstrap5.min.css">
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="../vendor/dataTables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/dataTables/dataTables.bootstrap5.min.js"></script>
+    
+
 
     <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">

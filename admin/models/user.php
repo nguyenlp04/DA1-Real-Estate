@@ -26,7 +26,7 @@ class User
         } else {
             $sqlusername = "SELECT * FROM `users` WHERE username = '$username'";
             $result = $this->db->query($sqlusername);
-        
+
             if ($result->num_rows > 0) {
                 $errors["username"] = "Tên người dùng đã tồn tại";
             }
@@ -62,19 +62,51 @@ class User
         if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
             $avatarPath = '/' . $path;
         } else {
-            $avatarPath = '/user.png'; 
+            $avatarPath = '/user.png';
         }
-        
+
         if (empty($errors)) {
             $sql = "INSERT INTO `users` (`username`,`full_name`,`password`,`email`,`avatar`,`roles`, `phone_number`) VALUES('$username','$fullname','$pass','$email','$avatarPath','$roles', $phone)";
             if ($this->db->query($sql) === TRUE) {
                 return $success;
             } else {
-                $errors["errors"] = $this->db->error;  
-                return $errors; 
+                $errors["errors"] = $this->db->error;
+                return $errors;
             }
         } else {
-            return $errors; 
+            return $errors;
         }
     }
+
+    public  function renderUser()
+    {
+        $query = "SELECT * FROM users";
+        $result = $this->db->query($query);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
+                $data[] = $item;
+            }
+        }
+        return $data;
+    }
+
+    public  function deleteUser($iduser)
+    {
+        $sql = "SELECT * FROM users WHERE user_id ='$iduser'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows == 1) {
+            $delete = "DELETE FROM users WHERE user_id ='$iduser'";
+            if ($this->db->query($delete) === TRUE) {
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+            } else {
+                echo 113123;
+
+            }
+        }
+        echo "Không tìm thấy dữ liệu";
+        exit;
+    }
+
+
 }
