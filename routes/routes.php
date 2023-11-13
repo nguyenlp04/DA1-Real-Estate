@@ -50,9 +50,9 @@ $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transac
 $router->addRoute('admin/post', __DIR__ . '/../admin/controllers/posts/listPost.php');
 $router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/posts/addPost.php');
 
-$router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/addUser.php');
 $router->addRoute('admin/user', __DIR__ . '/../admin/controllers/user/listUser.php');
-$router->addRoute('admin/updateUser', __DIR__ . '/../admin/controllers/user/updateUser.php');
+$router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/addUser.php');
+$router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/updateUser.php');
 
 $router->addRoute('admin/setting', __DIR__ . '/../admin/controllers/setting/setting.php');
 

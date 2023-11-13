@@ -45,5 +45,19 @@ class Post
         }
 
         return false; 
-}}
+}
+    public function listPost(){
+        $sql = "SELECT * FROM posts";
+        $result = $this->db->query($sql);
+        $posts = [];
+    
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $posts[] = $row;
+            }
+        }
+    
+        return $posts;
+    }
+}
 ?>
