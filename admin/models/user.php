@@ -57,15 +57,14 @@ class User
         } else {
             $path = "user.png";
         }
-        $target_dir = "./assets/images/imguser";
+        $target_dir = dirname(__FILE__) . '/../../assets/images/imguser/';
         $target_file = $target_dir . $path;
-
         if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
             $avatarPath = '/' . $path;
         } else {
-            $avatarPath = '/user.png'; // Đặt giá trị mặc định nếu không thể upload ảnh
+            $avatarPath = '/user.png'; 
         }
-
+        
         if (empty($errors)) {
             $sql = "INSERT INTO `users` (`username`,`full_name`,`password`,`email`,`avatar`,`roles`, `phone_number`) VALUES('$username','$fullname','$pass','$email','$avatarPath','$roles', $phone)";
             if ($this->db->query($sql) === TRUE) {
