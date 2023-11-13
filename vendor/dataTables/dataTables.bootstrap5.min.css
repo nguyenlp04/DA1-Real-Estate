@@ -34,7 +34,7 @@ html.dark table.dataTable td.dt-control:before {
 html.dark table.dataTable tr.dt-hasChild td.dt-control:before {
     color: rgba(255, 255, 255, 0.5)
 }
-table.dataTable thead>tr>th.sorting_asc{
+table.dataTable thead>tr>th:nth-child(1){
     width: 25px !important;
 }
 table.dataTable thead>tr>th.sorting:last-child{
