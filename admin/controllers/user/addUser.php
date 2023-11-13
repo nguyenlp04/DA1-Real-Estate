@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="w-full flex flex-col py-2 ">
                   <label for="email" class="text-black  font-semibold pb-1 capitalize">Email</label>
-                  <input type="email" id="email" class="p-2  border border-[#a5abb5] rounded" name="email">
+                  <input type="text" id="email" class="p-2  border border-[#a5abb5] rounded" name="email">
                 </div>
                 <div class="w-full flex flex-col py-2 ">
                   <label for="phone" class="text-black  font-semibold pb-1 capitalize">Số điện thoại</label>
