@@ -5927,7 +5927,7 @@ fieldset:disabled .btn {
     border-radius: .25rem
 }
 
-.toast:not(.showing):not(.show) {
+.toast:not(.Showing):not(.show) {
     opacity: 0
 }
 

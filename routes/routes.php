@@ -27,6 +27,8 @@ class Router {
         }
     }
 }
+
+// User
 $router = new Router();
 $router->addRoute('/', __DIR__ . '/../index.php');
 $router->addRoute('home', __DIR__ . '/../index.php');
@@ -36,7 +38,7 @@ $router->addRoute('news', __DIR__ . '/../views/news.php');
 $router->addRoute('contact', __DIR__ . '/../views/contact.php');
 $router->addRoute('propertyDetail', __DIR__ . '/../views/propertyDetail.php');
 
-// admin
+// Admin
 $router->addRoute('admin/dashboard', __DIR__ . '/../admin/index.php');
 
 $router->addRoute('admin/listProperty', __DIR__ . '/../admin/controllers/property/listProperty.php');
@@ -53,13 +55,13 @@ $router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/posts/addPos
 $router->addRoute('admin/user', __DIR__ . '/../admin/controllers/user/listUser.php');
 $router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/addUser.php');
 $router->addRoute('admin/updateUser', __DIR__ . '/../admin/controllers/user/updateUser.php');
+<<<<<<< HEAD
+=======
+$router->addRoute('admin/deleteUser', __DIR__ . '/../admin/controllers/user/deleteUser.php');
+
+>>>>>>> PhuocNguyen-User
 
 $router->addRoute('admin/setting', __DIR__ . '/../admin/controllers/setting/setting.php');
-
-
-
-
-
 
 $requestUrl = isset($_GET['url']) ? $_GET['url'] : '/';
 $router->handleRequest($requestUrl);
