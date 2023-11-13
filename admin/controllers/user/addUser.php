@@ -57,11 +57,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="w-full flex flex-col py-2 ">
                   <label for="pass" class="text-black  font-semibold pb-1 capitalize">Mật khẩu</label>
-                  <input type="text" id="pass" class="p-2  border border-[#a5abb5] rounded" name="pass">
+                  <input type="password" id="pass" class="p-2  border border-[#a5abb5] rounded" name="pass">
                 </div>
                 <div class="w-full flex flex-col py-2 ">
                   <label for="cfpass" class="text-black  font-semibold pb-1 capitalize">Xác nhận mật khẩu</label>
-                  <input type="text" id="cfpass" class="p-2  border border-[#a5abb5] rounded" name="cfpass">
+                  <input type="password" id="cfpass" class="p-2  border border-[#a5abb5] rounded" name="cfpass">
                 </div>
                 <div class="w-full flex flex-col py-2 ">
                   <label for="email" class="text-black  font-semibold pb-1 capitalize">Email</label>
