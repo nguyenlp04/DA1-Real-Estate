@@ -13,6 +13,10 @@
         rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/Chart.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
     <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/css/add-post.css" rel="stylesheet">
