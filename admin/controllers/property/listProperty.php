@@ -43,7 +43,7 @@ include(__DIR__ . '/../../../config/config.php');
                                 <td>'. $row['price'] .' $</td>
                                 <td>'. $row['location'] .'</td>
                                 <td>'. $row['full_name'] .'</td>
-                                <td><span  style="text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: '. ($row['status'] === 'Đã duyệt' ? '#e67e22' : '#d35400; color: black') .'">
+                                <td><span  style="color: black; text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: '. ($row['status'] === 'Đã duyệt' ? '#e67e22' : '#d35400;') .'">
             '. $row['status'] .'
         </span></td>
                                 <td>'. $row['views'] .'</td>
