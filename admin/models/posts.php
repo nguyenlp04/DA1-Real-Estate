@@ -23,7 +23,7 @@ class Post
             $articlephoto = null;
             if (isset($_FILES['article_photo']) && $_FILES['article_photo']['error'] === UPLOAD_ERR_OK) {
                 $articlephoto_tmp = $_FILES['article_photo']['tmp_name'];
-                $articlephoto = "./assets/images/imgpost/" . $_FILES['article_photo']['name'];
+                $articlephoto = "./assets/images/imgpost" . $_FILES['article_photo']['name'];
                 move_uploaded_file($articlephoto_tmp, $articlephoto);
             }
 
@@ -65,6 +65,15 @@ class Post
     // kiểm tra xem các biến có rỗng không
     if (empty($title) || empty($category) || empty($description) || empty($content)) {
         return false;
+    }// kiểm tra xem post có up ảnh mới hay không 
+    if (isset($_FILES['article_photo']) && $_FILES['article_photo']['error'] === UPLOAD_ERR_OK) {
+        $articlephoto_tmp = $_FILES['article_photo']['tmp_name'];
+        $articlephoto = "./assets/images/imgpost/" . $_FILES['article_photo']['name'];
+        move_uploaded_file($articlephoto_tmp, $articlephoto);
+    } else {
+        
+        $existingPost = $this->getPostById($postid);
+        $articlephoto = $existingPost['article_photo'];
     }
 
     $sql = "UPDATE posts SET title = '$title', content = '$content', description = '$description', category = '$category', article_photo = '$articlephoto' WHERE post_id = $postid";
