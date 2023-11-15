@@ -17,6 +17,8 @@ class User
         $username = $_POST["username"];
         $pass = $_POST["pass"];
         $cfpass = $_POST["cfpass"];
+        $datebirth = $_POST["date_birth"];
+        $address = $_POST["email"];
         $email = $_POST["email"];
         $roles = $_POST["roles"];
         $phone = $_POST["phone"];
@@ -30,6 +32,14 @@ class User
             if ($result->num_rows > 0) {
                 $errors["username"] = "Tên người dùng đã tồn tại";
             }
+        }
+
+        if (empty($datebirth)) {
+            $errors["date_birth"] = "Ngày sinh không được để trống";
+        }
+
+        if (empty($address)) {
+            $errors["address"] = "Địa chỉ không được để trống";
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -66,7 +76,7 @@ class User
         }
         
         if (empty($errors)) {
-            $sql = "INSERT INTO `users` (`username`,`full_name`,`password`,`email`,`avatar`,`roles`, `phone_number`) VALUES('$username','$fullname','$pass','$email','$avatarPath','$roles', $phone)";
+            $sql = "INSERT INTO `users` (`username`,`full_name`,`birth_user`, `address_user`, `password`,`email`,`avatar`,`roles`, `phone_number`) VALUES('$username','$fullname','$datebirth','$address','$pass','$email','$avatarPath','$roles', $phone)";
             if ($this->db->query($sql) === TRUE) {
                 return $success;
             } else {
