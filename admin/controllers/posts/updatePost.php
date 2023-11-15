@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $category = $_POST['category'];
     $articlephoto = $_FILES['article_photo']; 
 
-    if ($Post->updatePost($postid, $title, $content, $category, $description ,$articlephoto)) {
+    if ($Post->updatePost($postid, $title, $content, $description,$category ,$articlephoto)) {
       echo '<div class=" bg-green-500" style="margin-left: 30px; width:300px; border-radius: 0.25rem;"><div class="alert text-white font-bold rounded-t px-4 py-2"> Chỉnh sửa bài viết thành công <i class="fa-solid fa-circle-check"></i></div></div>';
   } else {
       echo "Có lỗi khi cập nhật bài viết.";
@@ -71,15 +71,14 @@ if (isset($_GET['post_id'])) {
                                     <label for="description" class="text-black font-semibold pb-1 capitalize"> Mô
                                         tả</label>
                                     <textarea type="text" id="description"
-                                        class="p-2 h-[8.5rem] border border-[#E8F0FC] rounded" name="description"
-                                        value="<?php echo $post['description']; ?>"></textarea>
+                                        class="p-2 h-[8.5rem] border border-[#E8F0FC] rounded"
+                                        name="description"><?php echo $post['description']; ?></textarea>
                                 </div>
                             </div>
                             <div class="w-full flex flex-col py-2">
                                 <label for="content" class="text-black font-semibold pb-1 capitalize">Nội dung</label>
                                 <textarea type="text" id="editor" name="content"
-                                    class="p-2 border border-[#E8F0FC] rounded"
-                                    value="<?php echo $post['content']; ?>"></textarea>
+                                    class="p-2 border border-[#E8F0FC] rounded"><?php echo $post['content']; ?></textarea>
                             </div>
                             <div class="w-full flex flex-col py-2 mt-10">
                                 <label for="article_photo" class="text-black font-semibold pb-1 capitalize"> <i
