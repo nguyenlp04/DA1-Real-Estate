@@ -23,7 +23,7 @@ class Post
             $articlephoto = null;
             if (isset($_FILES['article_photo']) && $_FILES['article_photo']['error'] === UPLOAD_ERR_OK) {
                 $articlephoto_tmp = $_FILES['article_photo']['tmp_name'];
-                $articlephoto = "./assets/images/imgpost" . $_FILES['article_photo']['name'];
+                $articlephoto = "./assets/images/imgpost/" . $_FILES['article_photo']['name'];
                 move_uploaded_file($articlephoto_tmp, $articlephoto);
             }
 
