@@ -20,6 +20,8 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="../vendor/dataTables/jquery.dataTables.min.js"></script>
     <script src="../vendor/dataTables/dataTables.bootstrap5.min.js"></script>
+
+    
     
 
 
@@ -27,6 +29,7 @@
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/css/add-post.css" rel="stylesheet">
     <link href="../assets/css/upload-property.css" rel="stylesheet">
+
 
 
 

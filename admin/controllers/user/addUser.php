@@ -64,6 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="password" id="cfpass" class="p-2  border border-[#a5abb5] rounded" name="cfpass">
                 </div>
                 <div class="w-full flex flex-col py-2 ">
+                  <label for="date_birth" class="text-black  font-semibold pb-1 capitalize">Ngày sinh</label>
+                  <input type="date" id="date_birth" class="p-2  border border-[#a5abb5] rounded" name="date_birth">
+                </div>
+                <div class="w-full flex flex-col py-2 ">
+                  <label for="address" class="text-black  font-semibold pb-1 capitalize">Địa chỉ</label>
+                  <input type="text" id="address" class="p-2  border border-[#a5abb5] rounded" name="address">
+                </div>
+                <div class="w-full flex flex-col py-2 ">
                   <label for="email" class="text-black  font-semibold pb-1 capitalize">Email</label>
                   <input type="text" id="email" class="p-2  border border-[#a5abb5] rounded" name="email">
                 </div>

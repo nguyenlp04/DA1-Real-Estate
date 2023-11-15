@@ -33,6 +33,7 @@ $router = new Router();
 $router->addRoute('/', __DIR__ . '/../index.php');
 $router->addRoute('home', __DIR__ . '/../index.php');
 $router->addRoute('introduce', __DIR__ . '/../views/introduce.php');
+$router->addRoute('profile', __DIR__ . '/../views/userProfile.php');
 $router->addRoute('products', __DIR__ . '/../views/products.php');
 $router->addRoute('news', __DIR__ . '/../views/news.php');
 $router->addRoute('contact', __DIR__ . '/../views/contact.php');
@@ -47,10 +48,13 @@ $router->addRoute('admin/updateProperty', __DIR__ . '/../admin/controllers/prope
 $router->addRoute('admin/addTags', __DIR__ . '/../admin/controllers/property/addTags.php');
 
 $router->addRoute('admin/contract', __DIR__ . '/../admin/controllers/transactions/contract.php');
+$router->addRoute('admin/contractDetail', __DIR__ . '/../admin/controllers/transactions/contractDetail.php');
 $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transactions/negotiations.php');
 
 $router->addRoute('admin/post', __DIR__ . '/../admin/controllers/posts/listPost.php');
 $router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/posts/addPost.php');
+$router->addRoute('admin/updatePost', __DIR__ . '/../admin/controllers/posts/updatePost.php');
+$router->addRoute('admin/deletePost', __DIR__ . '/../admin/controllers/posts/deletePost.php');
 
 $router->addRoute('admin/user', __DIR__ . '/../admin/controllers/user/listUser.php');
 $router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/addUser.php');
