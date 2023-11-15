@@ -118,7 +118,7 @@
                 <div id="collapseuser" class="collapse" aria-labelledby="headinguser" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tùy chọn người dùng :</h6>
-                        <a class="collapse-item" href="user">Người dùng</a>
+                        <a class="collapse-item" href="user">Tất cả người dùng</a>
                         <a class="collapse-item" href="addUser">Thêm người dùng </a>
                     </div>
                 </div>

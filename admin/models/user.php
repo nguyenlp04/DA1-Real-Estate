@@ -99,7 +99,10 @@ class User
             $delete = "DELETE FROM users WHERE user_id ='$iduser'";
             if ($this->db->query($delete) === TRUE) {
                 header("Location: " . $_SERVER['HTTP_REFERER']);
-            } 
+            } else {
+                echo 113123;
+
+            }
         }
         echo "Không tìm thấy dữ liệu";
         exit;

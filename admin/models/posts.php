@@ -59,5 +59,47 @@ class Post
     
         return $posts;
     }
+    public function updatePost($postid, $title, $content, $description, $category,$articlephoto)
+{
+   
+    // kiểm tra xem các biến có rỗng không
+    if (empty($title) || empty($category) || empty($description) || empty($content)) {
+        return false;
+    }
+
+    $sql = "UPDATE posts SET title = '$title', content = '$content', description = '$description', category = '$category', article_photo = '$articlephoto' WHERE post_id = $postid";
+
+    if ($this->db->query($sql)) {
+        return true; // Trả về true nếu cập nhật thành công
+    } else {
+        return false; // Trả về false nếu có lỗi khi cập nhật
+    }
+}
+
+    public function getPostById($postid) {
+    
+        $query = "SELECT * FROM posts WHERE post_id = $postid";
+
+        $result = $this->db->query($query);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row;
+        } else {
+            return null;
+        }
+    }
+    public function deletePost($postid){
+       
+            
+            $query = "DELETE FROM posts WHERE post_id = $postid";
+    
+            if ($this->db->query($query)) {
+                return true; // Trả về true nếu xóa thành công
+            } else {
+                return false; // Trả về false nếu có lỗi khi xóa
+            }
+        
+    }
 }
 ?>

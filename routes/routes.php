@@ -45,19 +45,16 @@ $router->addRoute('admin/dashboard', __DIR__ . '/../admin/index.php');
 $router->addRoute('admin/listProperty', __DIR__ . '/../admin/controllers/property/listProperty.php');
 $router->addRoute('admin/addProperty', __DIR__ . '/../admin/controllers/property/addProperty.php');
 $router->addRoute('admin/updateProperty', __DIR__ . '/../admin/controllers/property/updateProperty.php');
-$router->addRoute('admin/deleteProperty', __DIR__ . '/../admin/controllers/property/deleteProperty.php');
-
-$router->addRoute('admin/propertyDetail', __DIR__ . '/../admin/controllers/property/propertyDetail.php');
 $router->addRoute('admin/addTags', __DIR__ . '/../admin/controllers/property/addTags.php');
-$router->addRoute('admin/updateTags', __DIR__ . '/../admin/controllers/property/updateTags.php');
-$router->addRoute('admin/deleteTags', __DIR__ . '/../admin/controllers/property/deleteTags.php');
-
 
 $router->addRoute('admin/contract', __DIR__ . '/../admin/controllers/transactions/contract.php');
+$router->addRoute('admin/contractDetail', __DIR__ . '/../admin/controllers/transactions/contractDetail.php');
 $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transactions/negotiations.php');
 
 $router->addRoute('admin/post', __DIR__ . '/../admin/controllers/posts/listPost.php');
 $router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/posts/addPost.php');
+$router->addRoute('admin/updatePost', __DIR__ . '/../admin/controllers/posts/updatePost.php');
+$router->addRoute('admin/deletePost', __DIR__ . '/../admin/controllers/posts/deletePost.php');
 
 $router->addRoute('admin/user', __DIR__ . '/../admin/controllers/user/listUser.php');
 $router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/addUser.php');
