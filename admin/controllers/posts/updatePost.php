@@ -15,18 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $description = $_POST['description'];
     $category = $_POST['category'];
-  
-    
-    $articlephoto = null; 
-    if (isset($_FILES['article_photo']) && $_FILES['article_photo']['error'] === UPLOAD_ERR_OK) {
-        $articlephoto_tmp = $_FILES['article_photo']['tmp_name'];
-        $articlephoto = "./assets/images/imgpost/" . $_FILES['article_photo']['name'];
-        move_uploaded_file($articlephoto_tmp, $articlephoto);
-    }
-   
  
+    $articlephoto = $_FILES['article_photo']; 
 
-    
     if ($Post->updatePost($postid, $title, $content, $category, $description ,$articlephoto)) {
       echo '<div class=" bg-green-500" style="margin-left: 30px; width:300px; border-radius: 0.25rem;"><div class="alert text-white font-bold rounded-t px-4 py-2"> Chỉnh sửa bài viết thành công <i class="fa-solid fa-circle-check"></i></div></div>';
   } else {
