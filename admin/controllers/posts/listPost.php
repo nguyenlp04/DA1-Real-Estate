@@ -52,10 +52,10 @@ $posts = $Post->listPost();
                                     <p>
                                 </td>
                                 <td><?php echo $post['category']; ?></td>
-                                <td> <a href="editPost.php?id=<?php echo $post['post_id']; ?>"
+                                <td> <a href="updatePost?id=<?php echo $post['post_id']; ?>"
                                         style="margin-right:10px;"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
 
-                                    <a href="deletePost.php?id=<?php echo $post['post_id']; ?>"><i
+                                    <a href="deletePost?id=<?php echo $post['post_id']; ?>"><i
                                             class="fa-solid fa-trash fa-xl"></i></a>
 
                                 </td>

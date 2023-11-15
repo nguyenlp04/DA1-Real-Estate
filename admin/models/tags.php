@@ -46,6 +46,7 @@ class Tags
         return $data;
     }
 
+    
     public  function deleteTags($idtags)
     {
         $sql = "SELECT * FROM property_tags WHERE tag_id ='$idtags'";

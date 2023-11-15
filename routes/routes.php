@@ -57,6 +57,8 @@ $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transac
 
 $router->addRoute('admin/post', __DIR__ . '/../admin/controllers/posts/listPost.php');
 $router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/posts/addPost.php');
+$router->addRoute('admin/updatePost', __DIR__ . '/../admin/controllers/posts/updatePost.php');
+$router->addRoute('admin/deletePost', __DIR__ . '/../admin/controllers/posts/deletePost.php');
 
 $router->addRoute('admin/user', __DIR__ . '/../admin/controllers/user/listUser.php');
 $router->addRoute('admin/addUser', __DIR__ . '/../admin/controllers/user/addUser.php');
