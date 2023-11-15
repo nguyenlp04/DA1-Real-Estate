@@ -15,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $description = $_POST['description'];
     $category = $_POST['category'];
- 
     $articlephoto = $_FILES['article_photo']; 
 
     if ($Post->updatePost($postid, $title, $content, $category, $description ,$articlephoto)) {
