@@ -16,7 +16,7 @@ class Property
 
         $title = $_POST["title"];
         $property_price = intval($_POST["property_price"]);
-        $property_type = intval($_POST["property_type"]);
+        $property_type = $_POST["property_type"];
         $property_area = intval($_POST["property_area"]);
         $property_bed = intval($_POST["property_bed"]);
         $property_year = intval($_POST["property_year"]);
@@ -33,31 +33,31 @@ class Property
         $description = $_POST["description"];
         $status = 'Đã duyệt';
 
-        if (empty($title)) {
-            $errors["title"] = "Tên không được để trống";
-        }
-        if (empty($property_price)) {
-            $errors["property_price"] = "Giá không được để trống";
-        }
-        if (empty($property_year)) {
-            $errors["property_year"] = "Năm xây dựng không được để trống";
-        }
+        // if (empty($title)) {
+        //     $errors["title"] = "Tên không được để trống";
+        // }
+        // if (empty($property_price)) {
+        //     $errors["property_price"] = "Giá không được để trống";
+        // }
+        // if (empty($property_year)) {
+        //     $errors["property_year"] = "Năm xây dựng không được để trống";
+        // }
 
-        if (empty($city)) {
-            $errors["city"] = "Thành phố không được để trống";
-        }
+        // if (empty($city)) {
+        //     $errors["city"] = "Thành phố không được để trống";
+        // }
 
-        if (empty($district)) {
-            $errors["district"] = "Quận không được để trống";
-        } 
+        // if (empty($district)) {
+        //     $errors["district"] = "Quận không được để trống";
+        // } 
 
-        if (empty($wards)) {
-            $errors["wards"] = "Phường/Xã không được để trống";
-        } 
+        // if (empty($wards)) {
+        //     $errors["wards"] = "Phường/Xã không được để trống";
+        // } 
 
-        if (empty($addressDetail)) {
-            $errors["addressDetail"] = "Địa chỉ chi tiết không được để trống";
-        }
+        // if (empty($addressDetail)) {
+        //     $errors["addressDetail"] = "Địa chỉ chi tiết không được để trống";
+        // }
 
 
 
@@ -88,6 +88,7 @@ class Property
             $propertyImage = $_FILES["propertyImage"];
             $propertyID = $this->db->insert_id;
             if (is_array($propertyImage) && !empty($propertyImage['name'][0])) {
+                echo 123;
                 $imagePaths = [];
                 foreach ($propertyImage['tmp_name'] as $key => $tmp_name) {
                     $imageName = $this->db->real_escape_string($propertyImage['name'][$key]);

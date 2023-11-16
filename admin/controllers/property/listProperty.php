@@ -32,7 +32,7 @@ include(__DIR__ . '/../../../config/config.php');
                             </thead>
                             <tbody>
                                 <style>
-                                    
+                                   
                                 </style>
                                 <?php
                         $stt = 1;
@@ -42,7 +42,7 @@ include(__DIR__ . '/../../../config/config.php');
                         foreach ($result as $row) {
                             echo '<tr>
                                 <td>'. $stt .'</td>
-                                <td><a class="decoration-none" href="propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a><i class="fa-solid fa-eye overlay" data-toggle="modal" data-target="#propertyModal' . $row['property_id'] . '"></i></td>
+                                <td><a class="decoration-none" href="propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a></td>
                                 <td>'. $row['price'] .' $</td>
                                 <td>'. $row['location'] .'</td>
                                 <td>'. $row['full_name'] .'</td>
@@ -51,28 +51,38 @@ include(__DIR__ . '/../../../config/config.php');
         </span></td>
                                 <td>'. $row['views'] .'</td>
                                 <td>
+                                    <i class="fa-solid fs-5 fa-eye overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModal' . $row['property_id'] . '"></i>
                                     <a href="updateProperty?property_id=' . $row['property_id'] . '">
-                                        <i class="fa-solid fs-5 fa-pen-to-square text-primary mr-3"></i>
+                                        <i class="fa-solid fs-5 fa-pen-to-square text-primary mr-2"></i>
                                     </a>
                                     <a href="deleteProperty?property_id=' . $row['property_id'] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bất động sản này không?\')">
                                         <i class="fa-solid fs-5 fa-trash-can text-danger"></i>
                                     </a>
                                 </td>
                             </tr>';
-                            echo '<div class="modal fade" id="propertyModal' . $row['property_id'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
+                            echo '<div class="modal text-black fade" id="propertyModal' . $row['property_id'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">' . $row['title'] . '</h5>
-                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close border border-black" style="border:1px solid black !important" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <p>Giá: ' . $row['price'] . ' $</p>
-                                                    <p>Địa chỉ: ' . $row['location'] . '</p>
-                                                    <!-- ... (thêm thông tin chi tiết khác nếu cần) -->
+                                                <div class="modal-body row">
+                                                <div class="col-6">Giá: '. $row['price'] .' $</div>
+                                                <div class="col-6">Địa chỉ: '. $row['location'] .'</div>
+                                                <div class="col-6">Loại: '. $row['type'] .'</div>
+                                                <div class="col-6">Tình trạng: '. $row['status'] .'</div>
+                                                <div class="col-6">Phòng ngủ: '. $row['beds'] .'</div>
+                                                <div class="col-6">Phòng tắm: '. $row['baths'] .'</div>
+                                                <div class="col-6">Diện tích: '. $row['acreage'] .' m²</div>
+                                                <div class="col-6">Số phòng TV: '. $row['tivis'] .'</div>
+                                                <div class="col-6">Số camera: '. $row['cameras'] .'</div>
+                                                <div class="col-6">Nội thất: '. $row['built_in'] .'</div>
+                                                <div class="col-6">Điều hòa: '. $row['conditioner'] .'</div>
+                                                <div class="col-6">Wifi: '. $row['wifi'] .'</div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary text-black hover:bg-white"  data-dismiss="modal">Đóng</button>
+                                                <button type="button" class="btn" style="border:1px solid !important" data-dismiss="modal" aria-label="Close">Đóng</button>
                                                 </div>
                                             </div>
                                         </div>
