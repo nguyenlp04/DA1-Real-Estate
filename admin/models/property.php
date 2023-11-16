@@ -79,16 +79,10 @@ class Property
         if (empty($errors)) {
             $sql = "INSERT INTO properties (`title`, `price`, `type`, `acreage`, `beds`, `built_in`, `baths`, `wifi`, `conditioner`, `tivis`, `cameras`, `location`, `floor_plans`, `description`, `status`, `views`)
             VALUES ('$title', '$property_price', '$property_type', '$property_area', '$property_bed', '$property_year', '$property_bath', '$property_wifi', '$property_conditioner', '$property_tv', '$property_cam', '$address', '$imgFloorPlanPath', '$description', '$status', 0)";
-            if ($this->db->query($sql) === TRUE) {
-                return $success;
-            } else {
-                $errors["errors"] = $this->db->error;
-                return $errors;
-            }
+            $this->db->query($sql);
             $propertyImage = $_FILES["propertyImage"];
             $propertyID = $this->db->insert_id;
             if (is_array($propertyImage) && !empty($propertyImage['name'][0])) {
-                echo 123;
                 $imagePaths = [];
                 foreach ($propertyImage['tmp_name'] as $key => $tmp_name) {
                     $imageName = $this->db->real_escape_string($propertyImage['name'][$key]);
@@ -106,7 +100,12 @@ class Property
                     $this->db->query($imageQuery);
                 }
             }
-            
+            if ($this->db->query($sql) === TRUE && $this->db->query($imageQuery) === TRUE) {
+                return $success;
+            } else {
+                $errors["errors"] = $this->db->error;
+                return $errors;
+            }
         } else {
             return $errors;
         }
