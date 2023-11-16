@@ -53,11 +53,10 @@ $posts = $Post->listPost();
                                 </td>
                                 <td><?php echo $post['category']; ?></td>
                                 <td> <a href="updatePost?post_id=<?php echo $post['post_id']; ?>"
-                                        style="margin-right:10px;"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                                        style="margin-right:10px;"><i class="fa-solid fs-5 fa-pen-to-square text-primary mr-3"></i></a>
 
                                     <a href="deletePost?post_id=<?php echo $post['post_id']; ?>"
-                                        onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này không?')"><i
-                                            class="fa-solid fa-trash fa-xl"></i></a>
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này không?')"><i class="fa-solid fs-5 fa-trash-can text-danger"></i></a>
 
                                 </td>
 

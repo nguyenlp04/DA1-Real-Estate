@@ -5,20 +5,26 @@ include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/posts.php');
 include(__DIR__ . '/../../../config/config.php');
-
+$errors = [];
+$success = 'none';
 $database = new Database();
 $Post = new Post($database);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = $Post->addPost();
 
     // Kiểm tra kết quả và hiển thị thông báo cho người dùng
-    if ($result === true) {
-        echo '<div class=" bg-green-500" style="margin-left: 30px; width:300px; border-radius: 0.25rem;"><div class="alert text-white font-bold rounded-t px-4 py-2"> Thêm bài viết thành công <i class="fa-solid fa-circle-check"></i></div></div>';
-    } else {
-        echo "Lỗi khi thêm bài viết: " . $result;
-    }
+    // if ($result === true) {
+    //     echo '<div class=" bg-green-500" style="margin-left: 30px; width:300px; border-radius: 0.25rem;"><div class="alert text-white font-bold rounded-t px-4 py-2"> Thêm bài viết thành công <i class="fa-solid fa-circle-check"></i></div></div>';
+    // } else {
+    //     echo "Lỗi khi thêm bài viết: " . $result;
+    // }
+
+    if (is_array($result) && !empty($result)) {
+        $errors = $result;
+      } else if (is_string($result) && !empty($result)) {
+        $success = $result;
+      }
 }
 ?>
 <div class="w-full">
@@ -31,8 +37,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="w-full bg-white rounded-lg min-h-screen">
                 <div class="w-full flex justify-center h-auto">
                     <div class="w-11/12">
-                        <p class="text-[#0957CB] font-semibold  text-2xl py-4">Upload Post</p>
-
+                    <?php
+            if (!empty($errors)) {
+              echo '<ul class="py-4 alert" style="background-color: #DC3545; color: white">';
+              foreach ($errors as $error) {
+                echo '<li class="pl-2">' . $error . '</li>';
+              }
+              echo '</ul>';
+            }
+            ?>
+                    <div class="title-container flex items-center">
+                        <h1 class="text-[#0957CB] font-semibold text-md py-4 h3">Thêm Post</h1>
+                        <div class="alert alert-success h-full m-0	ml-2" style="background-color: #5cb85c; display: <?php echo $success ?>">
+                            <i class="text-white fas fa-circle-check"></i>&nbsp;<strong class="text-white">Thêm thành công!</strong>
+                        </div>
+                        </div>
                         <form method="post" enctype="multipart/form-data" class="text-black">
                             <div class="grid md:grid-cols-2 grid-cols-1 md:gap-x-4 md:gap-y-0 gap-4">
                                 <div class="w-full flex flex-col py-2 ">

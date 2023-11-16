@@ -31,15 +31,18 @@ include(__DIR__ . '/../../../config/config.php');
                                 </tr>
                             </thead>
                             <tbody>
+                                <style>
+                                    
+                                </style>
                                 <?php
                         $stt = 1;
                         $database = new Database();
-                        $User = new Property($database);
-                        $result = $User->renderProperpty();
+                        $Property = new Property($database);
+                        $result = $Property->renderProperpty();
                         foreach ($result as $row) {
                             echo '<tr>
                                 <td>'. $stt .'</td>
-                                <td><a class="decoration-none" href="propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a></td>
+                                <td><a class="decoration-none" href="propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a><i class="fa-solid fa-eye overlay" data-toggle="modal" data-target="#propertyModal' . $row['property_id'] . '"></i></td>
                                 <td>'. $row['price'] .' $</td>
                                 <td>'. $row['location'] .'</td>
                                 <td>'. $row['full_name'] .'</td>
@@ -56,6 +59,24 @@ include(__DIR__ . '/../../../config/config.php');
                                     </a>
                                 </td>
                             </tr>';
+                            echo '<div class="modal fade" id="propertyModal' . $row['property_id'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">' . $row['title'] . '</h5>
+                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Giá: ' . $row['price'] . ' $</p>
+                                                    <p>Địa chỉ: ' . $row['location'] . '</p>
+                                                    <!-- ... (thêm thông tin chi tiết khác nếu cần) -->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary text-black hover:bg-white"  data-dismiss="modal">Đóng</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
                             $stt++;
                         }
                         
@@ -76,6 +97,12 @@ include(__DIR__ . '/../../../config/config.php');
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
 <script>
+     $(document).ready(function () {
+                                // Kích hoạt modal
+                                $('.modal').modal();
+                                // Khởi tạo DataTable
+                                new DataTable('#example');
+                            });
     $(document).ready(function () {
         $('[data-toggle="popover"]').popover();
     });

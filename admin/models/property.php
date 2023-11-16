@@ -125,7 +125,7 @@ class Property
         return $data;
     }
 
-    public  function deleteProperpty($idproperty)
+    public  function deleteProperty($idproperty)
     {
         $sql = "SELECT * FROM properties WHERE property_id ='$idproperty'";
         $result = $this->db->query($sql);

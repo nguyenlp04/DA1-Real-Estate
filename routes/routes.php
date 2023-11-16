@@ -45,7 +45,10 @@ $router->addRoute('admin/dashboard', __DIR__ . '/../admin/index.php');
 $router->addRoute('admin/listProperty', __DIR__ . '/../admin/controllers/property/listProperty.php');
 $router->addRoute('admin/addProperty', __DIR__ . '/../admin/controllers/property/addProperty.php');
 $router->addRoute('admin/updateProperty', __DIR__ . '/../admin/controllers/property/updateProperty.php');
+$router->addRoute('admin/deleteProperty', __DIR__ . '/../admin/controllers/property/deleteProperty.php');
 $router->addRoute('admin/addTags', __DIR__ . '/../admin/controllers/property/addTags.php');
+$router->addRoute('admin/deleteTags', __DIR__ . '/../admin/controllers/property/deleteTags.php');
+
 
 $router->addRoute('admin/contract', __DIR__ . '/../admin/controllers/transactions/contract.php');
 $router->addRoute('admin/contractDetail', __DIR__ . '/../admin/controllers/transactions/contractDetail.php');

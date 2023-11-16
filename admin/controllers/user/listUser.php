@@ -40,7 +40,7 @@ include(__DIR__ . '/../../../config/config.php');
                                 <td>'. $stt .'</td>
                                 <td class="flex items-center"> <img style="width: 42px; height:42px" class="rounded-full mr-2" src="./../assets/images/imguser/' . $row['avatar'] . '"> ' . $row['username'] . '</td>
                                 <td>'. $row['full_name'] .'</td>
-                                <td>'. $row['email'] .'</td>
+                                <td style="text-transform: none;">'. $row['email'] .'</td>
                                 <td>'. $row['phone_number'] .'</td>
                                 <td>'. $row['roles'] .'</td>
                                 <td>
