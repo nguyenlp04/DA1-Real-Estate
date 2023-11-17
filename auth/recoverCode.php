@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="./assets/css/auth.css">
   <title>Đặt lại mật khẩu</title>
   
 </head>
@@ -45,11 +46,10 @@
                   </div>
                 </div>
            
-                <div class="float-end m-0 p-0">
-                    <button type="button" class="btn btn-success"><a href="forgot-password.php" class="text-light text-decoration-none">Quay lại</a></button>
-                    <div class="button-buy mt-4 mb-4 btn btn-primary shadow-0">
-                        <input class="text-uppercase" name="submit" style="background: unset; color: white; border: none;" type="submit" value="Tiếp tục">
-                    </div>
+                <div class="float-end m-0 p-0 mt-4">
+                    <button type="button" class="btn btn-success"><a href="forgotPassword" class="text-light text-decoration-none">Quay lại</a></button>
+                    <button type="submit" name="submit" class="btn btn-primary"><a href="changePass" class="text-white text-decoration-none">Tiếp tục</a></button>
+                   
                 </div>
               
              

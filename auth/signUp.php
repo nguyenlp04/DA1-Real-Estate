@@ -1,4 +1,94 @@
 
+<?php
+session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+include './config/config.php';
+$userAvailable = "";
+$resultUser = "";
+$resultPass = "";
+$resultCfPass = "";
+$userAvailable = "";
+$resultEmail = "";
+$emailAvailable = "";
+$resultFullName = "";
+$warningFullname = "";
+$warningEmail = "";
+$warningUserName = "";
+$warningPassWord = "";
+$phoneAvailable = "";
+$resultPass = "";
+$addSuccess = false;
+$addFailure = false;
+if (isset($_POST['submit'])) {
+  $fullname = $_POST["fullname"];
+  $user = $_POST["username"];
+  $pass = $_POST["password"];
+  $cfpass = $_POST["cfpassword"];
+  $email = $_POST["email"];
+  if (isset($_POST["fullname"])) {
+    if ($user === "") {
+      $resultFullName = '<span class="text-danger">Vui lòng nhập họ và tên</span>';
+      $warningFullname = "border-danger";
+    } else {
+      $resultFullName = "";
+      $warningFullname = "";
+    }
+  }
+  $sql = "SELECT * FROM `customer` WHERE username = '$user'";
+  $old = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($old) > 0) {
+    $userAvailable = '<span class="text-danger">Tên đăng nhập đã tồn tại</span>';
+    $warningUserName = "border-danger";
+  } else if ($user == "") {
+    $userAvailable = '<span class="text-danger">Vui lòng nhập tên đăng nhập</span>';
+    $warningUserName = "border-danger";
+  } else {
+    $filePath = "/user.png";
+    $warningUserName = "";
+    $resultUser = "";
+  }
+  if (isset($_POST["password"])) {
+    if ($pass === "") {
+      $resultPass = '<span class="text-danger">Vui lòng nhập mật khẩu</span>';
+      $warningPassWord = "border-danger";
+    } else {
+      $resultPass = "";
+      $warningPassWord = "";
+    }
+  }
+  if (isset($_POST["cfpassword"])) {
+    if ($pass != $cfpass) {
+      $resultCfPass = '<span class="text-danger">Xác nhận mật khẩu không đúng</span>';
+      $warningCfPassWord = "border-danger";
+    } else if ($pass == "") {
+      $warningCfPassWord = "border-danger";
+    } else {
+      $resultCfPass = "";
+    }
+  }
+  $sqlEmail = "SELECT * FROM `customer` WHERE email = '$email'";
+  $oldEmail = mysqli_query($conn, $sqlEmail);
+  if (mysqli_num_rows($oldEmail) > 0) {
+    $emailAvailable = '<span class="text-danger">Email đã tồn tại</span>';
+    $warningEmail = "border-danger";
+  } else if ($email == "") {
+    $emailAvailable = '<span class="text-danger">Vui lòng nhập email</span>';
+    $warningEmail = "border-danger";
+  } else {
+    $resultEmail = "";
+    $warningEmail = "";
+  }
+  if ($resultFullName == "" && $resultUser == "" && $resultPass == "" && $resultCfPass == "" &&  $resultEmail == "") {
+    $sql = "INSERT INTO `customer` (`username`,`fullname`,`password`,`email`,`avatar`,`roles`) VALUES('$user','$fullname','$pass','$email','$filePath','user')";
+    mysqli_query($conn, $sql);
+    $addSuccess = true;
+  } else {
+  $addFailure = true;
+
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +99,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="./assets/css/auth.css">
   <title>Đăng ký</title>
 </head>
 
@@ -78,16 +169,16 @@
                   <input name="phone" type="phone" id="form3Example3" placeholder="Số điện thoại" class="<?php echo $warningPhone ?> form-control" />
                 </div>
                 <!-- Avatar -->
-                <div class=" mb-4">
+                <!-- <div class=" mb-4">
                   <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example3">Avatar</label><?php echo $avatarAvailable ?></div>
                   <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
-                </div>
+                </div> -->
 
 
                 <input type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Đăng ký">
 
                 <div class="text-center">
-                  <p>Bạn đã có tài khoản? <a class="text-decoration-none" href="login.php">Đăng nhập</a></p>
+                  <p>Bạn đã có tài khoản? <a class="text-decoration-none" href="login">Đăng nhập</a></p>
 
                   <!-- Register buttons -->
                   <div class="text-center">
@@ -118,3 +209,4 @@
 </body>
 
 </html>
+

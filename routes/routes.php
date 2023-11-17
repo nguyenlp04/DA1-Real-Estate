@@ -27,9 +27,18 @@ class Router {
         }
     }
 }
+$router = new Router();
+
+// Auth 
+$router->addRoute('signup', __DIR__ . '/../auth/signUp.php');
+$router->addRoute('login', __DIR__ . '/../auth/login.php');
+$router->addRoute('forgotPassword', __DIR__ . '/../auth/forgotPassword.php');
+$router->addRoute('changePass', __DIR__ . '/../auth/changePass.php');
+$router->addRoute('recoverCode', __DIR__ . '/../auth/recoverCode.php');
+
+
 
 // User
-$router = new Router();
 $router->addRoute('/', __DIR__ . '/../index.php');
 $router->addRoute('home', __DIR__ . '/../index.php');
 $router->addRoute('introduce', __DIR__ . '/../views/introduce.php');

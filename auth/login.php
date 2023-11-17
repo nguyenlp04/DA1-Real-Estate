@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="./assets/css/auth.css">
   <title>Đăng nhập</title>
 </head>
 <body>
@@ -49,11 +50,11 @@
                 <!-- Submit button -->
                 <input type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Login">
                 <div class="d-flex justify-content-end">
-                  <p><a class="text-decoration-none" href="forgotPassword.php">Quên mật khẩu</a></p>
+                  <p><a class="text-decoration-none" href="forgotPassword">Quên mật khẩu</a></p>
                 </div>
                 <!-- Register buttons -->
                 <div class="text-center">
-                  <p>Bạn chưa có tài khoản? <a class="text-decoration-none" href="sign-up.php">Đăng ký</a></p>
+                  <p>Bạn chưa có tài khoản? <a class="text-decoration-none" href="signup">Đăng ký</a></p>
                   <div class="text-center">
                     <p>hoặc đăng nhập bằng:</p>
                     <button type="button" class="border btn btn-link ">
