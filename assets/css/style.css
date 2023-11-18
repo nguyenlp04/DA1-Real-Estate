@@ -927,7 +927,7 @@ button:hover, button:focus {
 }
 
 section {
-  /* padding: clamp(46px, 6.7708333333%, 130px) 0; */
+  padding: clamp(46px, 6.7708333333%, 130px) 0 !important;
 }
 
 .section-header {

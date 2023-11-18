@@ -1,93 +1,21 @@
-
 <?php
 session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
 include './config/config.php';
-$userAvailable = "";
-$resultUser = "";
-$resultPass = "";
-$resultCfPass = "";
-$userAvailable = "";
-$resultEmail = "";
-$emailAvailable = "";
-$resultFullName = "";
-$warningFullname = "";
-$warningEmail = "";
-$warningUserName = "";
-$warningPassWord = "";
-$phoneAvailable = "";
-$resultPass = "";
+include(__DIR__ . '../../admin/models/auth.php');
+// include './../config/config.php';
+
 $addSuccess = false;
 $addFailure = false;
-if (isset($_POST['submit'])) {
-  $fullname = $_POST["fullname"];
-  $user = $_POST["username"];
-  $pass = $_POST["password"];
-  $cfpass = $_POST["cfpassword"];
-  $email = $_POST["email"];
-  if (isset($_POST["fullname"])) {
-    if ($user === "") {
-      $resultFullName = '<span class="text-danger">Vui lòng nhập họ và tên</span>';
-      $warningFullname = "border-danger";
-    } else {
-      $resultFullName = "";
-      $warningFullname = "";
-    }
-  }
-  $sql = "SELECT * FROM `customer` WHERE username = '$user'";
-  $old = mysqli_query($conn, $sql);
-  if (mysqli_num_rows($old) > 0) {
-    $userAvailable = '<span class="text-danger">Tên đăng nhập đã tồn tại</span>';
-    $warningUserName = "border-danger";
-  } else if ($user == "") {
-    $userAvailable = '<span class="text-danger">Vui lòng nhập tên đăng nhập</span>';
-    $warningUserName = "border-danger";
-  } else {
-    $filePath = "/user.png";
-    $warningUserName = "";
-    $resultUser = "";
-  }
-  if (isset($_POST["password"])) {
-    if ($pass === "") {
-      $resultPass = '<span class="text-danger">Vui lòng nhập mật khẩu</span>';
-      $warningPassWord = "border-danger";
-    } else {
-      $resultPass = "";
-      $warningPassWord = "";
-    }
-  }
-  if (isset($_POST["cfpassword"])) {
-    if ($pass != $cfpass) {
-      $resultCfPass = '<span class="text-danger">Xác nhận mật khẩu không đúng</span>';
-      $warningCfPassWord = "border-danger";
-    } else if ($pass == "") {
-      $warningCfPassWord = "border-danger";
-    } else {
-      $resultCfPass = "";
-    }
-  }
-  $sqlEmail = "SELECT * FROM `customer` WHERE email = '$email'";
-  $oldEmail = mysqli_query($conn, $sqlEmail);
-  if (mysqli_num_rows($oldEmail) > 0) {
-    $emailAvailable = '<span class="text-danger">Email đã tồn tại</span>';
-    $warningEmail = "border-danger";
-  } else if ($email == "") {
-    $emailAvailable = '<span class="text-danger">Vui lòng nhập email</span>';
-    $warningEmail = "border-danger";
-  } else {
-    $resultEmail = "";
-    $warningEmail = "";
-  }
-  if ($resultFullName == "" && $resultUser == "" && $resultPass == "" && $resultCfPass == "" &&  $resultEmail == "") {
-    $sql = "INSERT INTO `customer` (`username`,`fullname`,`password`,`email`,`avatar`,`roles`) VALUES('$user','$fullname','$pass','$email','$filePath','user')";
-    mysqli_query($conn, $sql);
-    $addSuccess = true;
-  } else {
-  $addFailure = true;
-
-  }
+$errors = [];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$database = new Database();
+$Auth = new Auth($database);
+$result = $Auth->signUp();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +32,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-<section class="background-radial-gradient overflow-hidden">
+  <section class="background-radial-gradient overflow-hidden">
     <div class="container px-4  px-md-5 text-center text-lg-start  d-flex align-items-center justify-content-center" style="min-height: 100vh;">
       <div class="row gx-lg-5 align-items-center ">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
@@ -128,53 +56,84 @@ if (isset($_POST['submit'])) {
             <div class="card-body px-4 py-5 px-md-5">
               <h2 class="fw-bold mb-5 text-center">Đăng ký</h2>
               <div class="alert alert-success" style="background-color: #5cb85c; display: <?php echo $addSuccess ? 'block' : 'none'; ?>">
-                                        <i class=" text-white fa-solid fa-circle-check"></i>&nbsp; <strong class="text-white">Đăng ký thành công!</strong>
-                                    </div>
-                        <div class="alert alert-success bg-danger" style="display:<?php echo $addFailure ? 'block' : 'none';?>">
-                            <i class="  text-white fa-solid fa-triangle-exclamation"></i>&nbsp; <strong class="text-white">Đăng ký thất bại!</strong>
-                        </div>
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
+                <i class=" text-white fa-solid fa-circle-check"></i>&nbsp; <strong class="text-white">Đăng ký thành công!</strong>
+              </div>
+              <div class="alert alert-success bg-danger" style="display:<?php echo $addFailure ? 'block' : 'none'; ?>">
+                <i class="  text-white fa-solid fa-triangle-exclamation"></i>&nbsp; <strong class="text-white">Đăng ký thất bại!</strong>
+              </div>
+              <form  method="POST">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
-                <div class=" mb-4">
+                <div class="mb-4">
                   <div class="">
-                    <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example1">Họ và tên</label><?php echo $resultFullName ?></div>
-                    <input name="fullname" type="text" id="form3Example1" placeholder="Họ và tên" class="<?php echo $warningFullname ?> form-control" />
-                  </div>
-                </div>
-                <div class=" mb-4">
-                  <div class="">
-                    <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example2">Username </label><?php echo $userAvailable ?></div>
-                    <input name="username" type="text" id="form3Example2" placeholder="Username" class="<?php echo $warningUserName ?> form-control" />
-                  </div>
-                </div>
-                <!-- Password input -->
-                <div class=" mb-4">
-                  <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example4">Mật khẩu</label><?php echo $resultPass ?></div>
-                  <input name="password" type="password" id="form3Example4" placeholder="Mật khẩu" class="<?php echo $warningPassWord ?> form-control" />
-                </div>
-                <!-- Password input -->
+                    <div class="d-flex justify-content-between">
+                      <label class="form-label text-dark m-0" for="form3Example1">Họ và tên</label>
+                      <div class="text-danger">
+                        <?php echo isset($errors["fullname"]) ? $errors["fullname"] : ''; ?>
 
-                <div class=" mb-4">
-                  <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example5">Xác nhận mật khẩu</label><?php echo $resultCfPass ?></div>
-                  <input name="cfpassword" type="password" id="form3Example5" placeholder="Xác nhận mật khẩu" class="<?php echo $warningCfPassWord ?> form-control" />
+                      </div>
+                    </div>
+                    <input name="fullname" type="text" id="form3Example1" placeholder="Họ và tên" class="form-control" />
+                  </div>
                 </div>
-                <!-- Email input -->
-                <div class=" mb-4">
-                  <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example3">Địa chỉ email</label><?php echo $emailAvailable ?></div>
-                  <input name="email" type="email" id="form3Example3" placeholder="Địa chỉ email" class="<?php echo $warningEmail ?> form-control" />
+
+                <div class="mb-4">
+                  <div class="">
+                    <div class="d-flex justify-content-between">
+                      <label class="form-label text-dark m-0" for="form3Example2">Username</label>
+                      <div class="text-danger">
+                        <?php echo isset($errors["username"]) ? $errors["username"] : ''; ?>
+                      </div>
+                    </div>
+                    <input name="username" type="text" id="form3Example2" placeholder="Username" class="form-control" />
+                  </div>
                 </div>
+                <!-- Password input -->
+                <div class="mb-4">
+                  <div class="">
+                    <div class="d-flex justify-content-between">
+                      <label class="form-label text-dark m-0" for="form3Example4">Mật khẩu</label>
+                      <div class="text-danger">
+                        <?php echo isset($errors["password"]) ? $errors["password"] : ''; ?>
+                      </div>
+                    </div>
+                    <input name="password" type="password" id="form3Example4" placeholder="Mật khẩu" class="form-control" />
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <div class="">
+                    <div class="d-flex justify-content-between">
+                      <label class="form-label text-dark m-0" for="form3Example5">Xác nhận mật khẩu</label>
+                      <div class="text-danger">
+                        <?php echo isset($errors["cfpassword"]) ? $errors["cfpassword"] : ''; ?>
+                      </div>
+                    </div>
+                    <input name="cfpassword" type="password" id="form3Example5" placeholder="Xác nhận mật khẩu" class="form-control" />
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <div class="">
+                    <div class="d-flex justify-content-between">
+                      <label class="form-label text-dark m-0" for="form3Example3">Địa chỉ email</label>
+                      <div class="text-danger">
+                        <?php echo isset($errors["email"]) ? $errors["email"] : ''; ?>
+                      </div>
+                    </div>
+                    <input name="email" type="email" id="form3Example3" placeholder="Địa chỉ email" class="form-control" />
+                  </div>
+                </div>
+
                 <!-- Phone -->
-                <div class=" mb-4">
+                <!-- <div class=" mb-4">
                   <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example3">Số điện thoại</label><?php echo $phoneAvailable ?></div>
                   <input name="phone" type="phone" id="form3Example3" placeholder="Số điện thoại" class="<?php echo $warningPhone ?> form-control" />
-                </div>
+                </div> -->
                 <!-- Avatar -->
                 <!-- <div class=" mb-4">
                   <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example3">Avatar</label><?php echo $avatarAvailable ?></div>
                   <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload">
                 </div> -->
-
-
                 <input type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Đăng ký">
 
                 <div class="text-center">
@@ -209,4 +168,3 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
-

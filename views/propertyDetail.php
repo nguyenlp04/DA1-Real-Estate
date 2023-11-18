@@ -32,8 +32,8 @@
         href="https://newhome.qodeinteractive.com/wp-content/themes/newhome/assets/css/main.min.css?ver=6.3.2"
         type="text/css" media="all" />
     <link rel="stylesheet" id="newhome-core-style-css"
-        href="https://newhome.qodeinteractive.com/wp-content/plugins/newhome-core/assets/css/newhome-core.min.css?ver=6.3.2"
-        type="text/css" media="all" />
+    href="https://newhome.qodeinteractive.com/wp-content/plugins/newhome-core/assets/css/newhome-core.min.css?ver=6.3.2"
+    type="text/css" media="all" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
 </head>

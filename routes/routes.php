@@ -29,6 +29,8 @@ class Router {
 }
 $router = new Router();
 
+$router->addRoute('/', __DIR__ . '/../index.php');
+
 // Auth 
 $router->addRoute('signup', __DIR__ . '/../auth/signUp.php');
 $router->addRoute('login', __DIR__ . '/../auth/login.php');
@@ -39,7 +41,6 @@ $router->addRoute('recoverCode', __DIR__ . '/../auth/recoverCode.php');
 
 
 // User
-$router->addRoute('/', __DIR__ . '/../index.php');
 $router->addRoute('home', __DIR__ . '/../index.php');
 $router->addRoute('introduce', __DIR__ . '/../views/introduce.php');
 $router->addRoute('profile', __DIR__ . '/../views/userProfile.php');
