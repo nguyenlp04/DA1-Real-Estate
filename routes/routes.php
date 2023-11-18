@@ -51,6 +51,8 @@ $router->addRoute('propertyDetail', __DIR__ . '/../views/propertyDetail.php');
 // Admin
 $router->addRoute('admin/dashboard', __DIR__ . '/../admin/index.php');
 
+$router->addRoute('admin/profileDetail', __DIR__ . '/../admin/controllers/profile/profileDetail.php');
+
 $router->addRoute('admin/listProperty', __DIR__ . '/../admin/controllers/property/listProperty.php');
 $router->addRoute('admin/addProperty', __DIR__ . '/../admin/controllers/property/addProperty.php');
 $router->addRoute('admin/updateProperty', __DIR__ . '/../admin/controllers/property/updateProperty.php');
