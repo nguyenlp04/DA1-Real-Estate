@@ -47,7 +47,9 @@ $router->addRoute('profile', __DIR__ . '/../views/userProfile.php');
 $router->addRoute('products', __DIR__ . '/../views/products.php');
 $router->addRoute('news', __DIR__ . '/../views/news.php');
 $router->addRoute('contact', __DIR__ . '/../views/contact.php');
+$router->addRoute('contact', __DIR__ . '/../views/contact.php');
 $router->addRoute('propertyDetail', __DIR__ . '/../views/propertyDetail.php');
+
 
 // Admin
 $router->addRoute('admin/dashboard', __DIR__ . '/../admin/index.php');

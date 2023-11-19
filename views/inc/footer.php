@@ -79,5 +79,6 @@
     <!-- <script src="assets/js/scripts.js"></script> -->
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/pagination.js"></script>
     </body>
 </html>

@@ -13,9 +13,7 @@ citySelect.addEventListener('change', filterProducts);
 apartmentSelect.addEventListener('change', filterProducts);
 priceSelect.addEventListener('change', filterProducts); 
 acreageSelect.addEventListener('change', filterProducts); 
-function test() {
-  console.log(123);
-}
+
 function filterProducts() {
 const selectedservices = servicesSelect.value.toLowerCase();
 const selectedCity = citySelect.value.toLowerCase();
@@ -23,11 +21,12 @@ const selectedApartment = apartmentSelect.value.toLowerCase();
 const selectedPrice = priceSelect.value;
 const selectedAcreage = acreageSelect.value;
 console.log(selectedservices);
-
+let filteredProducts = [];
+    let filteredCount = 0;
   houseCards.forEach(card => {
     const services = card.querySelector('.services').textContent.toLowerCase();
     const location = card.querySelector('.location').textContent.toLowerCase();
-    const houseMeta = card.querySelector('.house__content__main .title').textContent.toLowerCase();
+    const houseMeta = card.querySelector('.house__meta').textContent.toLowerCase();
     const price = parseFloat(card.querySelector('.price').textContent.replace(/[\$,]/g, '').trim());
     const acreage = card.querySelector('.acreage').textContent.toLowerCase();
     if (
@@ -48,9 +47,17 @@ console.log(selectedservices);
         (selectedAcreage === "200+" && acreage >= 200))
         
     ) {
-      card.style.display = 'block';
+      // card.style.display = 'block';
+      card.style.visibility = "visible";
+            filteredProducts.push(card);
+            filteredCount++;
     } else {
-      card.style.display = 'none'; 
+      // card.style.display = 'none'; 
+      card.style.visibility = "hidden";
     }
   });
 }
+function updatePagination(filteredProducts) {
+  $(".pagination-items").paginate(filteredProducts.length);
+}
+updatePagination(filteredProducts);

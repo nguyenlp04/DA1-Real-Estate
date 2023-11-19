@@ -6,6 +6,7 @@ include(__DIR__ . '/../admin/models/tags.php');
 include(__DIR__ . '/../admin/models/property.php');
 include 'inc/header.php'
 ?>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <section>
     <div class="container">
         <div class="path-page"><a href="home">Trang chủ </a><i class="fa-solid fa-angle-right"></i>
@@ -96,28 +97,27 @@ include 'inc/header.php'
                     $stt = 1;
                     $database = new Database();
                     $Property = new Property($database);
-                    $result = $Property->renderProperpty();
+                    $result = $Property->renderProperty();
                     foreach ($result as $row) {
-                        echo '  <div class="col-md-3 col-sm-6">
-                        <div class="card-product">
+                        echo ' <div class="col-md-3 col-sm-6 card-product article-loop">
                             <div class="house-card">
                                 <div class="house__thumb">
                                     <img src="./assets/images/house-03.jpeg" alt="house-03" />
                                     <div class="house__meta">
-                                        <a href="propertyDetail">Bất Động Sản</a>
+                                        <a href="">' . $row['tag_name'] . '</a>
                                     </div>
                                 </div>
 
                                 <div class="house__content">
                                     <div class="house__content__top">
                                         <h4 class="price">$' . $row['price'] . '</h4>
-                                        <span class="services">Thuê</span>
+                                        <span class="services">' . $row['type'] . '</span>
                                     </div>
                                     <div class="house__content__main">
-                                        <h3 class="title"><a href="#">Nhà Ở Chung Cư</a></h3>
+                                        <h3 class="title"><a href="propertyDetail?id=' . $row['property_id'] . '">' . $row['title'] . '</a></h3>
                                         <p class="location">
                                             <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-                                            <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
+                                            <span>' . $row['location'] . '</span>
                                         </p>
                                     </div>
                                 </div>
@@ -127,142 +127,26 @@ include 'inc/header.php'
                                             <div class="icon">
                                                 <i class="fa-solid fa-bed"></i>
                                             </div>
-                                            <span>2</span>
+                                            <span>' . $row['beds'] . '</span>
                                         </div>
                                         <div class="info">
                                             <div class="icon">
-                                                <i class="fa-solid fa-car-tunnel"></i>
+                                            <i class="fa-solid fa-bath"></i>
                                             </div>
-                                            <span>2</span>
+                                            <span>' . $row['baths'] . '</span>
                                         </div>
-                                        <div class="info ">
+                                        <div class="info info-right">
                                             <div class="icon">
                                                 <i class="fa-solid fa-vector-square"></i>
                                             </div>
-                                            <span class="acreage">49</span><span>M<sup>2</sup></span>
+                                            <span class="acreage">' . $row['acreage'] . '</span><span>M<sup>2</sup></span>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>';
+                    </div> </div>';
                     }
                     ?>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="card-product">
-                            <div class="house-card">
-                                <div class="house__thumb">
-                                    <img src="./assets/images/house-03.jpeg" alt="house-03" />
-                                    <div class="house__meta">
-                                        <a href="propertyDetail">Bất Động Sản</a>
-                                    </div>
-                                </div>
-
-                                <div class="house__content">
-                                    <div class="house__content__top">
-                                        <h4 class="price">$4,600.00</h4>
-                                        <span class="services">Thuê</span>
-                                    </div>
-                                    <div class="house__content__main">
-                                        <h3 class="title"><a href="#">Nhà Ở Chung Cư</a></h3>
-                                        <p class="location">
-                                            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-                                            <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="house__content__bottom">
-                                    <div class="info-wrap">
-                                        <div class="info">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-bed"></i>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div class="info">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-house"></i>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div class="info">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-car-tunnel"></i>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div class="info info-right">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-vector-square"></i>
-                                            </div>
-                                            <span class="acreage">49</span><span>M<sup>2</sup></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-3 col-sm-6">
-                        <div class="card-product">
-                            <div class="house-card">
-                                <div class="house__thumb">
-                                    <img src="./assets/images/house-03.jpeg" alt="house-03" />
-                                    <div class="house__meta">
-                                        <a href="#">Bất Động Sản</a>
-                                    </div>
-                                </div>
-
-                                <div class="house__content">
-                                    <div class="house__content__top">
-                                        <h4 class="price">$4,600.00</h4>
-                                        <span class="services">Thuê</span>
-                                    </div>
-                                    <div class="house__content__main">
-                                        <h3 class="title"><a href="#">Nhà Ở Chung Cư</a></h3>
-                                        <p class="location">
-                                            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-                                            <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="house__content__bottom">
-                                    <div class="info-wrap">
-                                        <div class="info">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-bed"></i>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div class="info">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-house"></i>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div class="info">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-car-tunnel"></i>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div class="info info-right">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-vector-square"></i>
-                                            </div>
-                                            <span class="acreage">49</span><span>M<sup>2</sup></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
                 </div>
-            </div>
-
-            <div class="next-prev">
-                <div class="box active">1</div>
-                <div class="box">2</div>
             </div>
         </div>
 

@@ -66,10 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         ?>
                         <div class="title-container flex items-center">
-                        <h1 class="text-[#0957CB] font-semibold text-md py-4 h3">Thêm Bất Động Sản</h1>
-                        <div class="alert alert-success h-full m-0	ml-2" style="background-color: #5cb85c; display: <?php echo $success ?>">
-                            <i class="text-white fas fa-circle-check"></i>&nbsp;<strong class="text-white">Thêm thành công!</strong>
-                        </div>
+                            <h1 class="text-[#0957CB] font-semibold text-md py-4 h3">Thêm Bất Động Sản</h1>
+                            <div class="alert alert-success h-full m-0	ml-2" style="background-color: #5cb85c; display: <?php echo $success ?>">
+                                <i class="text-white fas fa-circle-check"></i>&nbsp;<strong class="text-white">Thêm thành công!</strong>
+                            </div>
                         </div>
                         <form id="uploadForm" method="post" enctype="multipart/form-data" class="text-black">
                             <div class="w-full flex flex-col lg:flex-row gap-4">
@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 hình</label>
                                             <select name="property_type" id="property_type" class="p-2  border border-[#E8F0FC] rounded">
                                                 <option value="Thuê" selected>Thuê</option>
+                                                <option value="Mua">Mua</option>
                                                 <option value="Bán">Bán</option>
                                             </select>
                                         </div>
@@ -150,11 +151,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 $Tags = new Tags($database);
                                                 $result = $Tags->renderTags();
                                                 foreach ($result as $row) {
-                                                    echo '<option value="' . $row['tag_id'] . '">' . $row['tag_name'] . '</option>';
+                                                    echo '<option value="' . $row['tag_name'] . '">' . $row['tag_name'] . '</option>';
+
                                                     $stt++;
                                                 }
                                                 ?>
+
+
+
                                             </select>
+
                                         </div>
                                         <div class="w-full flex flex-col py-2">
                                             <label for="property_cam" class="text-black  font-semibold pb-1 capitalize">Cameras</label>
