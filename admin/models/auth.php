@@ -10,9 +10,7 @@ class Auth
 
     public function signUp()
     {
-        // global $addSuccess, $addFailure, $errors ;
-        $addSuccess = false;
-        $addFailure = false;
+        $addSuccess = 'block';
         $errors = [];
         if (isset($_POST['submit'])) {
             $fullname = $_POST["fullname"];
@@ -35,6 +33,12 @@ class Auth
             }
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $errors["email"] = "Email không hợp lệ";
+            } else {
+                $sqlemail = "SELECT * FROM `users` WHERE email = '$email'";
+                $result = $this->db->query($sqlemail);
+                if ($result->num_rows > 0) {
+                    $errors["email"] = "Email đã tồn tại";
+                }
             }
 
             if (strlen($password) < 6) {
@@ -47,18 +51,44 @@ class Auth
             if (empty($errors)) {
                 $sql = "INSERT INTO `users` (`username`,`full_name`, `password`,`email`,`roles`) VALUES('$username','$fullname','$password','$email','$roles')";
                 if ($this->db->query($sql) === TRUE) {
-                    $addSuccess = true;
-                    
+                    return $addSuccess;
                 } else {
                     $errors["errors"] = $this->db->error;
-                    $addFailure = true;
-                    var_dump($errors);
+                    return $errors;
                 }
             } else {
-                $addFailure = true;
-                var_dump($errors);
+                return $errors;
+            }
+        }
+    }
+    public function login()
+    {
+        $addFailure = 'block';
+        if (isset($_POST['submit'])) {
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+            $sqlPass = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+            $result = $this->db->query($sqlPass);
+            if ($result->num_rows > 0) {
+                // Fetch user data and store it in the $infoUser array
+                $userInfo = $result->fetch_assoc();
+        
+                $infoUser['user_id'] = $userInfo['user_id'];
+                $infoUser['username'] = $userInfo['username'];
+                $infoUser['password'] = $userInfo['password'];
+                $infoUser['email'] = $userInfo['email'];
+                $infoUser['full_name'] = $userInfo['full_name'];
+                $infoUser['address_user'] = $userInfo['address_user'];
+                $infoUser['birth_user'] = $userInfo['birth_user'];
+                $infoUser['roles'] = $userInfo['roles'];
+                $infoUser['phone_number'] = $userInfo['phone_number'];
+                $infoUser['avatar'] = $userInfo['avatar'];
+                $_SESSION['user_info'] = $infoUser;
+
+        
+            } else {
+                return $addFailure;
             }
         }
     }
 }
-?>

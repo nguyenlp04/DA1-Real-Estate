@@ -1,4 +1,26 @@
+<?php 
+session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
+include './config/config.php';
+include(__DIR__ . '../../admin/models/auth.php');
+
+$addFailure = 'none';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $database = new Database();
+  $Auth = new Auth($database);
+  $result = $Auth->login();
+  if ($result == 'block') {
+    $addFailure = $result;
+  } else {
+    echo '<pre>';
+    var_dump($_SESSION['user_info']);
+    echo '</pre>';
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +56,26 @@
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
               <h2 class="fw-bold mb-5 text-center">Đăng nhập</h2>
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
+
+              <div class="alert alert-success bg-danger" style="display:<?php echo $addFailure?>">
+                <i class="  text-white fa-solid fa-triangle-exclamation"></i>&nbsp; <strong class="text-white">Tên đăng nhập hoặc mật khẩu không đúng.</strong>
+              </div>
+
+              <form  method="POST">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class=" mb-4">
                   <div class="">
-                    <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example2">Username </label><?php echo $userAvailable ?></div>
-                    <input name="username" type="text" id="form3Example2" placeholder="Username" class="<?php echo $resultUser ?> form-control" />
+                    <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example2">Username </label></div>
+                    <input name="username" type="text" id="form3Example2" placeholder="Username" class=" form-control" />
                   </div>
                 </div>
                 <!-- Password input -->
                 <div class=" mb-4">
-                  <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example4">Mật khẩu</label><?php echo $passAvailable ?></div>
-                  <input name="password" type="password" id="form3Example4" placeholder="Mật khẩu" class="<?php echo $resultPass ?> form-control" />
+                  <div class="d-flex justify-content-between"><label class="form-label text-dark m-0" for="form3Example4">Mật khẩu</label></div>
+                  <input name="password" type="password" id="form3Example4" placeholder="Mật khẩu" class=" form-control" />
                 </div>
                 <!-- Submit button -->
-                <input type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Login">
+                <input type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Đăng nhập">
                 <div class="d-flex justify-content-end">
                   <p><a class="text-decoration-none" href="forgotPassword">Quên mật khẩu</a></p>
                 </div>

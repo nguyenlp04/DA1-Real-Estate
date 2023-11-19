@@ -7,13 +7,17 @@ include './config/config.php';
 include(__DIR__ . '../../admin/models/auth.php');
 // include './../config/config.php';
 
-$addSuccess = false;
-$addFailure = false;
+$addSuccess = 'none';
 $errors = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$database = new Database();
-$Auth = new Auth($database);
-$result = $Auth->signUp();
+  $database = new Database();
+  $Auth = new Auth($database);
+  $result = $Auth->signUp();
+  if (is_array($result) && !empty($result)) {
+    $errors = $result;
+  } else if (is_string($result) && !empty($result)) {
+    $addSuccess = $result;
+  }
 }
 
 ?>
@@ -55,13 +59,10 @@ $result = $Auth->signUp();
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
               <h2 class="fw-bold mb-5 text-center">Đăng ký</h2>
-              <div class="alert alert-success" style="background-color: #5cb85c; display: <?php echo $addSuccess ? 'block' : 'none'; ?>">
+              <div class="alert alert-success" style="background-color: #5cb85c; display: <?php echo $addSuccess ?>">
                 <i class=" text-white fa-solid fa-circle-check"></i>&nbsp; <strong class="text-white">Đăng ký thành công!</strong>
               </div>
-              <div class="alert alert-success bg-danger" style="display:<?php echo $addFailure ? 'block' : 'none'; ?>">
-                <i class="  text-white fa-solid fa-triangle-exclamation"></i>&nbsp; <strong class="text-white">Đăng ký thất bại!</strong>
-              </div>
-              <form  method="POST">
+              <form method="POST">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="mb-4">
                   <div class="">
