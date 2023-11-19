@@ -76,7 +76,7 @@ class User
         }
         
         if (empty($errors)) {
-            $sql = "INSERT INTO `users` (`username`,`full_name`,`birth_user`, `address_user`, `password`,`email`,`avatar`,`roles`, `phone_number`) VALUES('$username','$fullname','$datebirth','$address','$pass','$email','$avatarPath','$roles', $phone)";
+            $sql = "INSERT INTO `users` (`username`,`full_name`,`birth_user`, `address_user`, `password`,`email`,`avatar`,`roles`, `phone_number`) VALUES('$username','$fullname','$datebirth','$address','$pass','$email','$avatarPath','$roles', '$phone')";
             if ($this->db->query($sql) === TRUE) {
                 return $success;
             } else {

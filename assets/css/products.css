@@ -95,6 +95,9 @@
 .house__content__bottom .fa-house{
     color: #72A0F8;
 }
+.house__content__bottom .fa-bath{
+    color: #72A0F8;
+}
 .house__content__bottom .fa-car-tunnel{
     color: #444ce7;
 }
@@ -119,3 +122,4 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
 }
+

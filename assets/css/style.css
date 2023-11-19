@@ -927,7 +927,7 @@ button:hover, button:focus {
 }
 
 section {
-  /* padding: clamp(46px, 6.7708333333%, 130px) 0; */
+  padding: clamp(46px, 6.7708333333%, 130px) 0 !important;
 }
 
 .section-header {
@@ -1831,6 +1831,7 @@ section.testimonials .slider-nav button.swiper-button-disabled {
           justify-content: flex-start;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+    align-items: start;
 }
 .house-card .house__content__main .location .icon {
   margin-right: 8px;
@@ -1912,7 +1913,7 @@ section.testimonials .slider-nav button.swiper-button-disabled {
           justify-content: flex-start;
 }
 .info-right {
-  margin-left: auto;
+  margin-left: 0;
   margin-right: 0;
 }
 @media (min-width: 575px) and (max-width: 991px) {
@@ -2837,4 +2838,41 @@ transition: transform 80ms ease-in;
 .advance-search .inline-form{
   display: grid !important;
   grid-template-columns: repeat(5, 1fr) !important; 
+}
+
+body.single-property .qodef-page-sidebar-section section:not(.qodef-m-agent) {
+  padding: 34px 23px !important;
+}
+
+.pagination {
+  display: block;
+  width: 75%;
+  margin: 1em auto;
+  text-align: center;
+}
+
+.pagination-button {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 1px solid #e0e0e0;
+  /* background-color: #eee; */
+  color: #333;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+
+}
+
+
+span.pagination-button.page-num.active {
+  background-color: #444ce7;
+  color: white;
+}
+
+.pagination-items {
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  row-gap: 4;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

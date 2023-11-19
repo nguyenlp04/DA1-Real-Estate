@@ -111,10 +111,11 @@ class Property
         }
     }
 
-    public  function renderProperpty()
+    public  function renderProperty()
     {
-        $query = "SELECT properties.*, users.full_name FROM properties
-          LEFT JOIN users ON properties.user_id = users.user_id";
+        $query = "SELECT properties.*, users.full_name, property_tags.tag_name FROM properties
+          LEFT JOIN users ON properties.user_id = users.user_id
+          LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id";
         $result = $this->db->query($query);
         $data = [];
         if ($result->num_rows > 0) {
@@ -124,6 +125,40 @@ class Property
         }
         return $data;
     }
+
+    public  function renderPropertyDetail($id)
+    {
+        $updateViewsQuery = "UPDATE properties SET views = views + 1 WHERE property_id = $id";
+        $this->db->query($updateViewsQuery);
+        $query = "SELECT properties.*, users.full_name, property_tags.tag_name, users.roles, users.full_name, users.address_user, users.phone_number, users.email, users.avatar  FROM properties
+          LEFT JOIN users ON properties.user_id = users.user_id
+          LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id
+          WHERE property_id = $id";
+        $result = $this->db->query($query);
+        if ($result->num_rows > 0) {
+            $item = $result->fetch_assoc();
+        }
+        return $item;
+    }
+
+
+    public  function renderImagePropertyDetail($id)
+    {
+       
+        $query = "SELECT images.image_url  FROM properties
+          LEFT JOIN images ON properties.property_id = images.property_id
+          WHERE properties.property_id = $id";
+        $result = $this->db->query($query);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
+                $data[] = $item;
+            }
+        }
+        return $data;
+    }
+
+    
 
     public  function deleteProperty($idproperty)
     {

@@ -10,6 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="./assets/css/auth.css">
   <title>Đặt lại mật khẩu</title>
 
 </head>
@@ -48,9 +49,10 @@
                   </div>
                 </div>
                 <input type="submit" name="submit" class="btn btn-primary btn-block mb-4" value="Đặt lại mật khẩu">
+                <!-- recoverCode -->
                 <div class="row d-flex ">
-                  <div class="col-6"> <a href="./login.php" class="btn btn-primary shadow-0 text-nowrap w-100">Đăng nhập</a></div>
-                  <div class="col-6"><a href="./signUp.php" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Đăng ký</a></div>
+                  <div class="col-6"> <a href="login" class="btn btn-primary shadow-0 text-nowrap w-100">Đăng nhập</a></div>
+                  <div class="col-6"><a href="signUp" class="btn btn-outline-primary me-0 me-md-2 mb-2 mb-md-0 w-100">Đăng ký</a></div>
                 </div>
               </form>
             </div>
