@@ -38,7 +38,7 @@ include(__DIR__ . '/../../../config/config.php');
                         $stt = 1;
                         $database = new Database();
                         $Property = new Property($database);
-                        $result = $Property->renderProperpty();
+                        $result = $Property->renderProperty();
                         foreach ($result as $row) {
                             echo '<tr>
                                 <td>'. $stt .'</td>

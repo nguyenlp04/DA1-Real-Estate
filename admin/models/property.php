@@ -1,5 +1,6 @@
 <?php
 
+
 class Property
 {
     private $db;
