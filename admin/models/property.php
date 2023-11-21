@@ -145,7 +145,7 @@ class Property
 
     public  function renderImagePropertyDetail($id)
     {
-       
+
         $query = "SELECT images.image_url  FROM properties
           LEFT JOIN images ON properties.property_id = images.property_id
           WHERE properties.property_id = $id";
@@ -159,7 +159,7 @@ class Property
         return $data;
     }
 
-    
+
 
     public  function deleteProperty($idproperty)
     {
@@ -173,5 +173,37 @@ class Property
         }
         echo "Không tìm thấy dữ liệu";
         exit;
+    }
+
+    public  function negotiate($idproperty)
+    {
+        if (isset($_POST['submitNegotiations'])) {
+            $errorsNegotiate = "Vui lòng đăng nhập để thương lượng";
+            if (isset($_SESSION['user_info'])) {
+                $user_name = $_POST['user_name'];
+                $user_email = $_POST['user_email'];
+                $price_offered = $_POST['price_offered'];
+                $user_message = $_POST['user_message'];
+                $sql = "SELECT * FROM properties WHERE property_id ='$idproperty'";
+                $result = $this->db->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $property_id = $row['property_id'];
+                    $seller_id = $row['user_id'];
+                    $customer_id = 6;
+                    $status = "Đang thương lượng";
+                    $created_at = date('Y-m-d');
+                    $sql = "INSERT INTO negotiations (`property_id`, `seller_id`, `customer_id`, `price_offered`, `status`, `message`, `created_at`)
+                VALUES ('$property_id', '$seller_id', '$customer_id', '$price_offered', '$status', '$user_message', '$created_at')";
+                    $this->db->query($sql);
+                } else {
+                    echo "Không tìm thấy dữ liệu";
+                    exit;
+                } 
+                return true;
+            } else {
+                return $errorsNegotiate;
+            }
+        }
     }
 }
