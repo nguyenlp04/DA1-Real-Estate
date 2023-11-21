@@ -21,6 +21,8 @@ const selectedApartment = apartmentSelect.value.toLowerCase();
 const selectedPrice = priceSelect.value;
 const selectedAcreage = acreageSelect.value;
 console.log(selectedservices);
+console.log(selectedservices);
+
 let filteredProducts = [];
     let filteredCount = 0;
   houseCards.forEach(card => {
@@ -57,7 +59,4 @@ let filteredProducts = [];
     }
   });
 }
-function updatePagination(filteredProducts) {
-  $(".pagination-items").paginate(filteredProducts.length);
-}
-updatePagination(filteredProducts);
+
