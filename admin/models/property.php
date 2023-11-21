@@ -177,33 +177,45 @@ class Property
 
     public  function negotiate($idproperty)
     {
-        if (isset($_POST['submitNegotiations'])) {
-            $errorsNegotiate = "Vui lòng đăng nhập để thương lượng";
-            if (isset($_SESSION['user_info'])) {
-                $user_name = $_POST['user_name'];
-                $user_email = $_POST['user_email'];
-                $price_offered = $_POST['price_offered'];
-                $user_message = $_POST['user_message'];
-                $sql = "SELECT * FROM properties WHERE property_id ='$idproperty'";
-                $result = $this->db->query($sql);
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    $property_id = $row['property_id'];
-                    $seller_id = $row['user_id'];
-                    $customer_id = 6;
-                    $status = "Đang thương lượng";
-                    $created_at = date('Y-m-d');
-                    $sql = "INSERT INTO negotiations (`property_id`, `seller_id`, `customer_id`, `price_offered`, `status`, `message`, `created_at`)
-                VALUES ('$property_id', '$seller_id', '$customer_id', '$price_offered', '$status', '$user_message', '$created_at')";
-                    $this->db->query($sql);
-                } else {
-                    echo "Không tìm thấy dữ liệu";
-                    exit;
-                } 
-                return true;
-            } else {
-                return $errorsNegotiate;
+        // $errorsNegotiate = "Vui lòng đăng nhập để thương lượng";
+        $errors = [];
+        if (isset($_SESSION['user_info']) && isset($_POST['submitNegotiations'])) {
+            $user_name = $_POST['user_name'];
+            $user_email = $_POST['user_email'];
+            $price_offered = $_POST['price_offered'];
+
+            if (empty($_SESSION['user_info'])) {
+                $errors["session_user_info"] = "Vui lòng đăng nhập để thương lượng";
             }
+            if (empty($user_name)) {
+                $errors["user_name"] = "Tên không được để trống";
+            }
+            if (empty($user_email)) {
+                $errors["user_email"] = "Email không được để trống";
+            }
+            if (empty($price_offered)) {
+                $errors["price_offered"] = "Giá mong muốn không được để trống";
+            }
+            if (empty($errors)) {
+            $user_message = isset($_POST['user_message']) ? $_POST['user_message'] : "";
+            $sql = "SELECT * FROM properties WHERE property_id ='$idproperty'";
+            $result = $this->db->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $property_id = $row['property_id'];
+                $seller_id = $row['user_id'];
+                $customer_id = 6;
+                $status = "Đang thương lượng";
+                $created_at = date('Y-m-d');
+                $sql = "INSERT INTO negotiations (`property_id`, `seller_id`, `customer_id`, `price_offered`, `status`, `message`, `created_at`)
+                    VALUES ('$property_id', '$seller_id', '$customer_id', '$price_offered', '$status', '$user_message', '$created_at')";
+                $this->db->query($sql);
+            } else {
+                echo "Không tìm thấy dữ liệu";
+                exit;
+            }
+        } else {
+            return $errors;
         }
-    }
+    }}
 }
