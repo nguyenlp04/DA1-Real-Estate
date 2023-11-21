@@ -72,7 +72,7 @@ class Auth
             if ($result->num_rows > 0) {
                 // Fetch user data and store it in the $infoUser array
                 $userInfo = $result->fetch_assoc();
-        
+
                 $infoUser['user_id'] = $userInfo['user_id'];
                 $infoUser['username'] = $userInfo['username'];
                 $infoUser['password'] = $userInfo['password'];
@@ -84,15 +84,14 @@ class Auth
                 $infoUser['phone_number'] = $userInfo['phone_number'];
                 $infoUser['avatar'] = $userInfo['avatar'];
                 $_SESSION['user_info'] = $infoUser;
-
-        
             } else {
                 return $addFailure;
             }
         }
     }
-    public function updatePassword($currentPassword, $newPassword, $confirmPassword, $userid){
-       
+    public function updatePassword($currentPassword, $newPassword, $confirmPassword, $userid)
+    {
+
         $errors = [];
         // Kiểm tra mật khẩu hiện tại
         $sqlCheckPassword = "SELECT password FROM users WHERE user_id = '$userid'";
@@ -103,33 +102,32 @@ class Auth
             $storedPassword = $row['password'];
 
             // Kiểm tra mật khẩu hiện tại có khớp không
-            if (!password_verify($currentPassword, $storedPassword)) {
+            if ($storedPassword  != $currentPassword) {
                 $errors['current_password'] = "Mật khẩu hiện tại không đúng";
             }
         } else {
             $errors['current_password'] = "Không thể kiểm tra mật khẩu hiện tại";
         }
-            // Kiểm tra mật khẩu mới và xác nhận mật khẩu
-            if (strlen($newPassword) < 6) {
-                $errors['new_password'] = "Mật khẩu mới phải chứa ít nhất 6 ký tự";
+        // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+        if (strlen($newPassword) < 6) {
+            $errors['new_password'] = "Mật khẩu mới phải chứa ít nhất 6 ký tự";
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            $errors['confirm_password'] = "Xác nhận mật khẩu không chính xác";
+        }
+
+        // Nếu không có lỗi, thực hiện cập nhật mật khẩu
+        if (empty($errors)) {
+            $sqlUpdatePassword = "UPDATE users SET password = '$newPassword' WHERE user_id = '$userid'";
+
+            if ($this->db->query($sqlUpdatePassword)) {
+                return true; // Cập nhật mật khẩu thành công
+            } else {
+                $errors['update_password'] = "Không thể cập nhật mật khẩu";
             }
+        }
 
-            if ($newPassword !== $confirmPassword) {
-                $errors['confirm_password'] = "Xác nhận mật khẩu không chính xác";
-            }
-
-            // Nếu không có lỗi, thực hiện cập nhật mật khẩu
-            if (empty($errors)) {
-                
-                $sqlUpdatePassword = "UPDATE users SET password = '$newPassword' WHERE user_id = '$userid'";
-
-                if ($this->db->query($sqlUpdatePassword)) {
-                    return true; // Cập nhật mật khẩu thành công
-                } else {
-                    $errors['update_password'] = "Không thể cập nhật mật khẩu";
-                }
-            }
-
-            return $errors; // Trả về mảng lỗi nếu có lỗi
-                } 
+        return $errors; // Trả về mảng lỗi nếu có lỗi
+    }
 }
