@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <li
                                                         class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
                                                         <strong class="text-slate-700">Số điện thoại:</strong> &nbsp;
-                                                        <?php echo  $_SESSION['user_info']['phone_number'] ?>
+                                                        +84<?php echo  $_SESSION['user_info']['phone_number'] ?>
                                                     </li>
                                                     <li
                                                         class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
