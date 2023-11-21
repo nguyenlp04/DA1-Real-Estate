@@ -114,7 +114,7 @@ include 'inc/header.php'
                                         <span class="services">' . $row['type'] . '</span>
                                     </div>
                                     <div class="house__content__main">
-                                        <h3 class="title"><a href="propertyDetail/' . $row['property_id'] . '">' . $row['title'] . '</a></h3>
+                                        <h3 class="title"><a href="propertyDetail?id=' . $row['property_id'] . '">' . $row['title'] . '</a></h3>
                                         <p class="location">
                                             <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
                                             <span>' . $row['location'] . '</span>
