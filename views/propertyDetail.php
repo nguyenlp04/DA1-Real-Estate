@@ -7,6 +7,11 @@ $database = new Database();
 $Property = new Property($database);
 $result = $Property->renderPropertyDetail($id);
 $resultImage = $Property->renderImagePropertyDetail($id);
+$resultNegotiate = $Property->negotiate($id);
+$errorsNegotiate = "";
+if ($resultNegotiate !== true) {
+    $errorsNegotiate = $resultNegotiate;
+}
 
 // echo "<pre>";
 // print_r($resultImage);
@@ -98,7 +103,7 @@ $resultImage = $Property->renderImagePropertyDetail($id);
                             <?php
                             foreach ($resultImage as $index => $item) {
                                 // echo $index;
-                                echo '<a class="qodef-e-item qodef-popup-item" itemprop="image" href="./assets/images/imgproperty/' . $item['image_url'] . '" data-type="image">';
+                                echo '<a class="qodef-e-item qodef-popup-item" itemprop="image" href="./assets/images/imgproperty' . $item['image_url'] . '" data-type="image">';
                                 echo '<img width="406" height="320" src="./assets/images/imgproperty' . $item['image_url'] . '" />';
                                 if ($index === 4) {
                                     echo '<span class="qodef-e-item-button">See all photos</span></a>';
@@ -110,7 +115,7 @@ $resultImage = $Property->renderImagePropertyDetail($id);
 
                         </div>
                     </div>
-                   
+
                     <main id="qodef-page-content" role="main">
                         <div class="qodef-property qodef-m qodef-property-single qodef-item-layout--gallery">
                             <div class="qodef-m-content qodef-content-grid">
@@ -485,7 +490,7 @@ $resultImage = $Property->renderImagePropertyDetail($id);
                                                                 <input type="text" name="user_name" placeholder="Họ và tên*">
                                                             </div>
                                                             <div class="qodef-m-form-row">
-                                                                <input type="text" name="user_email" placeholder="Email*">
+                                                                <input type="email" name="user_email" placeholder="Email*">
                                                             </div>
                                                             <div class="qodef-m-form-row">
                                                                 <input type="text" name="user_phone" placeholder="Số điện thoại*">
@@ -510,40 +515,44 @@ $resultImage = $Property->renderImagePropertyDetail($id);
 
 
                                             <section class="qodef-m-mortgage-calculator">
-                                                <h4 class="qodef-m-mortgage-calculator-title">Thươnng lượng</h4>
-                                                <div class="qodef-m-mortgage-calculator-description">
-                                                    Vui lòng điền vào biểu mẫu dưới đây để gửi yêu cầu thương lượng giá.
-                                                </div>
-                                                <div class="qodef-m-mortgage-calculator-content">
-                                                    <form class="qodef-m-form" id="qodef-mortgage-calculator" data-error-message="Please review your enquiry and try again">
-                                                        <div class="qodef-m-form-inner">
-                                                            <div class="qodef-m-form-row">
-                                                                <input type="text" name="user_name" placeholder="Họ và tên">
-                                                            </div>
-                                                            <div class="qodef-m-form-row">
-                                                                <input type="text" name="user_email" placeholder="Email">
-                                                            </div>
+                                                <form method="post">
+                                                    <h4 class="qodef-m-mortgage-calculator-title m-0">Thươnng lượng</h4>
+                                                    <div class="qodef-m-schedule-tour-description py-4">
+                                                        Vui lòng điền vào biểu mẫu dưới đây để gửi yêu cầu thương lượng giá.
+                                                    </div>
+                                                    <span class="text-danger"><?php echo $errorsNegotiate ?></span>
+                                                    <div class="qodef-m-mortgage-calculator-content">
+                                                        <form class="qodef-m-form" id="qodef-mortgage-calculator" data-error-message="Please review your enquiry and try again">
+                                                            <div class="qodef-m-form-inner">
+                                                                <div class="qodef-m-form-row">
+                                                                    <input type="text" name="user_name" placeholder="Họ và tên*">
+                                                                </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <input type="text" name="user_email" placeholder="Email*">
+                                                                </div>
 
-                                                            <div class="qodef-m-form-row">
-                                                                <label>
-                                                                    Giá:</label>
-                                                                <input id="qodef-mortgage-calculator-price" type="number" name="price" value="<?php echo $result['price'] ?>" readonly="readonly">
+                                                                <div class="qodef-m-form-row">
+                                                                    <label>
+                                                                        Giá:</label>
+                                                                    <input id="qodef-mortgage-calculator-price" type="number" name="price" value="<?php echo $result['price'] ?>" readonly="readonly">
+                                                                </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <input type="text" name="price_offered" placeholder="Giá mong muốn*">
+                                                                </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <textarea name="user_message" placeholder="Tin nhắn*" rows="4"></textarea>
+                                                                </div>
+                                                                <input type="hidden" name="agent_id" value="5" />
+                                                                <div class="qodef-m-action qodef-property-spinner">
+                                                                    <button type="submit" name="submitNegotiations" class="qodef-shortcode qodef-m  qodef-button qodef-layout--filled qodef-size--normal-full ">
+                                                                        <span class="qodef-btn-text">Thương lượng</span></button>
+                                                                        <span class="qodef-m-spinner">
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                            <div class="qodef-m-form-row">
-                                                                <input type="text" name="user_phone" placeholder="Giá mong muốn">
-                                                            </div>
-                                                            <div class="qodef-m-form-row">
-                                                                <textarea name="user_message" placeholder="Tin nhắn" rows="4"></textarea>
-                                                            </div>
-                                                            <input type="hidden" name="agent_id" value="5" />
-                                                            <div class="qodef-m-action qodef-property-spinner">
-                                                                <button type="submit" class="qodef-shortcode qodef-m  qodef-button qodef-layout--filled qodef-size--normal-full ">
-                                                                    <span class="qodef-btn-text">Thương lượng</span></button><span class="qodef-m-spinner">
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                                        </form>
+                                                    </div>
+                                                </form>
                                             </section>
                                         </div>
                                     </div>
