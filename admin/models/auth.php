@@ -86,7 +86,9 @@ class Auth
                 return $addFailure;
             }
         }
+        
     }
+
     public function forgotPassword()
     {
         $emailError = '<span class="text-danger">Email không tồn tại</span>';
@@ -218,6 +220,48 @@ class Auth
             $sql = "UPDATE users SET password = '$passNew' WHERE email='$emailChangePass'";
             $old = $this->db->query($sql);
             header("Location: ./index.php");
+        }}
+
+    public function updatePassword($currentPassword, $newPassword, $confirmPassword, $userid)
+    {
+
+        $errors = [];
+        // Kiểm tra mật khẩu hiện tại
+        $sqlCheckPassword = "SELECT password FROM users WHERE user_id = '$userid'";
+        $result = $this->db->query($sqlCheckPassword);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $storedPassword = $row['password'];
+
+            // Kiểm tra mật khẩu hiện tại có khớp không
+            if ($storedPassword  != $currentPassword) {
+                $errors['current_password'] = "Mật khẩu hiện tại không đúng";
+            }
+        } else {
+            $errors['current_password'] = "Không thể kiểm tra mật khẩu hiện tại";
         }
+        // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+        if (strlen($newPassword) < 6) {
+            $errors['new_password'] = "Mật khẩu mới phải chứa ít nhất 6 ký tự";
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            $errors['confirm_password'] = "Xác nhận mật khẩu không chính xác";
+        }
+
+        // Nếu không có lỗi, thực hiện cập nhật mật khẩu
+        if (empty($errors)) {
+            $sqlUpdatePassword = "UPDATE users SET password = '$newPassword' WHERE user_id = '$userid'";
+
+            if ($this->db->query($sqlUpdatePassword)) {
+                return true; // Cập nhật mật khẩu thành công
+            } else {
+                $errors['update_password'] = "Không thể cập nhật mật khẩu";
+            }
+        }
+
+        return $errors; // Trả về mảng lỗi nếu có lỗi
+
     }
 }
