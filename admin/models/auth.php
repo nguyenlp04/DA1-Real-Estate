@@ -88,6 +88,7 @@ class Auth
                 return $addFailure;
             }
         }
+        
     }
 
     public function forgotPassword()
