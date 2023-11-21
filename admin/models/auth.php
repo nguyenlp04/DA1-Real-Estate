@@ -70,9 +70,7 @@ class Auth
             $sqlPass = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
             $result = $this->db->query($sqlPass);
             if ($result->num_rows > 0) {
-                // Fetch user data and store it in the $infoUser array
                 $userInfo = $result->fetch_assoc();
-
                 $infoUser['user_id'] = $userInfo['user_id'];
                 $infoUser['username'] = $userInfo['username'];
                 $infoUser['password'] = $userInfo['password'];

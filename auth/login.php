@@ -2,7 +2,6 @@
 session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 include './config/config.php';
 include(__DIR__ . '../../admin/models/auth.php');
 $addFailure = 'none';
@@ -18,9 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo '</pre>';
   }
 }
-
-
-
 
 ?>
 <!DOCTYPE html>
