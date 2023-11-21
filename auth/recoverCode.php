@@ -1,3 +1,19 @@
+<?php 
+session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+include './config/config.php';
+include(__DIR__ . '../../admin/models/auth.php');
+$codeError = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $database = new Database();
+  $Auth = new Auth($database);
+  $result = $Auth->recoverCode();
+  if ($result !== true) {
+    $codeError = $result;
+  } 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,17 +54,18 @@
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
           <h2 class="fw-bold mb-5 text-center">Nhập mã bảo mật</h2>
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
+          <form method="POST">
               <div class="">
                   <div class="">
-                     <div class="d-flex justify-content-between"><label class="form-label text-dark m-0 mb-2" for="form3Example2">Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 4 số. </label><?php   ?></div> 
-                    <input name="codeRecover" type="text" id="form3Example2" placeholder="Nhập mã" class="<?php echo $resultUser ?> form-control" />
+                     <div class="d-flex justify-content-between"><label class="form-label text-dark m-0 mb-2" for="form3Example2">Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 4 số. </label></div> 
+                     <?php echo $codeError ?>
+                    <input name="codeRecover" type="text" id="form3Example2" placeholder="Nhập mã" class="form-control" />
                   </div>
                 </div>
            
                 <div class="float-end m-0 p-0 mt-4">
                     <button type="button" class="btn btn-success"><a href="forgotPassword" class="text-light text-decoration-none">Quay lại</a></button>
-                    <button type="submit" name="submit" class="btn btn-primary"><a href="changePass" class="text-white text-decoration-none">Tiếp tục</a></button>
+                    <button type="submit" name="submit" class="btn btn-primary">Tiếp tục</button>
                    
                 </div>
               

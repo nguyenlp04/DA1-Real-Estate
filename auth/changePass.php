@@ -1,4 +1,17 @@
-
+<?php
+session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+include './config/config.php';
+include(__DIR__ . '../../admin/models/auth.php');
+include './vendor/process_send_mail.php';
+$emailError = "";
+if (isset($_POST['submit'])) {
+$database = new Database();
+$Auth = new Auth($database);
+$result = $Auth->changePass();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +53,7 @@
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
           <h2 class="fw-bold mb-5 text-center">Chọn mật khẩu mới</h2>
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
+          <form method="POST">
               <div class=" mb-4">
                   <div class="">
                      <div class="d-flex justify-content-between"><label class="form-label text-dark m-0 mb-2" for="form3Example2">Tạo mật khẩu mới có tối thiểu 6 ký tự. Mật khẩu mạnh là mật khẩu được kết hợp từ các ký tự, số và dấu câu. </label><?php   ?></div> 

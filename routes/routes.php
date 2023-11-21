@@ -51,6 +51,7 @@ $router->addRoute('contact', __DIR__ . '/../views/contact.php');
 $router->addRoute('propertyDetail', __DIR__ . '/../views/propertyDetail.php');
 
 
+
 // Admin
 $router->addRoute('admin/dashboard', __DIR__ . '/../admin/index.php');
 

@@ -2,11 +2,8 @@
 session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 include './config/config.php';
 include(__DIR__ . '../../admin/models/auth.php');
-// include './../config/config.php';
-
 $addSuccess = 'none';
 $errors = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $addSuccess = $result;
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
