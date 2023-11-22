@@ -1,17 +1,14 @@
 <?php
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/posts.php');
-
 $database = new Database();
 $Post = new Post($database);
 $posts = $Post->listPost();
-
-  ?>
+?>
 <div class="w-full">
-
     <script>
     new DataTable('#example', {
         pagingType: 'full_numbers'

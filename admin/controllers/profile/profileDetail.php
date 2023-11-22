@@ -1,11 +1,8 @@
 <?php
-session_start();
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
-include(__DIR__ . '/../../../config/config.php');
 include(__DIR__ . '/../../models/auth.php');
 $database = new Database();
 $auth = new Auth($database);
@@ -36,44 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Không có nút t1 nào được nhấn!";
     }
 }
-
-
-include(__DIR__ . '/../../models/auth.php');
-$database = new Database();
-$auth = new Auth($database);
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['editinfo'])) {
-    } elseif (isset($_POST['editpassword'])) {
-        $errors = [];
-        $currentPassword = $_POST['current-password'];
-        $newPassword = $_POST['new-password'];
-        $confirmPassword = $_POST['confirm-password'];
-        $userid = $_SESSION['user_info']['user_id'];
-
-        $result = $auth->updatePassword($currentPassword, $newPassword, $confirmPassword, $userid);
-
-        if ($result === true) {
-            // Mật khẩu đã được cập nhật thành công
-            echo "<script>alert('Mật khẩu đã được cập nhật thành công!');</script>";
-        } else {
-            // Xử lý và hiển thị lỗi
-            foreach ($result as $error) {
-                echo "<script>alert('Mật khẩu  đéo cập nhật được !');</script>";
-                echo $error . "<br>";
-            }
-        }
-    } else {
-        echo "Không có nút t1 nào được nhấn!";
-    }
-}
-
-
 ?>
-
-
-
 <div class="w-full">
 
     <div class="flex justify-center xl:w-11/13">

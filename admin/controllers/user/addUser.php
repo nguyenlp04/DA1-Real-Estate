@@ -4,15 +4,12 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/user.php');
-
 $errors = [];
 $success = 'none';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $database = new Database();
   $User = new User($database);
   $result = $User->addUser();
-
   if (is_array($result) && !empty($result)) {
       $errors = $result;
   } else if (is_string($result) && !empty($result)) {

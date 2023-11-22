@@ -4,22 +4,12 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/posts.php');
-
 $errors = [];
 $success = 'none';
 $database = new Database();
 $Post = new Post($database);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $result = $Post->addPost();
-
-    // Kiểm tra kết quả và hiển thị thông báo cho người dùng
-    // if ($result === true) {
-    //     echo '<div class=" bg-green-500" style="margin-left: 30px; width:300px; border-radius: 0.25rem;"><div class="alert text-white font-bold rounded-t px-4 py-2"> Thêm bài viết thành công <i class="fa-solid fa-circle-check"></i></div></div>';
-    // } else {
-    //     echo "Lỗi khi thêm bài viết: " . $result;
-    // }
-
     if (is_array($result) && !empty($result)) {
         $errors = $result;
     } else if (is_string($result) && !empty($result)) {
@@ -28,10 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <div class="w-full">
-
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
-
-
     <div class="flex justify-center xl:w-11/13">
         <div class="w-11/12 xl:w-11/13 mt-4 mb-8">
             <div class="w-full bg-white rounded-lg min-h-screen">
