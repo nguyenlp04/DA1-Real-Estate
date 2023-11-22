@@ -17,9 +17,9 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
     $errors = $resultNegotiate;
 }
 
-echo "<pre>";
-print_r($_SESSION['user_info']);
-echo "</pre>";
+// echo "<pre>";
+// print_r($_SESSION['user_info']);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">

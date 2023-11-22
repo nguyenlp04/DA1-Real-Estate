@@ -1,4 +1,16 @@
-     <div id="content-wrapper" class="d-flex flex-column">
+    <?php
+    $database = new Database();
+    $conn = $database->conn;
+    $user_id = $_SESSION['user_info']['user_id'];
+    $query = "SELECT * FROM users WHERE user_id = $user_id";
+    $result =  $conn->query($query);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $fullname = $row['full_name'];
+        $avatar = $row['avatar'];
+    }
+    ?>
+    <div id="content-wrapper" class="d-flex flex-column">
          <!-- Main Content -->
          <div id="content">
              <!-- Topbar -->
@@ -164,8 +176,13 @@
                      <li class="nav-item dropdown no-arrow">
                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<<<<<<< HEAD
                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                              <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+=======
+                             <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $fullname ?></span>
+                             <img class="img-profile rounded-circle" src="./../assets/images/imguser/<?php echo $avatar ?>" />
+>>>>>>> PhuocNguyen-Auth
                          </a>
                          <!-- Dropdown - User Information -->
                          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -174,6 +191,7 @@
                                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                  Profile
                              </a>
+<<<<<<< HEAD
                              <a class="dropdown-item" href="#">
                                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                  Settings
@@ -184,6 +202,14 @@
                              </a>
                              <div class="dropdown-divider"></div>
                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+=======
+                             <a class="dropdown-item" href="setting">
+                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                 Settings
+                             </a>
+                             <div class="dropdown-divider"></div>
+                             <a class="dropdown-item" href="../logout" >
+>>>>>>> PhuocNguyen-Auth
                                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                  Logout
                              </a>

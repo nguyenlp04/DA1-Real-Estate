@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include(__DIR__ . '/../config/config.php');
 include(__DIR__ . '/../admin/models/tags.php');
 include(__DIR__ . '/../admin/models/property.php');
 include 'inc/header.php'

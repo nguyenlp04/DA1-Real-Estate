@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/property.php');
-include(__DIR__ . '/../../../config/config.php');
+
 ?>
 <div class="w-full">
     <div class="flex justify-center xl:w-11/13">
@@ -32,7 +32,7 @@ include(__DIR__ . '/../../../config/config.php');
                             </thead>
                             <tbody>
                                 <style>
-                                   
+
                                 </style>
                                 <?php
                         $stt = 1;
@@ -94,7 +94,7 @@ include(__DIR__ . '/../../../config/config.php');
                             </tbody>
                         </table>
                         <script>
-                            new DataTable('#example');
+                        new DataTable('#example');
                         </script>
                     </div>
                 </div>
@@ -107,15 +107,15 @@ include(__DIR__ . '/../../../config/config.php');
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
 <script>
-     $(document).ready(function () {
-                                // Kích hoạt modal
-                                $('.modal').modal();
-                                // Khởi tạo DataTable
-                                new DataTable('#example');
-                            });
-    $(document).ready(function () {
-        $('[data-toggle="popover"]').popover();
-    });
+$(document).ready(function() {
+    // Kích hoạt modal
+    $('.modal').modal();
+    // Khởi tạo DataTable
+    new DataTable('#example');
+});
+$(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+});
 </script>
 
 <?php

@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if((!isset($_SESSION['user_info'])) ||( $_SESSION['user_info']['roles'] != "admin")){
+    header("Location: ../home");
+} 
+include(__DIR__ . '../../../config/config.php');
+?>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,6 +28,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+
     <link href="../assets/css/add-post.css" rel="stylesheet">
     <link href="../assets/css/upload-property.css" rel="stylesheet">
     <link href="../assets/css/profileAdmin.css" rel="stylesheet">
