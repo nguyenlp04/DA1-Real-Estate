@@ -6,6 +6,29 @@ include(__DIR__ . '/../config/config.php');
 include(__DIR__ . '/../admin/models/tags.php');
 include(__DIR__ . '/../admin/models/property.php');
 include './vendor/process_send_mail.php';
+$database = new Database();
+$conn = $database->conn;
+$adminMenuItem = '';
+$hiddenUser = "d-none";
+$hiddenAuth = "d-none";
+if (isset($_SESSION['user_info'])) {
+    $user_id = $_SESSION['user_info']['user_id'];
+    $sql = "SELECT * FROM users WHERE user_id='$user_id'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $rowGet = $result->fetch_assoc();
+        if ($rowGet['roles'] == 'admin') {
+            $adminMenuItem = '<li><a class="dropdown-item px-4" href="admin/dashboard">Admin</a></li>';
+        }
+    } else {
+        echo "Không tìm thấy dữ liệu";
+        exit;
+    }
+    $hiddenUser = "d-flex";
+} else {
+    $hiddenAuth = "d-flex";
+}
+
 $id = $_GET['id'];
 $database = new Database();
 $Property = new Property($database);
@@ -81,8 +104,32 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
                         </ul>
                     </div>
                     <div class="header-meta">
-                        <a href="login" class="btn btn-outline me-3 btn-login-form">Đăng Nhập</a>
-                        <a href="signup" class="btn btn-primary btn-signup-form">Đăng Ký</a>
+                        <div class="group-login align-items-center auth <?php echo $hiddenAuth ?>">
+
+                            <a href="login" class="rounded-4 px-5 py-3 btn-outline me-3 btn-login-form">Đăng Nhập</a>
+                            <a href="signup" class="rounded-4 px-5 py-3 btn-primary btn-signup-form">Đăng Ký</a>
+
+                        </div>
+
+                        <div class="group-login align-items-center dropdown <?php echo $hiddenUser ?>">
+                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                <img src="./assets/images/imguser/user.png" class="rounded-circle" style="height: 35px" alt="Avatar" loading="lazy" />
+                                <span class="ms-2 text-dark">Nguyen</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar" style="font-size: 16px">
+
+                                <?php echo $adminMenuItem ?>
+                                <li>
+                                    <a class="dropdown-item px-4" href="profile">Thông tin của tôi</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-4" href="profile">Cài đặt</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item px-4" href="logout">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </div>
                         <!-- Header Toggle Start -->
                         <div class="header-toggle d-lg-none">
                             <button class="toggler-btn">

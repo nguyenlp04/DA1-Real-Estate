@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
-<script src="../../../assets/js/ckeditor.js"></script>
+<script src="../assets/js/ckeditor.js"></script>
 
 
 <?php

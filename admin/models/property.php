@@ -201,7 +201,7 @@ class Property
                     $property_id = $row['property_id'];
                     $title = $row['title'];
                     $seller_id = $row['user_id'];
-                    $customer_id = 6;
+                    $customer_id = $_SESSION['user_info']['user_id'];
                     $status = "Đang thương lượng";
                     $created_at = date('Y-m-d');
                     $sql = "INSERT INTO negotiations (`property_id`, `seller_id`, `customer_id`, `price_offered`, `status`, `message`, `created_at`)
