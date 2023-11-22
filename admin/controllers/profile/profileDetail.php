@@ -279,17 +279,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </div>
                                             </div>
                                             <div class="flex-auto pl-4 ">
-<<<<<<< HEAD
                                                 <form action="" class="mb-6 mr-4">
-=======
-                                                <form action="" class="mb-6">
->>>>>>> PhuocNguyen-Auth
                                                     <div
                                                         class="grid md:grid-cols-2 grid-cols-1 md:gap-x-4 md:gap-y-0 gap-4">
                                                         <div class="w-full flex flex-col py-2">
                                                             <label for="fullname"
-                                                                class="text-black font-semibold pb-1 capitalize"> Tên
-                                                                đầy đủ </label>
+                                                                class="text-black font-semibold pb-1 capitalize"> Họ và tên </label>
                                                             <input type="fullname" id="fullname"
                                                                 class="p-2 border border-[#a5abb5] rounded"
                                                                 name="fullname"
@@ -409,9 +404,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             </div>
                                             <!-- End Toggle Button -->
                                         </div>
-<<<<<<< HEAD
-
-=======
                                         <hr
                                             class="h-px mx-0 my-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
                                         <div class="flex-auto p-6 pt-0 sm:pt-4">
@@ -505,7 +497,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </a>
                                             </div>
                                         </div>
->>>>>>> PhuocNguyen-Auth
                                     </div>
                                 </div>
                             </div>
