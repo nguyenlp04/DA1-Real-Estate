@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../config/config.php');
 include(__DIR__ . '/../admin/models/tags.php');
 include(__DIR__ . '/../admin/models/property.php');
+include './vendor/process_send_mail.php';
 $id = $_GET['id'];
 $database = new Database();
 $Property = new Property($database);

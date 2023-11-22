@@ -31,5 +31,6 @@ function send_email($to, $subject, $message, $name) {
         return false;
     }
   }
+  
 ?>
 

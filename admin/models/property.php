@@ -33,35 +33,31 @@ class Property
         $address = $addressDetail . ", " . $wards . ", " . $district . ", " . $city;
         $description = $_POST["description"];
         $status = 'Đã duyệt';
+        if (empty($title)) {
+            $errors["title"] = "Tên không được để trống";
+        }
+        if (empty($property_price)) {
+            $errors["property_price"] = "Giá không được để trống";
+        }
+        if (empty($property_year)) {
+            $errors["property_year"] = "Năm xây dựng không được để trống";
+        }
 
-        // if (empty($title)) {
-        //     $errors["title"] = "Tên không được để trống";
-        // }
-        // if (empty($property_price)) {
-        //     $errors["property_price"] = "Giá không được để trống";
-        // }
-        // if (empty($property_year)) {
-        //     $errors["property_year"] = "Năm xây dựng không được để trống";
-        // }
+        if (empty($city)) {
+            $errors["city"] = "Thành phố không được để trống";
+        }
 
-        // if (empty($city)) {
-        //     $errors["city"] = "Thành phố không được để trống";
-        // }
+        if (empty($district)) {
+            $errors["district"] = "Quận không được để trống";
+        } 
 
-        // if (empty($district)) {
-        //     $errors["district"] = "Quận không được để trống";
-        // } 
+        if (empty($wards)) {
+            $errors["wards"] = "Phường/Xã không được để trống";
+        } 
 
-        // if (empty($wards)) {
-        //     $errors["wards"] = "Phường/Xã không được để trống";
-        // } 
-
-        // if (empty($addressDetail)) {
-        //     $errors["addressDetail"] = "Địa chỉ chi tiết không được để trống";
-        // }
-
-
-
+        if (empty($addressDetail)) {
+            $errors["addressDetail"] = "Địa chỉ chi tiết không được để trống";
+        }
 
         $propertyImage = $_FILES["floorPlanImage"];
         $fileNameFloorPlan = $propertyImage["name"];
@@ -197,25 +193,66 @@ class Property
                 $errors["price_offered"] = "Giá mong muốn không được để trống";
             }
             if (empty($errors)) {
-            $user_message = isset($_POST['user_message']) ? $_POST['user_message'] : "";
-            $sql = "SELECT * FROM properties WHERE property_id ='$idproperty'";
-            $result = $this->db->query($sql);
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $property_id = $row['property_id'];
-                $seller_id = $row['user_id'];
-                $customer_id = 6;
-                $status = "Đang thương lượng";
-                $created_at = date('Y-m-d');
-                $sql = "INSERT INTO negotiations (`property_id`, `seller_id`, `customer_id`, `price_offered`, `status`, `message`, `created_at`)
+                $user_message = isset($_POST['user_message']) ? $_POST['user_message'] : "";
+                $sql = "SELECT * FROM properties WHERE property_id ='$idproperty'";
+                $result = $this->db->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $property_id = $row['property_id'];
+                    $title = $row['title'];
+                    $seller_id = $row['user_id'];
+                    $customer_id = 6;
+                    $status = "Đang thương lượng";
+                    $created_at = date('Y-m-d');
+                    $sql = "INSERT INTO negotiations (`property_id`, `seller_id`, `customer_id`, `price_offered`, `status`, `message`, `created_at`)
                     VALUES ('$property_id', '$seller_id', '$customer_id', '$price_offered', '$status', '$user_message', '$created_at')";
-                $this->db->query($sql);
+                    $this->db->query($sql);
+                    $subject = 'Đề Xuất Thương Lượng Bất Động Sản - ' . $title;
+
+                    $message = '<p>Chào Anh/Chị '.$seller_id.',</p>
+                <p>
+                    Tôi mong rằng bạn đang có một ngày tốt lành. Tên tôi là ' . $user_name . '.
+                </p>
+                <p>
+                    Dưới đây là một số điều tôi muốn đề xuất:
+                </p>
+                <ol>
+                    <li>
+                        <strong>Giá Bán Đề Xuất:</strong>
+                        <p>Chúng tôi đề xuất một giá là <b>' . $price_offered . '</b> cho bất động sản của Anh/Chị. Số này được xây dựng dựa trên thị trường hiện tại và các yếu tố như vị trí, kích thước và tiện ích.</p>
+                    </li>
+                    <li>
+                        <strong>Điều Kiện Thanh Toán:</strong>
+                        <p>Chúng tôi có thể thảo luận về các phương thức thanh toán linh hoạt để đảm bảo thuận lợi cho cả hai bên.</p>
+                    </li>
+                    <li>
+                        <strong>Khả Năng Thương Lượng:</strong>
+                        <p>Chúng tôi mở cửa để thương lượng và điều chỉnh các điều khoản để đảm bảo sự hài lòng từ cả hai phía.</p>
+                    </li>
+                    <li>
+                        <strong>Lời nhắn:</strong>
+                        <p>'.$user_message.'.</p>
+                    </li>
+                </ol>
+                <p>
+                    Nếu Anh/Chị quan tâm hoặc muốn thảo luận thêm về các điều khoản cụ thể, tôi sẽ sẵn lòng đáp ứng. Chúng tôi tin rằng sự hợp tác giữa chúng ta có thể tạo ra một thỏa thuận thành công và mang lại giá trị lâu dài.
+                </p>
+                <p>
+                    Xin cảm ơn sự chú ý và thời gian của Anh/Chị. Chúng tôi mong chờ phản hồi tích cực và hy vọng có cơ hội làm việc cùng Anh/Chị trong tương lai gần.
+                </p>
+                <p>Trân trọng,<br>
+                ' . $user_name . '<br>
+                '.$user_email.'
+                </p>';
+
+                    send_email($user_email, $subject, $message, $user_name);
+                } else {
+                    echo "Không tìm thấy dữ liệu";
+                    exit;
+                }
             } else {
-                echo "Không tìm thấy dữ liệu";
-                exit;
+                return $errors;
             }
-        } else {
-            return $errors;
         }
-    }}
+    }
 }
