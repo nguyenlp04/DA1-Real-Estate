@@ -32,7 +32,11 @@ class Property
         $addressDetail = $_POST['addressDetail'];
         $address = $addressDetail . ", " . $wards . ", " . $district . ", " . $city;
         $description = $_POST["description"];
-        $status = 'Đã duyệt';
+        if($_SESSION['user_info']['roles'] == 'admin'){
+            $status = 'Đã duyệt';
+        } else {
+            $status = 'Chưa duyệt';
+        }
         if (empty($title)) {
             $errors["title"] = "Tên không được để trống";
         }
@@ -112,7 +116,7 @@ class Property
     {
         $query = "SELECT properties.*, users.full_name, property_tags.tag_name FROM properties
           LEFT JOIN users ON properties.user_id = users.user_id
-          LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id";
+          LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id WHERE status = 'Đã duyệt'";
         $result = $this->db->query($query);
         $data = [];
         if ($result->num_rows > 0) {

@@ -43,12 +43,12 @@ include(__DIR__ . '/../../models/property.php');
                             echo '<tr>
                                 <td>'. $stt .'</td>
                                 <td><a class="decoration-none" href="propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a></td>
-                                <td>'. $row['price'] .' $</td>
+                                <td>'. $row['price'] .'$</td>
                                 <td>'. $row['location'] .'</td>
                                 <td>'. $row['full_name'] .'</td>
                                 <td><span  style="color: black; text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: '. ($row['status'] === 'Đã duyệt' ? '#e67e22' : '#d35400;') .'">
-            '. $row['status'] .'
-        </span></td>
+                                    '. $row['status'] .'
+                                </span></td>
                                 <td>'. $row['views'] .'</td>
                                 <td>
                                     <i class="fa-solid fs-5 fa-eye overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModal' . $row['property_id'] . '"></i>

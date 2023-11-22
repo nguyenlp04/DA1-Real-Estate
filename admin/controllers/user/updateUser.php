@@ -39,7 +39,7 @@ if (isset($_GET['user_id'])) {
             }
             ?>
             <div class="title-container flex items-center">
-              <p class="text-[#0957CB] font-semibold  text-2xl py-4">Thêm Người Dùng</p>
+              <p class="text-[#0957CB] font-semibold  text-2xl py-4">Cập Nhật Người Dùng</p>
               <div class="alert alert-success h-full m-0	ml-2" style="background-color: #5cb85c; display: <?php echo $success ?>">
                 <i class="text-white fas fa-circle-check"></i>&nbsp;<strong class="text-white">Thêm thành công!</strong>
               </div>

@@ -9,13 +9,7 @@ $Post = new Post($database);
 $posts = $Post->listPost();
 ?>
 <div class="w-full">
-    <script>
-    new DataTable('#example', {
-        pagingType: 'full_numbers'
-    });
-    </script>
     <link rel="stylesheet" href="../../../vendor/dataTables/jquery.dataTables.min.css">
-
     <script src="../../../vendor/dataTables/jquery-3.7.0.js"></script>
     <script src="../../../vendor/dataTables/jquery.dataTables.min.js"></script>
     <div class="flex justify-center xl:w-11/13">
@@ -54,14 +48,13 @@ $posts = $Post->listPost();
 
                                     <a href="deletePost?post_id=<?php echo $post['post_id']; ?>"
                                         onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này không?')"><i class="fa-solid fs-5 fa-trash-can text-danger"></i></a>
-
                                 </td>
-
                             </tr>
                             <?php endforeach; ?>
-
                         </table>
-
+                        <script>
+                            new DataTable('#example');
+                        </script>
                     </div>
                 </div>
             </div>

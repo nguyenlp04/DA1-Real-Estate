@@ -45,6 +45,7 @@ $router->addRoute('recoverCode', __DIR__ . '/../auth/recoverCode.php');
 $router->addRoute('home', __DIR__ . '/../index.php');
 $router->addRoute('introduce', __DIR__ . '/../views/introduce.php');
 $router->addRoute('profile', __DIR__ . '/../views/userProfile.php');
+$router->addRoute('transaction', __DIR__ . '/../views/transaction.php');
 $router->addRoute('products', __DIR__ . '/../views/products.php');
 $router->addRoute('news', __DIR__ . '/../views/news.php');
 $router->addRoute('contact', __DIR__ . '/../views/contact.php');
@@ -68,6 +69,9 @@ $router->addRoute('admin/deleteTags', __DIR__ . '/../admin/controllers/property/
 $router->addRoute('admin/contract', __DIR__ . '/../admin/controllers/transactions/contract.php');
 $router->addRoute('admin/contractDetail', __DIR__ . '/../admin/controllers/transactions/contractDetail.php');
 $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transactions/negotiations.php');
+
+$router->addRoute('admin/updateQuery', __DIR__ . '/../admin/controllers/transactions/updateQuery.php');
+
 
 $router->addRoute('admin/post', __DIR__ . '/../admin/controllers/posts/listPost.php');
 $router->addRoute('admin/addPost', __DIR__ . '/../admin/controllers/posts/addPost.php');

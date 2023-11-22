@@ -66,6 +66,13 @@ if (isset($_SESSION['user_info'])) {
     <link rel="stylesheet" href="assets/css/products.css">
     <link rel="stylesheet" href="assets/css/news.css">
 
+    <link rel="stylesheet" href="vendor/dataTables/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/dataTables/dataTables.bootstrap5.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="vendor/dataTables/jquery.dataTables.min.js"></script>
+    <script src="vendor/dataTables/dataTables.bootstrap5.min.js"></script>
+
+
 </head>
 
 <body>
@@ -105,6 +112,9 @@ if (isset($_SESSION['user_info'])) {
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar" style="font-size: 16px">
 
                                 <?php echo $adminMenuItem ?>
+                                <li>
+                                    <a class="dropdown-item px-4" href="transaction">Giao dịch</a>
+                                </li>
                                 <li>
                                     <a class="dropdown-item px-4" href="profile">Thông tin của tôi</a>
                                 </li>
