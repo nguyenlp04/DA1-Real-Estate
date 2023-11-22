@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/user.php');
-include(__DIR__ . '/../../../config/config.php');
+// 
 ?>
 <div class="w-full">
     <div class="flex justify-center xl:w-11/13">

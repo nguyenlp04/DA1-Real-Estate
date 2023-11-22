@@ -34,6 +34,7 @@ $router->addRoute('/', __DIR__ . '/../index.php');
 // Auth 
 $router->addRoute('signup', __DIR__ . '/../auth/signUp.php');
 $router->addRoute('login', __DIR__ . '/../auth/login.php');
+$router->addRoute('logout', __DIR__ . '/../auth/logout.php');
 $router->addRoute('forgotPassword', __DIR__ . '/../auth/forgotPassword.php');
 $router->addRoute('changePass', __DIR__ . '/../auth/changePass.php');
 $router->addRoute('recoverCode', __DIR__ . '/../auth/recoverCode.php');
@@ -46,7 +47,6 @@ $router->addRoute('introduce', __DIR__ . '/../views/introduce.php');
 $router->addRoute('profile', __DIR__ . '/../views/userProfile.php');
 $router->addRoute('products', __DIR__ . '/../views/products.php');
 $router->addRoute('news', __DIR__ . '/../views/news.php');
-$router->addRoute('contact', __DIR__ . '/../views/contact.php');
 $router->addRoute('contact', __DIR__ . '/../views/contact.php');
 $router->addRoute('propertyDetail', __DIR__ . '/../views/propertyDetail.php');
 

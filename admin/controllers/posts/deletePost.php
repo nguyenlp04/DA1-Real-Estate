@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include(__DIR__ . '/../../models/posts.php');
-include(__DIR__ . '/../../../config/config.php');
+
 if (isset($_GET['post_id'])) {
     $postid = $_GET['post_id'];
     $database = new Database();

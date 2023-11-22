@@ -11,10 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $result = $Auth->login();
   if ($result == 'block') {
     $addFailure = $result;
+  } else if($_SESSION['user_info']['roles'] == 'admin') {
+    header("Location: admin/dashboard");
+    // echo '<pre>';
+    // var_dump($_SESSION['user_info']);
+    // echo '</pre>';
   } else {
-    echo '<pre>';
-    var_dump($_SESSION['user_info']);
-    echo '</pre>';
+    header("Location: home");
+
   }
 }
 
