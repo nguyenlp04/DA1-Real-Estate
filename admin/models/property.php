@@ -259,4 +259,130 @@ class Property
             }
         }
     }
+//     public function updateProperty($idproperty) {
+//         $errors = [];
+//         $success = "block";
+//         $idproperty = $_POST["property_id"];
+//         $title = $_POST["title"];
+//         $property_price = intval($_POST["property_price"]);
+//         $property_type = $_POST["property_type"];
+//         $property_area = intval($_POST["property_area"]);
+//         $property_bed = intval($_POST["property_bed"]);
+//         $property_year = intval($_POST["property_year"]);
+//         $property_bath = intval($_POST["property_bath"]);
+//         $property_wifi = intval($_POST["property_wifi"]);
+//         $property_conditioner = intval($_POST["property_conditioner"]);
+//         $property_tv = intval($_POST["property_tv"]);
+//         $property_cam = intval($_POST["property_cam"]);
+//         $city = $_POST['city'];
+//         $district = $_POST['district'];
+//         $wards = $_POST['wards'];
+//         $addressDetail = $_POST['addressDetail'];
+//         $address = $addressDetail . ", " . $wards . ", " . $district . ", " . $city;
+//         $description = $_POST["description"];
+    
+//         if ($_SESSION['user_info']['roles'] == 'admin') {
+//             $status = 'Đã duyệt';
+//         } else {
+//             $status = 'Chưa duyệt';
+//         }
+    
+//         if (empty($title)) {
+//             $errors["title"] = "Tên không được để trống";
+//         }
+//         if (empty($property_price)) {
+//             $errors["property_price"] = "Giá không được để trống";
+//         }
+//         if (empty($property_year)) {
+//             $errors["property_year"] = "Năm xây dựng không được để trống";
+//         }
+    
+//         if (empty($city)) {
+//             $errors["city"] = "Thành phố không được để trống";
+//         }
+    
+//         if (empty($district)) {
+//             $errors["district"] = "Quận không được để trống";
+//         }
+    
+//         if (empty($wards)) {
+//             $errors["wards"] = "Phường/Xã không được để trống";
+//         }
+    
+//         if (empty($addressDetail)) {
+//             $errors["addressDetail"] = "Địa chỉ chi tiết không được để trống";
+//         }
+    
+//         $propertyImage = $_FILES["floorPlanImage"];
+//         $fileNameFloorPlan = $propertyImage["name"];
+    
+//         if ($fileNameFloorPlan != "") {
+//             $path = basename($_FILES['floorPlanImage']['name']);
+//         } else {
+//             $path = "property.jpeg";
+//         }
+    
+//         $target_dir = dirname(__FILE__) . '/../../assets/images/imgproperty/';
+//         $target_file = $target_dir . $path;
+    
+//         if (move_uploaded_file($_FILES["floorPlanImage"]["tmp_name"], $target_file)) {
+//             $imgFloorPlanPath = '/' . $path;
+//         } else {
+//             $imgFloorPlanPath = $path;
+//         }
+    
+//         if (empty($errors)) {
+//             $sql = "UPDATE properties SET 
+//                 title = '$title',
+//                 price = '$property_price',
+//                 type = '$property_type',
+//                 acreage = '$property_area',
+//                 beds = '$property_bed',
+//                 built_in = '$property_year',
+//                 baths = '$property_bath',
+//                 wifi = '$property_wifi',
+//                 conditioner = '$property_conditioner',
+//                 tivis = '$property_tv',
+//                 cameras = '$property_cam',
+//                 location = '$address',
+//                 floor_plans = '$imgFloorPlanPath',
+//                 description = '$description',
+//                 status = '$status'
+//             WHERE property_id = $idproperty";
+    
+//     if ($this->db->query($sql) === TRUE) {
+//         return $success;
+//     } else {
+//         $errors["errors"] = $this->db->error;
+//         return $errors;
+//     }
+// } else {
+//     return $errors;
+// }
+    
+//     }
+    
+    public function getPropertyById($idproperty) {
+        $query = "SELECT properties.*, property_tags.tag_name
+                  FROM properties
+                  LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id
+                  WHERE properties.property_id = $idproperty";
+    
+        $result = $this->db->query($query);
+    
+        if (!$result) {
+            die("Lỗi: " . $this->db->error);
+        }
+    
+        $data = null;
+    
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+        }
+    
+        return $data;
+    }
+    
+    
+   
 }
