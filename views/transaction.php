@@ -27,31 +27,31 @@ include 'inc/header.php'
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
-                                    <table id="example" class="table table-striped" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Tên BĐS</th>
-                                    <th>Người bán</th>
-                                    <th>Người mua</th>
-                                    <th>Giá</th>
-                                    <th>Giá Đề xuất</th>
-                                    <th>Trạng thái</th>
-                                    <th>Ngày tạo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $stt = 1;
-                                $database = new Database();
-                                $Negotiation = new Transaction($database);
-                                $id = $_SESSION['user_info']['user_id'];
-                                $result = $Negotiation->renderNegotiationsByUser($id);
-                                foreach ($result as $row) {
-                                    $statusColor = ($row['status'] === 'Chấp nhận') ? '#e67e22' : (($row['status'] === 'Đang thương lượng') ? '#0984e3' : '#e74c3c');
-                                    echo '<tr>
+                                        <table id="example" class="table table-striped" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên BĐS</th>
+                                                    <th>Người bán</th>
+                                                    <th>Người mua</th>
+                                                    <th>Giá</th>
+                                                    <th>Giá Đề xuất</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Ngày tạo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $stt = 1;
+                                                $database = new Database();
+                                                $Negotiation = new Transaction($database);
+                                                $id = $_SESSION['user_info']['user_id'];
+                                                $result = $Negotiation->renderNegotiationsByUser($id);
+                                                foreach ($result as $row) {
+                                                    $statusColor = ($row['status'] === 'Chấp nhận') ? '#e67e22' : (($row['status'] === 'Đang thương lượng') ? '#0984e3' : '#e74c3c');
+                                                    echo '<tr>
                                     <td>' . $stt . '</td>
-                                    <td><a href="../propertyDetail?id=' . $row['property_id'] . '">' . $row['property_title'] . '</a></td>
+                                    <td><a href="propertyDetail?id=' . $row['property_id'] . '">' . $row['property_title'] . '</a></td>
                                     <td>' . $row['seller_name'] . '</td>
                                     <td>' . $row['buyer_name'] . '</td>
                                     <td>' . $row['price'] . '$</td>
@@ -83,12 +83,14 @@ include 'inc/header.php'
                                         </div>
                                     </div>
                                 </div>';
-                                    $stt++;
-                                }
-                                ?>
-                                <tbody>
-                        </table>
-
+                                                    $stt++;
+                                                }
+                                                ?>
+                                            <tbody>
+                                        </table>
+                                        <script>
+                var table = new DataTable('#example');
+            </script>
                                     </div>
 
                                 </div>
@@ -121,13 +123,21 @@ include 'inc/header.php'
                 </div>
             </div>
         </div>
-        <script>
-            new DataTable('#example');
-        </script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </head>
+
+        <body>
+            <style>
+                table.dataTable thead>tr>th.sorting:nth-child(2){
+                    max-width: 200px !important;
+                }
+            </style>
+
+           
+
+            <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+            <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
     </div>
 </section>
-<?php include 'inc/footer.php' ?>
+<!-- <?php include 'inc/footer.php' ?> -->

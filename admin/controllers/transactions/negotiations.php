@@ -39,7 +39,7 @@ include(__DIR__ . '/../../models/contract.php');
                                     $statusColor = ($row['status'] === 'Chấp nhận') ? '#e67e22' : (($row['status'] === 'Đang thương lượng') ? '#0984e3' : '#e74c3c');
                                     echo '<tr>
                                     <td>' . $stt . '</td>
-                                    <td><a href="../propertyDetail?id=' . $row['property_id'] . '">' . $row['property_title'] . '</a></td>
+                                    <td><a style="color:rgb(13, 110, 253)" href="../propertyDetail?id=' . $row['property_id'] . '">' . $row['property_title'] . '</a></td>
                                     <td>' . $row['seller_name'] . '</td>
                                     <td>' . $row['buyer_name'] . '</td>
                                     <td>' . $row['price'] . '$</td>
@@ -75,6 +75,7 @@ include(__DIR__ . '/../../models/contract.php');
                                 }
                                 ?>
                                 <tbody>
+                                </table>
                                 <script>
                                     new DataTable('#example');
                                 </script>
