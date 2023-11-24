@@ -41,7 +41,7 @@ include(__DIR__ . '/../../models/property.php');
                         foreach ($result as $row) {
                             echo '<tr>
                                 <td>'. $stt .'</td>
-                                <td><a class="decoration-none" href="propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a></td>
+                                <td><a class="decoration-none" href="../propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a></td>
                                 <td>'. $row['price'] .'$</td>
                                 <td>'. $row['location'] .'</td>
                                 <td>'. $row['full_name'] .'</td>
