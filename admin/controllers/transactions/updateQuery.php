@@ -5,6 +5,7 @@ include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/contract.php');
 include(__DIR__ . '/../../inc/footerDashboard.php');
+include (__DIR__ .'/../../../vendor/process_send_mail.php');
 $negotiationId = $_POST["negotiationId"];
 $newStatus = $_POST["newStatus"];
 echo $negotiationId;

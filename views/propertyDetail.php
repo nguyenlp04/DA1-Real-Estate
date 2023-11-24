@@ -113,7 +113,7 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
                         </div>
 
                         <div class="group-login align-items-center dropdown <?php echo $hiddenUser ?>">
-                        <a class=" dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" type="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                            <a class=" dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" type="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                                 <img src="./assets/images/imguser/user.png" class="rounded-circle" style="height: 35px" alt="Avatar" loading="lazy" />
                                 <span class="ms-2 text-dark">Nguyen</span>
                             </a>
@@ -194,6 +194,7 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
                                                                     Bất động sản: </span>
                                                                 <span class="qodef-m-property-id-content">
                                                                     <?php echo $result['property_id'] ?> </span>
+                                                                <input type="hidden" name="property_id" value="<?php echo $result['property_id'] ?>">
                                                             </div>
                                                             <div class="qodef-m-separator"></div>
                                                             <div class="qodef-m-view-count">
@@ -495,7 +496,21 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
                                                         Giá: </h5>
                                                     <div class="qodef-m-price-content">
                                                         <span class="qodef-m-price-amount qodef-h5">
-                                                            <?php echo $result['price'] ?>&#036; </span>
+                                                            <?php
+                                                            $propertyId = $result['property_id']; 
+                                                            $userId = $_SESSION['user_info']['user_id'];
+                                                            $query = "SELECT price_offered FROM negotiations WHERE property_id = '$propertyId' AND customer_id = '$userId' AND status = 'Chấp nhận'";
+                                                            $negotiationResult = $conn->query($query);
+
+                                                            if ($negotiationResult->num_rows > 0) {
+                                                                $row = $negotiationResult->fetch_assoc();
+                                                                $acceptedPrice = $row['price_offered'];
+                                                                echo $acceptedPrice;
+                                                            } else {
+                                                                echo $result['price'];
+                                                            }
+                                                            ?>
+                                                            &#036; </span>
                                                         <span class="qodef-m-price-after">
                                                             /tháng </span>
                                                     </div>

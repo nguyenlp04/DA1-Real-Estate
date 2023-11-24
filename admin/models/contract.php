@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Transaction
 {
@@ -8,7 +8,8 @@ class Transaction
     {
         $this->db = $database->conn;
     }
-    public function listContract(){
+    public function listContract()
+    {
         $sql = "
             SELECT 
                 transactions.*, 
@@ -21,23 +22,23 @@ class Transaction
             INNER JOIN 
                 users AS seller_user ON transactions.seller_id = seller_user.user_id;
         ";
-        
+
         $result = $this->db->query($sql);
         $contracts = [];
-    
+
         if ($result === false) {
             die("có Lỗi Khi truy vấn " . $this->db->error);
         }
-    
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $contracts[] = $row;
             }
         }
-    
+
         return $contracts;
     }
-    
+
     public function getTransactionById($contractid)
     {
         $sql = "
@@ -109,12 +110,71 @@ class Transaction
         // Escape variables and use single quotes for string values
         $negotiationId = $this->db->real_escape_string($negotiationId);
         $newStatus = $this->db->real_escape_string($newStatus);
-    
+
         // Build the SQL query
         $sql = "UPDATE negotiations SET `status` = '$newStatus' WHERE `negotiation_id` = '$negotiationId'";
-        
+
         // Execute the query
         $this->db->query($sql);
+
+        $sqlGetInfo = "SELECT 
+        properties.property_id,
+        properties.title,
+        users_customer.full_name AS customer_name,
+        users_customer.email AS customer_email,
+        users_seller.full_name AS seller_name,
+        users_seller.email AS seller_email
+    FROM 
+        negotiations
+    JOIN 
+        properties ON negotiations.property_id = properties.property_id
+    JOIN 
+        users AS users_customer ON negotiations.customer_id = users_customer.user_id
+    JOIN 
+        users AS users_seller ON negotiations.seller_id = users_seller.user_id
+    WHERE 
+        negotiations.property_id = $negotiationId;
+    ";
+        $result = $this->db->query($sqlGetInfo);
+
+        // Check if the query was successful
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // Extract information from the result
+            $propertyId = $row['property_id'];
+            $propertyName = $row['title'];
+            $customerName = $row['customer_name'];
+            $customerEmail = $row['customer_email'];
+            $sellerName = $row['seller_name'];
+            $sellerEmail = $row['seller_email'];
+
+            if ($newStatus == 'Từ chối') {
+                $message = '<p><strong>Chào' . $customerName . '</strong></p>
+
+            <p>Chúng tôi xin thông báo rằng sau khi xem xét kỹ lưỡng và cân nhắc, chúng tôi quyết định từ chối điều khoản thương lượng của bạn về bất động sản. Chúng tôi cảm ơn bạn đã chia sẻ đề xuất và sự quan tâm của bạn đối với giao dịch này.</p>
+            <p>Lý do chính cho quyết định từ chối có thể bao gồm những yếu tố như không đồng ý về giá cả, điều kiện thanh toán, hoặc các điều khoản khác liên quan đến giao dịch.</p>
+            <p>Chúng tôi đánh giá sự cố gắng và thời gian bạn đã đầu tư vào quá trình thương lượng và hiểu rằng có thể có những ý kiến khác nhau về các yếu tố quan trọng.</p>
+            <p>Nếu có bất kỳ câu hỏi hoặc nếu bạn muốn biết thêm chi tiết về quyết định từ chối, vui lòng liên hệ với chúng tôi. Chúng tôi sẽ cố gắng giải đáp mọi thắc mắc của bạn.</p>
+            <p>Chúng tôi chúc bạn may mắn trong các giao dịch tương lai và cảm ơn bạn vì sự hiểu biết.</p>
+            <p>Trân trọng,<br>
+            ' . $sellerName . '<br>
+            ' . $sellerEmail . '</p>';
+            } else {
+                $message = '<p><strong>Chào ' . $customerName . '</strong></p>
+            <p>Chúng tôi xin thông báo rằng chúng tôi đã xem xét và đồng ý với điều khoản thương lượng của bạn về bất động sản. Đây là một bước quan trọng và chúng tôi mong muốn hợp tác với bạn để hoàn tất quá trình này.</p>
+            <p>Thông tin chi tiết về thỏa thuận đã được gửi đính kèm trong tệp đính kèm hoặc có sẵn tại [đường dẫn đến tệp].</p>
+            <p>Nếu có bất kỳ câu hỏi hoặc yêu cầu bổ sung, vui lòng liên hệ với chúng tôi ngay lập tức để chúng tôi có thể cung cấp hỗ trợ và giải đáp mọi thắc mắc của bạn.</p>
+            <p>Chúng tôi mong đợi một quá trình thương lượng mượt mà và chân thành cảm ơn sự quan tâm và sự hợp tác của bạn.</p>
+            <p>Trân trọng,<br>
+            ' . $sellerName . '<br>
+            ' . $sellerEmail . '</p>';
+            }
+            $user_email = 'nguyenlppd07982@fpt.edu.vn';
+            $subject = 'Xác nhận ' . $newStatus . ' Thương lượng Bất động sản ' . $propertyName . '';
+            $user_name = $customerName;
+            send_email($user_email, $subject, $message, $user_name);
+        }
     }
 
     public  function renderNegotiationsByUser($id)
@@ -144,7 +204,4 @@ class Transaction
         }
         return $data;
     }
-   
-    
-
 }

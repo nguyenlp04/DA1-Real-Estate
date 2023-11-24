@@ -32,7 +32,7 @@ class Property
         $addressDetail = $_POST['addressDetail'];
         $address = $addressDetail . ", " . $wards . ", " . $district . ", " . $city;
         $description = $_POST["description"];
-        if($_SESSION['user_info']['roles'] == 'admin'){
+        if ($_SESSION['user_info']['roles'] == 'admin') {
             $status = 'Đã duyệt';
         } else {
             $status = 'Chưa duyệt';
@@ -53,11 +53,11 @@ class Property
 
         if (empty($district)) {
             $errors["district"] = "Quận không được để trống";
-        } 
+        }
 
         if (empty($wards)) {
             $errors["wards"] = "Phường/Xã không được để trống";
-        } 
+        }
 
         if (empty($addressDetail)) {
             $errors["addressDetail"] = "Địa chỉ chi tiết không được để trống";
@@ -142,7 +142,7 @@ class Property
         return $data;
     }
 
-    
+
     public  function renderPropertyDetail($id)
     {
         $updateViewsQuery = "UPDATE properties SET views = views + 1 WHERE property_id = $id";
@@ -229,7 +229,7 @@ class Property
                     $this->db->query($sql);
                     $subject = 'Đề Xuất Thương Lượng Bất Động Sản - ' . $title;
 
-                    $message = '<p>Chào Anh/Chị '.$seller_id.',</p>
+                    $message = '<p>Chào Anh/Chị ' . $seller_id . ',</p>
                 <p>
                     Tôi mong rằng bạn đang có một ngày tốt lành. Tên tôi là ' . $user_name . '.
                 </p>
@@ -251,7 +251,7 @@ class Property
                     </li>
                     <li>
                         <strong>Lời nhắn:</strong>
-                        <p>'.$user_message.'.</p>
+                        <p>' . $user_message . '.</p>
                     </li>
                 </ol>
                 <p>
@@ -262,7 +262,7 @@ class Property
                 </p>
                 <p>Trân trọng,<br>
                 ' . $user_name . '<br>
-                '.$user_email.'
+                ' . $user_email . '
                 </p>';
 
                     send_email($user_email, $subject, $message, $user_name);
@@ -275,10 +275,11 @@ class Property
             }
         }
     }
-    public function updateProperty($idproperty) {
+    public function updateProperty($idproperty)
+    {
         $errors = [];
         $success = "block";
-    
+
         $idproperty = $_POST["property_id"];
         $title = $_POST["title"];
         $property_price = intval($_POST["property_price"]);
@@ -297,13 +298,13 @@ class Property
         $addressDetail = $_POST['addressDetail'];
         $address = $addressDetail . ", " . $wards . ", " . $district . ", " . $city;
         $description = $_POST["description"];
-    
+
         if ($_SESSION['user_info']['roles'] == 'admin') {
             $status = 'Đã duyệt';
         } else {
             $status = 'Chưa duyệt';
         }
-    
+
         if (empty($title)) {
             $errors["title"] = "Tên không được để trống";
         }
@@ -313,13 +314,13 @@ class Property
         if (empty($property_year)) {
             $errors["property_year"] = "Năm xây dựng không được để trống";
         }
-    
-        
-    
+
+
+
         if (empty($addressDetail)) {
             $errors["addressDetail"] = "Địa chỉ chi tiết không được để trống";
         }
-    
+
         $propertyImage = $_FILES["floorPlanImage"];
         $fileNameFloorPlan = $propertyImage["name"];
         if ($fileNameFloorPlan != "") {
@@ -334,7 +335,7 @@ class Property
         } else {
             $imgFloorPlanPath = $path;
         }
-    
+
         if (empty($errors)) {
 
             $sql = "UPDATE properties SET 
@@ -354,49 +355,47 @@ class Property
                 description = '$description',
                 status = '$status'
             WHERE property_id = $idproperty";
-    
-    $this->db->query($sql);
-$propertyImage = $_FILES["propertyImage"];
+
+            $this->db->query($sql);
+            $propertyImage = $_FILES["propertyImage"];
 
 
-// Kiểm tra xem có ảnh mới được tải lên hay không
-if (is_array($propertyImage) && !empty($propertyImage['name'][0])) {
-    $imagePaths = [];
-    foreach ($propertyImage['tmp_name'] as $key => $tmp_name) {
-        $imageName = $this->db->real_escape_string($propertyImage['name'][$key]);
-        $targetPath = dirname(__FILE__) . '/../../assets/images/imgproperty/' . $imageName;
+            // Kiểm tra xem có ảnh mới được tải lên hay không
+            if (is_array($propertyImage) && !empty($propertyImage['name'][0])) {
+                $imagePaths = [];
+                foreach ($propertyImage['tmp_name'] as $key => $tmp_name) {
+                    $imageName = $this->db->real_escape_string($propertyImage['name'][$key]);
+                    $targetPath = dirname(__FILE__) . '/../../assets/images/imgproperty/' . $imageName;
 
-        if (move_uploaded_file($tmp_name, $targetPath)) {
-            $imagePaths[] = '/' . $imageName;
+                    if (move_uploaded_file($tmp_name, $targetPath)) {
+                        $imagePaths[] = '/' . $imageName;
+                    } else {
+                        echo "Không thể chuyển tập tin.";
+                    }
+                }
+
+                // Xóa ảnh cũ trước khi thêm ảnh mới
+                $deleteImagesQuery = "DELETE FROM images WHERE property_id = $idproperty";
+                $this->db->query($deleteImagesQuery);
+
+                foreach ($imagePaths as $imagePath) {
+                    $imagePath = $this->db->real_escape_string($imagePath);
+                    $imageQuery = "INSERT INTO images (property_id, image_url) VALUES ($idproperty, '$imagePath')";
+                    $this->db->query($imageQuery);
+                }
+            }
+            if ($this->db->query($sql) === TRUE) {
+                return $success;
+            } else {
+                $errors["errors"] = $this->db->error;
+                return $errors;
+            }
         } else {
-            echo "Không thể chuyển tập tin.";
+            return $errors;
         }
     }
 
-    // Xóa ảnh cũ trước khi thêm ảnh mới
-    $deleteImagesQuery = "DELETE FROM images WHERE property_id = $idproperty";
-    $this->db->query($deleteImagesQuery);
-
-    foreach ($imagePaths as $imagePath) {
-        $imagePath = $this->db->real_escape_string($imagePath);
-        $imageQuery = "INSERT INTO images (property_id, image_url) VALUES ($idproperty, '$imagePath')";
-        $this->db->query($imageQuery);
-    }
-}
-if ($this->db->query($sql) === TRUE) {
-    return $success;
-} else {
-    $errors["errors"] = $this->db->error;
-    return $errors;
-}
-    
-} else {
-    return $errors;
-}
-    
-    }
-
-public function updateStatus($propertyId, $newStatus)
+    public function updateStatus($propertyId, $newStatus)
     {
         // Escape variables and use single quotes for string values
         $propertyId = $this->db->real_escape_string($propertyId);
@@ -407,33 +406,31 @@ public function updateStatus($propertyId, $newStatus)
 
         // Build the SQL query
         $sql = "UPDATE properties SET `status` = '$newStatus' WHERE `property_id` = '$propertyId'";
-        
+
         // Execute the query
         $this->db->query($sql);
     }
 
-    
-    public function getPropertyById($idproperty) {
+
+    public function getPropertyById($idproperty)
+    {
         $query = "SELECT properties.*, property_tags.tag_name
                   FROM properties
                   LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id
                   WHERE properties.property_id = $idproperty";
-    
+
         $result = $this->db->query($query);
-    
+
         if (!$result) {
             die("Lỗi: " . $this->db->error);
         }
-    
+
         $data = null;
-    
+
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
         }
-    
+
         return $data;
     }
-    
-    
-   
 }
