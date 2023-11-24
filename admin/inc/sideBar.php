@@ -5,6 +5,7 @@ if((!isset($_SESSION['user_info'])) ||( $_SESSION['user_info']['roles'] != "admi
 } 
 include(__DIR__ . '../../../config/config.php');
 ?>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,7 +32,6 @@ include(__DIR__ . '../../../config/config.php');
 
     <link href="../assets/css/add-post.css" rel="stylesheet">
     <link href="../assets/css/upload-property.css" rel="stylesheet">
-    <link href="../assets/css/profileAdmin.css" rel="stylesheet">
 
 </head>
 

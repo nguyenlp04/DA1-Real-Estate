@@ -34,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<link href="../assets/css/profileAdmin.css" rel="stylesheet">
+
 <div class="w-full">
 
     <div class="flex justify-center xl:w-11/13">
@@ -284,7 +286,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                         class="grid md:grid-cols-2 grid-cols-1 md:gap-x-4 md:gap-y-0 gap-4">
                                                         <div class="w-full flex flex-col py-2">
                                                             <label for="fullname"
-                                                                class="text-black font-semibold pb-1 capitalize"> Họ và tên </label>
+                                                                class="text-black font-semibold pb-1 capitalize"> Họ và
+                                                                tên </label>
                                                             <input type="fullname" id="fullname"
                                                                 class="p-2 border border-[#a5abb5] rounded"
                                                                 name="fullname"

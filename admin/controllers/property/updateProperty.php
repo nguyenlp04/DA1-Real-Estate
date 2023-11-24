@@ -11,7 +11,11 @@ $success = 'none';
 $database = new Database();
 $Property = new Property ($database);
 $idproperty = $_GET['property_id'];
-if (isset($_POST['submit'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+//     echo '<script type="text/javascript">
+//            window.location = "listProperty";
+// </script>';
     $result = $Property->updateProperty($idproperty);
     if (is_array($result) && !empty($result)) {
       $errors = $result;
@@ -79,7 +83,7 @@ label {
                         </div>
                         <form id="uploadForm" method="post" enctype="multipart/form-data" class="text-black">
                             <div class="w-full flex flex-col lg:flex-row gap-4">
-                                <input type="hidden" id="title" name="property_id" class=""
+                                <input type="hidden" name="property_id" class=""
                                     value="<?php echo $property['property_id']?>">
                                 <!-- form part of the page starts here -->
                                 <div class="w-full">
