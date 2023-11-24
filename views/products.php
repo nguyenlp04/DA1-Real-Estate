@@ -88,274 +88,271 @@ include 'inc/header.php'
 
 
         <div class="container">
-            <div class="section-content ">
-                <div class="section-header search-products-title">
-                </div>
-                <div class="row">
+            <div class="section-content">
+                <div class="section-header search-products-title"></div>
+                <div class="row dataContainer" id="dataContainer">
                     <?php
                     $stt = 1;
                     $database = new Database();
                     $Property = new Property($database);
                     $result = $Property->renderProperty();
                     foreach ($result as $row) {
-                        echo ' <div class="col-md-3 col-sm-6 card-product article-loop">
-                            <div class="house-card">
-                                <div class="house__thumb">
-                                    <img src="./assets/images/house-03.jpeg" alt="house-03" />
-                                    <div class="house__meta">
-                                        <a href="">' . $row['tag_name'] . '</a>
+                        echo '<div class="col-md-3 col-sm-6 card-product article-loop">
+                    <div class="house-card">
+                        <div class="house__thumb">
+                            <img src="./assets/images/house-03.jpeg" alt="house-03" />
+                            <div class="house__meta">
+                                <a href="">' . $row['tag_name'] . '</a>
+                            </div>
+                        </div>
+                        <div class="house__content">
+                            <div class="house__content__top">
+                                <h4 class="price">$' . $row['price'] . '</h4>
+                                <span class="services">' . $row['type'] . '</span>
+                            </div>
+                            <div class="house__content__main">
+                                <h3 class="title"><a href="propertyDetail?id=' . $row['property_id'] . '">' . $row['title'] . '</a></h3>
+                                <p class="location">
+                                    <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                                    <span>' . $row['location'] . '</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="house__content__bottom">
+                            <div class="info-wrap">
+                                <div class="info">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-bed"></i>
                                     </div>
+                                    <span>' . $row['beds'] . '</span>
                                 </div>
-
-                                <div class="house__content">
-                                    <div class="house__content__top">
-                                        <h4 class="price">$' . $row['price'] . '</h4>
-                                        <span class="services">' . $row['type'] . '</span>
+                                <div class="info">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-bath"></i>
                                     </div>
-                                    <div class="house__content__main">
-                                        <h3 class="title"><a href="propertyDetail?id=' . $row['property_id'] . '">' . $row['title'] . '</a></h3>
-                                        <p class="location">
-                                            <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-                                            <span>' . $row['location'] . '</span>
-                                        </p>
-                                    </div>
+                                    <span>' . $row['baths'] . '</span>
                                 </div>
-                                <div class="house__content__bottom">
-                                    <div class="info-wrap">
-                                        <div class="info">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-bed"></i>
-                                            </div>
-                                            <span>' . $row['beds'] . '</span>
-                                        </div>
-                                        <div class="info">
-                                            <div class="icon">
-                                            <i class="fa-solid fa-bath"></i>
-                                            </div>
-                                            <span>' . $row['baths'] . '</span>
-                                        </div>
-                                        <div class="info info-right">
-                                            <div class="icon">
-                                                <i class="fa-solid fa-vector-square"></i>
-                                            </div>
-                                            <span class="acreage">' . $row['acreage'] . '</span><span>M<sup>2</sup></span>
-                                        </div>
+                                <div class="info info-right">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-vector-square"></i>
+                                    </div>
+                                    <span class="acreage">' . $row['acreage'] . '</span><span>M<sup>2</sup></span>
                                 </div>
                             </div>
-                    </div> </div>';
+                        </div>
+                    </div>
+                </div>';
                     }
                     ?>
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul id="paginationContainer" class="pagination">
+                    </ul>
+                </nav>
+
+
             </div>
         </div>
 
-    </div>
-<script>
-const houseCards = document.querySelectorAll('.card-product');
-const servicesSelect = document.getElementById('services');
-const citySelect = document.getElementById('city');
-const apartmentSelect = document.getElementById('apartment');
-const priceSelect = document.getElementById('price'); 
-const acreageSelect = document.getElementById('acreage');
-servicesSelect.addEventListener('change', filterProducts);
-citySelect.addEventListener('change', filterProducts);
-apartmentSelect.addEventListener('change', filterProducts);
-priceSelect.addEventListener('change', filterProducts); 
-acreageSelect.addEventListener('change', filterProducts); 
-function filterProducts() {
-const selectedservices = servicesSelect.value.toLowerCase();
-const selectedCity = citySelect.value.toLowerCase();
-const selectedApartment = apartmentSelect.value.toLowerCase();
-const selectedPrice = priceSelect.value;
-const selectedAcreage = acreageSelect.value;
-console.log(selectedservices);
-console.log(selectedservices);
-let filteredProducts = [];
-    let filteredCount = 0;
-  houseCards.forEach(card => {
-    const services = card.querySelector('.services').textContent.toLowerCase();
-    const location = card.querySelector('.location').textContent.toLowerCase();
-    const houseMeta = card.querySelector('.house__meta').textContent.toLowerCase();
-    const price = parseFloat(card.querySelector('.price').textContent.replace(/[\$,]/g, '').trim());
-    const acreage = card.querySelector('.acreage').textContent.toLowerCase();
-    if (
-        services.includes(selectedservices) && 
-        location.includes(selectedCity) && 
-        houseMeta.includes(selectedApartment) &&
-        ((selectedPrice === "---") ||
-        (selectedPrice === "1000-" && price < 1000) || 
-        (selectedPrice === "1000-10000" && price >= 1000 && price < 10000) || // Lọc theo giá
-        (selectedPrice === "10000-30000" && price >= 10000 && price < 30000) ||
-        (selectedPrice === "30000-50000" && price >= 30000 && price < 50000) ||
-        (selectedPrice === "50000+" && price >= 50000)) &&
-        ((selectedAcreage === "---") || 
-        (selectedAcreage === "50-" && acreage < 50) ||
-        (selectedAcreage === "50-100" && acreage >= 50 && acreage <= 100) ||
-        (selectedAcreage === "100-150" && acreage > 100 && acreage <= 150) ||
-        (selectedAcreage === "150-200" && acreage > 150 && acreage <= 200) ||
-        (selectedAcreage === "200+" && acreage >= 200))
-        
-    ) {
-      // card.style.display = 'block';
-      card.style.display = 'block'
-            filteredProducts.push(card);
-            filteredCount++;
-            console.log(filteredProducts);
+        <script>
+            const houseCards = document.querySelectorAll('.card-product');
+            const servicesSelect = document.getElementById('services');
+            const citySelect = document.getElementById('city');
+            const apartmentSelect = document.getElementById('apartment');
+            const priceSelect = document.getElementById('price');
+            const acreageSelect = document.getElementById('acreage');
+
+            servicesSelect.addEventListener('change', filterProducts);
+            citySelect.addEventListener('change', filterProducts);
+            apartmentSelect.addEventListener('change', filterProducts);
+            priceSelect.addEventListener('change', filterProducts);
+            acreageSelect.addEventListener('change', filterProducts);
+
+            let data = [];
+            houseCards.forEach(card => {
+                data.push(card);
+            });
+
+            var itemsPerPage = 8;
+            var currentPage = 1;
+            var filteredProducts = [];
+
+            function filterProducts() {
+                const selectedservices = servicesSelect.value.toLowerCase();
+                const selectedCity = citySelect.value.toLowerCase();
+                const selectedApartment = apartmentSelect.value.toLowerCase();
+                const selectedPrice = priceSelect.value;
+                const selectedAcreage = acreageSelect.value;
+
+                filteredProducts = [];
+
+                houseCards.forEach(card => {
+                    const services = card.querySelector('.services').textContent.toLowerCase();
+                    const location = card.querySelector('.location').textContent.toLowerCase();
+                    const houseMeta = card.querySelector('.house__meta').textContent.toLowerCase();
+                    const price = parseFloat(card.querySelector('.price').textContent.replace(/[\$,]/g, '').trim());
+                    const acreage = card.querySelector('.acreage').textContent.toLowerCase();
+
+                    if (
+                        services.includes(selectedservices) &&
+                        location.includes(selectedCity) &&
+                        houseMeta.includes(selectedApartment) &&
+                        ((selectedPrice === "---") ||
+                            (selectedPrice === "1000-" && price < 1000) ||
+                            (selectedPrice === "1000-10000" && price >= 1000 && price < 10000) ||
+                            (selectedPrice === "10000-30000" && price >= 10000 && price < 30000) ||
+                            (selectedPrice === "30000-50000" && price >= 30000 && price < 50000) ||
+                            (selectedPrice === "50000+" && price >= 50000)) &&
+                        ((selectedAcreage === "---") ||
+                            (selectedAcreage === "0-50" && parseInt(acreage) >= 0 && parseInt(acreage) < 50) ||
+                            (selectedAcreage === "50-100" && parseInt(acreage) >= 50 && parseInt(acreage) < 100) ||
+                            (selectedAcreage === "100-200" && parseInt(acreage) >= 100 && parseInt(acreage) < 200) ||
+                            (selectedAcreage === "200+" && parseInt(acreage) >= 200))
+                    ) {
+                        filteredProducts.push(card);
+                    }
+                });
+
+                renderItems(filteredProducts, currentPage);
+            }
+
+            function renderItems(items, page) {
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = page * itemsPerPage;
+
+                const visibleItems = items.slice(startIndex, endIndex);
+
+                data.forEach(card => {
+                    card.style.display = 'none';
+                });
+
+                visibleItems.forEach(card => {
+                    card.style.display = 'block';
+                });
+
+                renderPagination(items.length);
+            }
+
+            function renderPagination(totalItems) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    const paginationContainer = document.getElementById('paginationContainer');
+    paginationContainer.innerHTML = '';
+
+    // Tạo nút "Previous"
+    var previousPageItem = document.createElement('li');
+    previousPageItem.className = 'page-item';
+    var previousPageLink = document.createElement('a');
+    previousPageLink.className = 'page-link';
+    previousPageLink.href = '#';
+    previousPageLink.innerText = 'Previous';
+
+    // Kiểm tra nếu đang ở trang đầu tiên, thì ẩn nút "Previous"
+    if (currentPage > 1) {
+        previousPageLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            currentPage--;
+            renderItems(filteredProducts, currentPage);
+            setActivePage(currentPage);
+        });
     } else {
-      // card.style.display = 'none'; 
-      card.style.display = "none";
+        previousPageItem.classList.add('disabled');
     }
-  });
+
+    previousPageItem.appendChild(previousPageLink);
+    paginationContainer.appendChild(previousPageItem);
+
+    // Tạo các nút số trang
+    for (let i = 1; i <= totalPages; i++) {
+        var pageItem = document.createElement('li');
+        pageItem.className = 'page-item';
+        var pageLink = document.createElement('a');
+        pageLink.className = 'page-link';
+        pageLink.innerText = i;
+
+        // Kiểm tra nếu đang ở trang hiện tại, thì thêm class "active" cho nút đó
+        if (i === currentPage) {
+            pageLink.classList.add('active');
+        }
+
+        pageLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            currentPage = i;
+            renderItems(filteredProducts, currentPage);
+            const allPageLinks = document.querySelectorAll('.page-link');
+            allPageLinks.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+            setActivePage(currentPage);
+        });
+
+        pageItem.appendChild(pageLink);
+        paginationContainer.appendChild(pageItem);
+    }
+
+    // Tạo nút "Next"
+    var nextPageItem = document.createElement('li');
+    nextPageItem.className = 'page-item';
+    var nextPageLink = document.createElement('a');
+    nextPageLink.className = 'page-link';
+    nextPageLink.href = '#';
+    nextPageLink.innerText = 'Next';
+
+    // Kiểm tra nếu đang ở trang cuối cùng, thì ẩn nút "Next"
+    if (currentPage < totalPages) {
+        nextPageLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            currentPage++;
+            renderItems(filteredProducts, currentPage);
+            setActivePage(currentPage);
+        });
+    } else {
+        nextPageItem.classList.add('disabled');
+    }
+
+    nextPageItem.appendChild(nextPageLink);
+    paginationContainer.appendChild(nextPageItem);
 }
-(function($) {
-  var paginate = {
-      startPos: function(pageNumber, perPage) {
-          // determine what array position to start from
-          // based on current page and # per page
-          return pageNumber * perPage;
-      },
 
-      getPage: function(items, startPos, perPage) {
-          // declare an empty array to hold our page items
-          var page = [];
 
-          // only get items after the starting position
-          items = items.slice(startPos, items.length);
 
-          // loop remaining items until max per page
-          for (var i = 0; i < perPage; i++) {
-              page.push(items[i]);
-          }
 
-          return page;
-      },
+            function setActivePage(page) {
+                var paginationContainer = document.getElementById('paginationContainer');
+                var pageLinks = paginationContainer.getElementsByTagName('a');
+                for (var i = 0; i < pageLinks.length; i++) {
+                    pageLinks[i].classList.remove('active');
+                }
+                pageLinks[page ].classList.add('active');
+            }
+            filterProducts();
 
-      totalPages: function(items, perPage) {
-          // determine total number of pages
-          return Math.ceil(items.length / perPage);
-      },
+            //             function renderPagination(totalItems) {
+            //     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-      createBtns: function(totalPages, currentPage) {
-          // create buttons to manipulate current page
-          var pagination = $('<div class="pagination" />');
+            //     const paginationContainer = document.getElementById('paginationContainer');
+            //     paginationContainer.innerHTML = '';
 
-          // add a "first" button
-          pagination.append('<span class="text-primary pagination-button">&laquo;</span>');
+            //     for (let i = 1; i <= totalPages; i++) {
+            //         var pageItem = document.createElement('li');
+            //         pageItem.className = 'page-item';
 
-          // add pages inbetween
-          for (var i = 1; i <= totalPages; i++) {
-              // truncate list when too large
-              if (totalPages > 5 && currentPage !== i) {
-                  // if on first two pages
-                  if (currentPage === 1 || currentPage === 2) {
-                      // show first 5 pages
-                      if (i > 5) continue;
-                      // if on last two pages
-                  } else if (currentPage === totalPages || currentPage === totalPages - 1) {
-                      // show last 5 pages
-                      if (i < totalPages - 4) continue;
-                      // otherwise show 5 pages w/ current in middle
-                  } else {
-                      if (i < currentPage - 2 || i > currentPage + 2) {
-                          continue;
-                      }
-                  }
-              }
+            //         var pageLink = document.createElement('a');
+            //         pageLink.className = 'page-link';
+            //         // Set the href to '#' for demonstration purposes. Update this to a valid link or use JavaScript.
+            //         // pageLink.href = '#';
+            //         pageLink.innerText = i;
 
-              // markup for page button
-              var pageBtn = $('<span class=" pagination-button page-num" />');
+            //         pageLink.addEventListener('click', function(event) {
+            //             event.preventDefault(); // Prevent the default link behavior
+            //             currentPage = parseInt(this.innerText);
+            //             displayData();
+            //             setActivePage(currentPage);
+            //         });
 
-              // add active class for current page
-              if (i == currentPage) {
-                  pageBtn.addClass('active');
-              }
-
-              // set text to the page number
-              pageBtn.text(i);
-
-              // add button to the container
-              pagination.append(pageBtn);
-          }
-
-          // add a "last" button
-          pagination.append($('<span class="text-primary pagination-button">&raquo;</span>'));
-
-          return pagination;
-      },
-
-      createPage: function(items, currentPage, perPage) {
-          // remove pagination from the page
-          $('.pagination').remove();
-
-          // set context for the items
-          var container = items.parent(),
-              // detach items from the page and cast as array
-              items = items.detach().toArray(),
-              // get start position and select items for page
-              startPos = this.startPos(currentPage - 1, perPage),
-              page = this.getPage(items, startPos, perPage);
-
-          // loop items and readd to page
-          $.each(page, function() {
-              // prevent empty items that return as Window
-              if (this.window === undefined) {
-                  container.append($(this));
-              }
-          });
-
-          // prep pagination buttons and add to page
-          var totalPages = this.totalPages(items, perPage),
-              pageButtons = this.createBtns(totalPages, currentPage);
-
-          container.after(pageButtons);
-      }
-  };
-
-  $.fn.paginate = function(perPage) {
-      var items = $(this);
-
-      // default perPage to 5
-      if (isNaN(perPage) || perPage === undefined) {
-          perPage = 5;
-      }
-
-      // don't fire if fewer items than perPage
-      if (items.length <= perPage) {
-          return true;
-      }
-
-      // ensure items stay in the same DOM position
-      if (items.length !== items.parent()[0].children.length) {
-          items.wrapAll('<div class="pagination-items " />');
-      }
-
-      // paginate the items starting at page 1
-      paginate.createPage(items, 1, perPage);
-
-      // handle click events on the buttons
-      $(document).on('click', '.pagination-button', function(e) {
-          // get current page from active button
-          var currentPage = parseInt($('.pagination-button.active').text(), 10),
-              newPage = currentPage,
-              totalPages = paginate.totalPages(items, perPage),
-              target = $(e.target);
-
-          // get numbered page
-          newPage = parseInt(target.text(), 10);
-          if (target.text() == '«') newPage = 1;
-          if (target.text() == '»') newPage = totalPages;
-
-          // ensure newPage is in available range
-          if (newPage > 0 && newPage <= totalPages) {
-              paginate.createPage(items, newPage, perPage);
-          }
-      });
-  };
-
-  console.log(paginate.totalPages);
-})(jQuery);
-$('.article-loop').paginate(4);
-
-</script>
+            //         pageItem.appendChild(pageLink);
+            //         paginationContainer.appendChild(pageItem);
+            //     }
+            // }
+        </script>
 </section>
 <?php include 'inc/footer.php' ?>
