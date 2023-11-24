@@ -391,7 +391,7 @@ if ($this->db->query($sql) === TRUE) {
 }
     
 } else {
-    var_dump($errors);
+    return $errors;
 }
     
     }
