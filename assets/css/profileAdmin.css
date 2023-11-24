@@ -1103,7 +1103,7 @@ h6 {
 }
 
 .flex-col {
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 .flex-wrap {
