@@ -65,12 +65,11 @@ $router->addRoute('admin/updateProperty', __DIR__ . '/../admin/controllers/prope
 $router->addRoute('admin/deleteProperty', __DIR__ . '/../admin/controllers/property/deleteProperty.php');
 $router->addRoute('admin/addTags', __DIR__ . '/../admin/controllers/property/addTags.php');
 $router->addRoute('admin/deleteTags', __DIR__ . '/../admin/controllers/property/deleteTags.php');
-
+$router->addRoute('admin/updateStatus', __DIR__ . '/../admin/controllers/property/updateStatus.php');
 
 $router->addRoute('admin/contract', __DIR__ . '/../admin/controllers/transactions/contract.php');
 $router->addRoute('admin/contractDetail', __DIR__ . '/../admin/controllers/transactions/contractDetail.php');
 $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transactions/negotiations.php');
-
 $router->addRoute('admin/updateQuery', __DIR__ . '/../admin/controllers/transactions/updateQuery.php');
 
 

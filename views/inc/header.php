@@ -47,13 +47,12 @@ if (isset($_SESSION['user_info'])) {
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo.png" type="image/f-icon" />
-    <meta name="keywords" content="rents, template, property" />
-    <meta name="author" content="https://xirosoft.com" />
 
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script> -->
+
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/all.min.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -66,12 +65,17 @@ if (isset($_SESSION['user_info'])) {
     <link rel="stylesheet" href="assets/css/products.css">
     <link rel="stylesheet" href="assets/css/news.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script> -->
+    
+    <link rel="stylesheet" href="vendor/dataTables/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/dataTables/dataTables.bootstrap5.min.css">
 
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="vendor/dataTables/jquery.dataTables.min.js"></script>
+    <script src="vendor/dataTables/dataTables.bootstrap5.min.js"></script>
 
 </head>
 
@@ -99,13 +103,12 @@ if (isset($_SESSION['user_info'])) {
                     <div class="header-meta">
                         <div class="group-login align-items-center auth <?php echo $hiddenAuth ?>">
 
-                            <a href="login" class="rounded-4 px-5 py-3 btn-outline me-3 btn-login-form">Đăng Nhập</a>
-                            <a href="signup" class="rounded-4 px-5 py-3 btn-primary btn-signup-form">Đăng Ký</a>
+                            <a href="login" class="rounded-3 px-4 py-3 btn-outline me-3 btn-login-form">Đăng Nhập</a>
+                            <a href="signup" class="rounded-3 px-4 py-3 btn-primary btn-signup-form">Đăng Ký</a>
 
                         </div>
-
                         <div class="group-login align-items-center dropdown <?php echo $hiddenUser ?>">
-                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <a class=" dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" type="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                                 <img src="./assets/images/imguser/user.png" class="rounded-circle" style="height: 35px" alt="Avatar" loading="lazy" />
                                 <span class="ms-2 text-dark">Nguyen</span>
                             </a>

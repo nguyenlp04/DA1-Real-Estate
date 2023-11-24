@@ -62,7 +62,7 @@
           box-sizing: border-box;
 }
 
-html {
+/* html {
   font-size: 62.5%;
 }
 
@@ -72,7 +72,7 @@ body {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 2.7rem;
-}
+} */
 
 a {
   text-decoration: none !important;
@@ -2845,7 +2845,8 @@ body.single-property .qodef-page-sidebar-section section:not(.qodef-m-agent) {
 }
 
 .pagination {
-  display: block;
+  display: flex !important;
+  justify-content: center !important;
   width: 75%;
   margin: 1em auto;
   text-align: center;
@@ -2875,4 +2876,17 @@ span.pagination-button.page-num.active {
   row-gap: 4;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+  outline: none;
+  border:none;
+  background-color: unset;
 }

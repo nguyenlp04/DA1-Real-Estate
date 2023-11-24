@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/property.php');
-
 ?>
 <div class="w-full">
     <div class="flex justify-center xl:w-11/13">
@@ -38,7 +37,7 @@ include(__DIR__ . '/../../models/property.php');
                         $stt = 1;
                         $database = new Database();
                         $Property = new Property($database);
-                        $result = $Property->renderProperty();
+                        $result = $Property->renderPropertyList();
                         foreach ($result as $row) {
                             echo '<tr>
                                 <td>'. $stt .'</td>
@@ -47,7 +46,7 @@ include(__DIR__ . '/../../models/property.php');
                                 <td>'. $row['location'] .'</td>
                                 <td>'. $row['full_name'] .'</td>
                                 <td><span  style="color: black; text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: '. ($row['status'] === 'Đã duyệt' ? '#e67e22' : '#d35400;') .'">
-                                    '. $row['status'] .'
+                                    '. $row['status'] .'<i class="fa-solid fs-5 fa-pen-to-square overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModalStatus' . $row['property_id'] . '"></i>
                                 </span></td>
                                 <td>'. $row['views'] .'</td>
                                 <td>
@@ -86,7 +85,30 @@ include(__DIR__ . '/../../models/property.php');
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>';
+                                    </div>
+                                    <div class="modal" id="propertyModalStatus' . $row['property_id'] . '">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Chỉnh sửa trạng thái</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <!-- Modal Body -->
+                                            <div class="modal-body">
+                                            <form id="editForm" method="post" action="updateStatus">
+                                            <label for="newStatus">Chọn trạng thái mới:</label>
+                                                    <select id="newStatus" name="newStatus" class="form-control">
+                                                        <option value="Đã duyệt">Duyệt</option>
+                                                        <option value="Chưa duyệt">Từ chối</option>
+                                                    </select>
+                                                    <input type="hidden" id="propertyId" name="propertyId" value="' . $row['property_id'] . '">
+                                                    <button name="submit" type="submit" class="btn mt-3" style="background-color: #0e6efd; color: white">Lưu</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
                             $stt++;
                         }
                         

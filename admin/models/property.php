@@ -112,6 +112,21 @@ class Property
         }
     }
 
+    public  function renderPropertyList()
+    {
+        $query = "SELECT properties.*, users.full_name, property_tags.tag_name FROM properties
+          LEFT JOIN users ON properties.user_id = users.user_id
+          LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id";
+        $result = $this->db->query($query);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
+                $data[] = $item;
+            }
+        }
+        return $data;
+    }
+
     public  function renderProperty()
     {
         $query = "SELECT properties.*, users.full_name, property_tags.tag_name FROM properties
@@ -127,6 +142,7 @@ class Property
         return $data;
     }
 
+    
     public  function renderPropertyDetail($id)
     {
         $updateViewsQuery = "UPDATE properties SET views = views + 1 WHERE property_id = $id";
@@ -361,6 +377,23 @@ class Property
 // }
     
 //     }
+
+public function updateStatus($propertyId, $newStatus)
+    {
+        // Escape variables and use single quotes for string values
+        $propertyId = $this->db->real_escape_string($propertyId);
+        $newStatus = $this->db->real_escape_string($newStatus);
+        echo 123;
+        echo $propertyId;
+        echo $newStatus;
+
+        // Build the SQL query
+        $sql = "UPDATE properties SET `status` = '$newStatus' WHERE `property_id` = '$propertyId'";
+        
+        // Execute the query
+        $this->db->query($sql);
+    }
+
     
     public function getPropertyById($idproperty) {
         $query = "SELECT properties.*, property_tags.tag_name

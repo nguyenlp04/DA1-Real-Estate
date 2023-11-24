@@ -133,7 +133,7 @@ class Transaction
         JOIN properties ON negotiations.property_id = properties.property_id
         JOIN users AS users_seller ON negotiations.seller_id = users_seller.user_id
         JOIN users AS users_buyer ON negotiations.customer_id = users_buyer.user_id
-        WHERE seller_id = $id;
+        WHERE customer_id = $id;
     ";
         $result = $this->db->query($query);
         $data = [];
