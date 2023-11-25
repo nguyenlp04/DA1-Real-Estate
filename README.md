@@ -11,7 +11,7 @@ Lấy các thay đổi mới nhất từ nhánh main trên máy chủ:
 git pull origin main
 Chuyển lại sang nhánh bạn muốn push từ:
 
-git checkout <tên-nhánh-khác>
+git checkout PhuocNguyen-User
 Rebase nhánh hiện tại của bạn trên nhánh main:
 
 git rebase main
@@ -22,10 +22,10 @@ Chuyển lại nhánh main:
 git checkout main
 Merge nhánh hiện tại của bạn vào nhánh main:
 
-git merge <tên-nhánh-khác>
+git merge PhuocNguyen-User
 Hoặc nếu bạn đã rebase:
 
-git merge --ff-only <tên-nhánh-khác>
+git merge --ff-only PhuocNguyen-User
 Push các thay đổi lên nhánh main:
 
 git push origin main

@@ -1,3 +1,19 @@
+<?php 
+session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+include './config/config.php';
+include(__DIR__ . '../../admin/models/auth.php');
+$codeError = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $database = new Database();
+  $Auth = new Auth($database);
+  $result = $Auth->recoverCode();
+  if ($result !== true) {
+    $codeError = $result;
+  } 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +24,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="./assets/css/auth.css">
   <title>Đặt lại mật khẩu</title>
   
 </head>
@@ -37,19 +54,19 @@
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
           <h2 class="fw-bold mb-5 text-center">Nhập mã bảo mật</h2>
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST">
+          <form method="POST">
               <div class="">
                   <div class="">
-                     <div class="d-flex justify-content-between"><label class="form-label text-dark m-0 mb-2" for="form3Example2">Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 4 số. </label><?php   ?></div> 
-                    <input name="codeRecover" type="text" id="form3Example2" placeholder="Nhập mã" class="<?php echo $resultUser ?> form-control" />
+                     <div class="d-flex justify-content-between"><label class="form-label text-dark m-0 mb-2" for="form3Example2">Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 4 số. </label></div> 
+                     <?php echo $codeError ?>
+                    <input name="codeRecover" type="text" id="form3Example2" placeholder="Nhập mã" class="form-control" />
                   </div>
                 </div>
            
-                <div class="float-end m-0 p-0">
-                    <button type="button" class="btn btn-success"><a href="forgot-password.php" class="text-light text-decoration-none">Quay lại</a></button>
-                    <div class="button-buy mt-4 mb-4 btn btn-primary shadow-0">
-                        <input class="text-uppercase" name="submit" style="background: unset; color: white; border: none;" type="submit" value="Tiếp tục">
-                    </div>
+                <div class="float-end m-0 p-0 mt-4">
+                    <button type="button" class="btn btn-success"><a href="forgotPassword" class="text-light text-decoration-none">Quay lại</a></button>
+                    <button type="submit" name="submit" class="btn btn-primary">Tiếp tục</button>
+                   
                 </div>
               
              

@@ -73,11 +73,12 @@
     <script src="assets/js/counterup.min.js"></script>
     <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="assets/js/jquery.nice-select.js"></script>
-    
+    <script src="assets/js/dashboard/bootstrap.bundle.min.js"></script>
+
     <script src="assets/js/jquery.fancybox.min.js"></script>
 <!-- số banner -->
     <!-- <script src="assets/js/scripts.js"></script> -->
-
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/pagination.js"></script>
     </body>
 </html>

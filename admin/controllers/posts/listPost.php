@@ -1,24 +1,15 @@
 <?php
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/posts.php');
-include(__DIR__ . '/../../../config/config.php');
 $database = new Database();
 $Post = new Post($database);
 $posts = $Post->listPost();
-
-  ?>
+?>
 <div class="w-full">
-
-    <script>
-    new DataTable('#example', {
-        pagingType: 'full_numbers'
-    });
-    </script>
     <link rel="stylesheet" href="../../../vendor/dataTables/jquery.dataTables.min.css">
-
     <script src="../../../vendor/dataTables/jquery-3.7.0.js"></script>
     <script src="../../../vendor/dataTables/jquery.dataTables.min.js"></script>
     <div class="flex justify-center xl:w-11/13">
@@ -52,19 +43,18 @@ $posts = $Post->listPost();
                                     <p>
                                 </td>
                                 <td><?php echo $post['category']; ?></td>
-                                <td> <a href="editPost.php?id=<?php echo $post['post_id']; ?>"
-                                        style="margin-right:10px;"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                                <td> <a href="updatePost?post_id=<?php echo $post['post_id']; ?>"
+                                        style="margin-right:10px;"><i class="fa-solid fs-5 fa-pen-to-square text-primary mr-3"></i></a>
 
-                                    <a href="deletePost.php?id=<?php echo $post['post_id']; ?>"><i
-                                            class="fa-solid fa-trash fa-xl"></i></a>
-
+                                    <a href="deletePost?post_id=<?php echo $post['post_id']; ?>"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này không?')"><i class="fa-solid fs-5 fa-trash-can text-danger"></i></a>
                                 </td>
-
                             </tr>
                             <?php endforeach; ?>
-
                         </table>
-
+                        <script>
+                            new DataTable('#example');
+                        </script>
                     </div>
                 </div>
             </div>

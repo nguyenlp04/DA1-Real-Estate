@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pagination with Filtering Example</title>
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .pagination a {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            background-color: #ccc;
+        }
+
+        .filter-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .filter-container input {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-container">
+        <input type="text" id="filterInput" placeholder="Filter...">
+    </div>
+    <div id="dataContainer"></div>
+    <div id="paginationContainer"></div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+
+    <script>
+        // Danh sách dữ liệu
+        var data = [];
+        for (var i = 1; i <= 100; i++) {
+            data.push(i);
+        }
+        console.log(data);
+
+        // Số mục trên mỗi trang
+        var itemsPerPage = 10;
+        var currentPage = 1;
+
+        function displayData() {
+            var startIndex = (currentPage - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            var filteredData = getFilteredData();
+
+            var currentPageData = filteredData.slice(startIndex, endIndex);
+
+            var dataContainer = document.getElementById('dataContainer');
+            dataContainer.innerHTML = '';
+
+            for (var i = 0; i < currentPageData.length; i++) {
+                var item = document.createElement('div');
+                item.innerText = currentPageData[i];
+                dataContainer.appendChild(item);
+            }
+        }
+
+        function createPagination() {
+            var filteredData = getFilteredData();
+            var totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            var paginationContainer = document.getElementById('paginationContainer');
+            paginationContainer.innerHTML = '';
+
+            for (var i = 1; i <= totalPages; i++) {
+                var pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.innerText = i;
+
+                // Xử lý sự kiện khi nhấp vào trang
+                pageLink.addEventListener('click', function () {
+                    currentPage = parseInt(this.innerText);
+                    displayData();
+                    setActivePage(currentPage);
+                });
+
+                paginationContainer.appendChild(pageLink);
+            }
+        }
+
+        function setActivePage(page) {
+            var paginationContainer = document.getElementById('paginationContainer');
+            var pageLinks = paginationContainer.getElementsByTagName('a');
+
+            for (var i = 0; i < pageLinks.length; i++) {
+                pageLinks[i].classList.remove('active');
+            }
+
+            pageLinks[page - 1].classList.add('active');
+        }
+
+        function getFilteredData() {
+            var filterInput = document.getElementById('filterInput');
+            var filterValue = filterInput.value.trim().toLowerCase();
+
+            if (filterValue === '') {
+                return data;
+            } else {
+                return data.filter(function (item) {
+                    return item.toString().toLowerCase().includes(filterValue);
+                });
+            }
+        }
+
+        // Khởi tạo trang đầu tiên khi tải xong trang
+        document.addEventListener('DOMContentLoaded', function () {
+            displayData();
+            createPagination();
+            setActivePage(currentPage);
+
+            var filterInput = document.getElementById('filterInput');
+            filterInput.addEventListener('input', function () {
+                currentPage = 1;
+                displayData();
+                createPagination();
+                setActivePage(currentPage);
+            });
+        });
+    </script>
+</body>
+</html>
