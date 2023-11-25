@@ -26,7 +26,7 @@ if (isset($_GET['post_id'])) {
         echo "Không tìm thấy bài viết với ID: $postid";
     }
 }
-var_dump($idproperty, $result, $errors);
+// var_dump($idproperty, $result, $errors);
 
 ?>
 

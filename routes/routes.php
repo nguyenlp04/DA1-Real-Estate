@@ -64,6 +64,7 @@ $router->addRoute('admin/addProperty', __DIR__ . '/../admin/controllers/property
 $router->addRoute('admin/updateProperty', __DIR__ . '/../admin/controllers/property/updateProperty.php');
 $router->addRoute('admin/deleteProperty', __DIR__ . '/../admin/controllers/property/deleteProperty.php');
 $router->addRoute('admin/addTags', __DIR__ . '/../admin/controllers/property/addTags.php');
+$router->addRoute('admin/updateTags', __DIR__ . '/../admin/controllers/property/updateTags.php');
 $router->addRoute('admin/deleteTags', __DIR__ . '/../admin/controllers/property/deleteTags.php');
 $router->addRoute('admin/updateStatus', __DIR__ . '/../admin/controllers/property/updateStatus.php');
 
