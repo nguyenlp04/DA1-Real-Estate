@@ -782,7 +782,7 @@ include 'views/inc/header.php'
                             <h4 class="title"><a href="#">Xuất hiện căn hộ cao cấp làm mê mẩn giới thượng lưu</a>
                             </h4>
                             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui cras adipiscing non odio elementum. Quis urna, tristique amet sit libero.</p> -->
-                            <a href="#" class="btn btn-secondary btn-more">Đọc Thêm</a>
+                            <a href="#" class="btn btn-primary btn-more">Đọc Thêm</a>
                         </div>
                     </div>
                 </div>
@@ -800,7 +800,7 @@ include 'views/inc/header.php'
                         <div class="blog__content">
                             <h4 class="title"><a href="#">Tiếp tục rà soát, đánh giá những bất cập liên quan đến
                                     tích tụ đất đai</a></h4>
-                            <a href="#" class="btn btn-secondary btn-more">Đọc Thêm</a>
+                            <a href="#" class="btn btn-primary btn-more">Đọc Thêm</a>
                         </div>
                     </div>
                 </div>
@@ -818,7 +818,7 @@ include 'views/inc/header.php'
                         <div class="blog__content">
                             <h4 class="title"><a href="#">Buổi gặp gỡ cộng đồng cư dân danh giá tương lai của dự án
                                     Dragon Fairy</a></h4>
-                            <a href="#" class="btn btn-secondary btn-more">Đọc Thêm</a>
+                            <a href="#" class="btn btn-primary btn-more">Đọc Thêm</a>
                         </div>
                     </div>
                 </div>
