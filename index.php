@@ -1,5 +1,7 @@
 <?php 
-include 'views/inc/header.php'
+include 'views/inc/header.php';
+include(__DIR__ . '/admin/models/tags.php');
+
 ?>
 
 <!-- hero section start -->
@@ -42,15 +44,15 @@ include 'views/inc/header.php'
         <div class="row">
             <div class="col-12">
                 <div class="advance-search">
-                    <form action="#" class="inline-form">
+                    <form  class="inline-form" action="products">
                         <div class="search__type">
-                            <input type="radio" name="search-type" id="searchRent" value="rent" checked />
+                            <input type="radio" name="search-type" id="searchRent" value="Thuê" checked />
                             <label for="searchRent">Thuê</label>
 
-                            <input type="radio" name="search-type" id="searchBuy" value="buy" />
+                            <input type="radio" name="search-type" id="searchBuy" value="Mua" />
                             <label for="searchBuy">Mua</label>
 
-                            <input type="radio" name="search-type" id="searchSell" value="sell" />
+                            <input type="radio" name="search-type" id="searchSell" value="Bán" />
                             <label for="searchSell">Bán</label>
                         </div>
                         <div class="input-group">
@@ -65,11 +67,19 @@ include 'views/inc/header.php'
                         </div>
                         <div class="input-group">
                             <label for="apantment">Loại</label>
-                            <select name="apantment" id="apantment">
-                                <option value="">Biệt thự</option>
-                                <option value="1">Nhà ở thương mại</option>
-                                <option value="2">Nhà ở chung cư</option>
-                            </select>
+                            <select name="apartment" id="apartment">
+                            <option value="">---</option>
+                            <?php
+                            $database = new Database();
+                            $Tags = new Tags($database);
+                            $result = $Tags->renderTags();
+                            foreach ($result as $row) {
+                                echo '
+                            <option value="' . $row['tag_id'] . '">' . $row['tag_name'] . '</option>
+                                ';
+                            }
+                            ?>
+                        </select>
                             <div class="icon">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.25 6.75L9 1.5L15.75 6.75V15C15.75 15.3978 15.592 15.7794 15.3107 16.0607C15.0294 16.342 14.6478 16.5 14.25 16.5H3.75C3.35218 16.5 2.97064 16.342 2.68934 16.0607C2.40804 15.7794 2.25 15.3978 2.25 15V6.75Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -80,10 +90,12 @@ include 'views/inc/header.php'
                         <div class="input-group">
                             <label for="price">Ngân sách</label>
                             <select name="price" id="price">
-                                <option value="500-800">$5,000.00 - $15,000.00</option>
-                                <option value="800-1000">$15,000.00 - $30,000.00</option>
-                                <option value="1000-1500">$30,000.00 - $50,000.00</option>
-                                <option value="1000-1500">Trên $50,000.00</option>
+                            <option value="---">---</option>
+                            <option value="1000-">dưới $1,000.00</option>
+                            <option value="1000-10000">$1,000.00 - $10,000.00</option>
+                            <option value="10000-30000">$10,000.00 - $30,000.00</option>
+                            <option value="30000-50000">$30,000.00 - $50,000.00</option>
+                            <option value="50000+">$Trên $50,000.00</option>
                             </select>
                             <div class="icon">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,6 +124,7 @@ include 'views/inc/header.php'
                             <button class="btn btn-primary" type="submit">Tìm Kiếm</button>
                         </div>
                     </form>
+                    
                     <div class="suggest">
                         <p>Gợi ý: </p>
                         <span draggable="true" ondragstart="dragStart(event)">Hà Nội</span>

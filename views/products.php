@@ -92,10 +92,16 @@ include 'inc/header.php'
                 <div class="section-header search-products-title"></div>
                 <div class="row dataContainer" id="dataContainer">
                     <?php
-                    $stt = 1;
                     $database = new Database();
                     $Property = new Property($database);
                     $result = $Property->renderProperty();
+                    $searchType = isset($_GET['search-type']) ? $_GET['search-type'] : '';
+                    if($searchType == ''){
+                        $result = $Property->renderProperty();
+                    } else {
+                        $result = $Property->searchProperties();
+                    }
+
                     foreach ($result as $row) {
                         echo '<div class="col-md-3 col-sm-6 card-product article-loop">
                     <div class="house-card">
@@ -144,6 +150,8 @@ include 'inc/header.php'
                 </div>';
                     }
                     ?>
+
+                    
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul id="paginationContainer" class="pagination">
@@ -234,84 +242,84 @@ include 'inc/header.php'
             }
 
             function renderPagination(totalItems) {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-    const paginationContainer = document.getElementById('paginationContainer');
-    paginationContainer.innerHTML = '';
+                const paginationContainer = document.getElementById('paginationContainer');
+                paginationContainer.innerHTML = '';
 
-    // Tạo nút "Previous"
-    var previousPageItem = document.createElement('li');
-    previousPageItem.className = 'page-item';
-    var previousPageLink = document.createElement('a');
-    previousPageLink.className = 'page-link';
-    previousPageLink.href = '#';
-    previousPageLink.innerText = 'Previous';
+                // Tạo nút "Previous"
+                var previousPageItem = document.createElement('li');
+                previousPageItem.className = 'page-item';
+                var previousPageLink = document.createElement('a');
+                previousPageLink.className = 'page-link';
+                previousPageLink.href = '#';
+                previousPageLink.innerText = 'Previous';
 
-    // Kiểm tra nếu đang ở trang đầu tiên, thì ẩn nút "Previous"
-    if (currentPage > 1) {
-        previousPageLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            currentPage--;
-            renderItems(filteredProducts, currentPage);
-            setActivePage(currentPage);
-        });
-    } else {
-        previousPageItem.classList.add('disabled');
-    }
+                // Kiểm tra nếu đang ở trang đầu tiên, thì ẩn nút "Previous"
+                if (currentPage > 1) {
+                    previousPageLink.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        currentPage--;
+                        renderItems(filteredProducts, currentPage);
+                        setActivePage(currentPage);
+                    });
+                } else {
+                    previousPageItem.classList.add('disabled');
+                }
 
-    previousPageItem.appendChild(previousPageLink);
-    paginationContainer.appendChild(previousPageItem);
+                previousPageItem.appendChild(previousPageLink);
+                paginationContainer.appendChild(previousPageItem);
 
-    // Tạo các nút số trang
-    for (let i = 1; i <= totalPages; i++) {
-        var pageItem = document.createElement('li');
-        pageItem.className = 'page-item';
-        var pageLink = document.createElement('a');
-        pageLink.className = 'page-link';
-        pageLink.innerText = i;
+                // Tạo các nút số trang
+                for (let i = 1; i <= totalPages; i++) {
+                    var pageItem = document.createElement('li');
+                    pageItem.className = 'page-item';
+                    var pageLink = document.createElement('a');
+                    pageLink.className = 'page-link';
+                    pageLink.innerText = i;
 
-        // Kiểm tra nếu đang ở trang hiện tại, thì thêm class "active" cho nút đó
-        if (i === currentPage) {
-            pageLink.classList.add('active');
-        }
+                    // Kiểm tra nếu đang ở trang hiện tại, thì thêm class "active" cho nút đó
+                    if (i === currentPage) {
+                        pageLink.classList.add('active');
+                    }
 
-        pageLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            currentPage = i;
-            renderItems(filteredProducts, currentPage);
-            const allPageLinks = document.querySelectorAll('.page-link');
-            allPageLinks.forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
-            setActivePage(currentPage);
-        });
+                    pageLink.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        currentPage = i;
+                        renderItems(filteredProducts, currentPage);
+                        const allPageLinks = document.querySelectorAll('.page-link');
+                        allPageLinks.forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                        setActivePage(currentPage);
+                    });
 
-        pageItem.appendChild(pageLink);
-        paginationContainer.appendChild(pageItem);
-    }
+                    pageItem.appendChild(pageLink);
+                    paginationContainer.appendChild(pageItem);
+                }
 
-    // Tạo nút "Next"
-    var nextPageItem = document.createElement('li');
-    nextPageItem.className = 'page-item';
-    var nextPageLink = document.createElement('a');
-    nextPageLink.className = 'page-link';
-    nextPageLink.href = '#';
-    nextPageLink.innerText = 'Next';
+                // Tạo nút "Next"
+                var nextPageItem = document.createElement('li');
+                nextPageItem.className = 'page-item';
+                var nextPageLink = document.createElement('a');
+                nextPageLink.className = 'page-link';
+                nextPageLink.href = '#';
+                nextPageLink.innerText = 'Next';
 
-    // Kiểm tra nếu đang ở trang cuối cùng, thì ẩn nút "Next"
-    if (currentPage < totalPages) {
-        nextPageLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            currentPage++;
-            renderItems(filteredProducts, currentPage);
-            setActivePage(currentPage);
-        });
-    } else {
-        nextPageItem.classList.add('disabled');
-    }
+                // Kiểm tra nếu đang ở trang cuối cùng, thì ẩn nút "Next"
+                if (currentPage < totalPages) {
+                    nextPageLink.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        currentPage++;
+                        renderItems(filteredProducts, currentPage);
+                        setActivePage(currentPage);
+                    });
+                } else {
+                    nextPageItem.classList.add('disabled');
+                }
 
-    nextPageItem.appendChild(nextPageLink);
-    paginationContainer.appendChild(nextPageItem);
-}
+                nextPageItem.appendChild(nextPageLink);
+                paginationContainer.appendChild(nextPageItem);
+            }
 
 
 
@@ -322,7 +330,7 @@ include 'inc/header.php'
                 for (var i = 0; i < pageLinks.length; i++) {
                     pageLinks[i].classList.remove('active');
                 }
-                pageLinks[page ].classList.add('active');
+                pageLinks[page].classList.add('active');
             }
             filterProducts();
 

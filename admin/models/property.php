@@ -411,7 +411,6 @@ class Property
         $this->db->query($sql);
     }
 
-
     public function getPropertyById($idproperty)
     {
         $query = "SELECT properties.*, property_tags.tag_name
@@ -431,6 +430,83 @@ class Property
             $data = $result->fetch_assoc();
         }
 
+        return $data;
+    }
+
+    public function searchProperties()
+    {
+
+        $searchType = isset($_GET['search-type']) ? $_GET['search-type'] : '';
+        $city = isset($_GET['city']) ? $_GET['city'] : '';
+        $address = '%' . $city . '%';
+        $getApartment = isset($_GET['apartment']) ? $_GET['apartment'] : '';
+        if($getApartment == ''){
+            $apartment = 'property_tags.tag_id > 0';
+        } else {
+            $apartment = 'property_tags.tag_id = '.$getApartment.'';
+        }
+        $priceRange = isset($_GET['price']) ? $_GET['price'] : '';
+        $acreageRange = isset($_GET['acreage']) ? $_GET['acreage'] : '';
+        $priceClause = "";
+        switch ($priceRange) {
+            case '1000-':
+                $priceClause = "properties.price < 1000";
+                break;
+            case '1000-10000':
+                $priceClause = "properties.price BETWEEN 1000 AND 10000";
+                break;
+            case '10000-30000':
+                $priceClause = "properties.price BETWEEN 10000 AND 30000";
+                break;
+            case '30000-50000':
+                $priceClause = "properties.price BETWEEN 30000 AND 50000";
+                break;
+            case '50000+':
+                $priceClause = "properties.price > 50000";
+                break;
+            default:
+                $priceClause = "properties.price > 0";
+                break;
+        }
+        // Xử lý diện tích
+        $acreageClause = "";
+        switch ($acreageRange) {
+            case '50-':
+                $acreageClause = "properties.acreage < 50";
+                break;
+            case '50-100':
+                $acreageClause = "properties.acreage BETWEEN 50 AND 100";
+                break;
+            case '100-150':
+                $acreageClause = "properties.acreage BETWEEN 100 AND 150";
+                break;
+            case '150-200':
+                $acreageClause = "properties.acreage BETWEEN 150 AND 200";
+                break;
+            case '200+':
+                $acreageClause = "properties.acreage > 200";
+                break;
+            default:
+                $acreageClause = "properties.acreage > 0";
+                break;
+        }
+        $sql = "SELECT properties.*, property_tags.tag_name FROM properties
+        LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id 
+        WHERE status = 'Đã duyệt' AND
+        properties.type = '$searchType' AND
+        $apartment AND
+        properties.location LIKE '$address' AND
+            $apartment   AND
+            $priceClause AND
+            $acreageClause";
+        // echo $sql;
+        $result = $this->db->query($sql);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
+                $data[] = $item;
+            }
+        }
         return $data;
     }
 }
