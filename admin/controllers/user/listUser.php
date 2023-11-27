@@ -24,8 +24,8 @@ include(__DIR__ . '/../../models/user.php');
                                     <th>Họ và tên</th>
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
-                                    <th>Vai trò</th>
-                                    <th>Action</th>
+                                    <th style="width: 4rem;">Vai trò</th>
+                                    <th style="width: 4rem;">Action</th>
 
                                 </tr>
                             </thead>

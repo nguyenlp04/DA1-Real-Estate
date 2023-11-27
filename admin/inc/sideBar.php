@@ -95,6 +95,9 @@ include(__DIR__ . '../../../config/config.php');
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="listSchedule"><i class="fa-solid fa-calendar-days"></i> <span>Tham quan</span></a>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

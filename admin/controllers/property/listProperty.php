@@ -19,13 +19,14 @@ include(__DIR__ . '/../../models/property.php');
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên</th>
-                                    <th>Giá</th>
+                                    <th style="width: 10rem;">Tên</th>
+                                    <th style="width: 6rem;">Giá</th>
                                     <th>Địa chỉ</th>
-                                    <th class="roles">Người đăng</th>
-                                    <th class="roles">Trạng thái</th>
-                                    <th class="roles">Lượt xem</th>
-                                    <th>Action</th>
+                                    <th style="width: 4rem;">Loại</th>
+                                    <th style="width: 7rem;">Người đăng</th>
+                                    <th style="width: 5rem;">Trạng thái</th>
+                                    <th style="width: 4rem;">Lượt xem</th>
+                                    <th style="width: 5rem;">Action</th>
 
                                 </tr>
                             </thead>
@@ -44,6 +45,7 @@ include(__DIR__ . '/../../models/property.php');
                                 <td><a class="decoration-none" href="../propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a></td>
                                 <td>'. $row['price'] .'$</td>
                                 <td>'. $row['location'] .'</td>
+                                <td>'. $row['type'] .'</td>
                                 <td>'. $row['full_name'] .'</td>
                                 <td><span  style="color: black; text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: '. ($row['status'] === 'Đã duyệt' ? '#e67e22' : '#d35400;') .'">
                                     '. $row['status'] .'<i class="fa-solid fs-5 fa-pen-to-square overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModalStatus' . $row['property_id'] . '"></i>

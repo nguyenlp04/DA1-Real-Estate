@@ -87,6 +87,7 @@ class Transaction
         users_seller.full_name AS seller_name,
         users_buyer.full_name AS buyer_name,
         properties.price,
+        properties.type,
         negotiations.negotiation_id,
         negotiations.price_offered,
         negotiations.status,

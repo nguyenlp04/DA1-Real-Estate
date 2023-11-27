@@ -20,12 +20,13 @@ include(__DIR__ . '/../../models/contract.php');
                                 <tr>
                                     <th>STT</th>
                                     <th>Tên BĐS</th>
-                                    <th>Người bán</th>
-                                    <th>Người mua</th>
-                                    <th>Giá</th>
-                                    <th>Giá Đề xuất</th>
-                                    <th>Trạng thái</th>
-                                    <th>Ngày tạo</th>
+                                    <th style="width: 3rem;">Loại</th>
+                                    <th style="width: 7rem;">Người bán</th>
+                                    <th style="width: 7rem;">Người mua</th>
+                                    <th class="w-20">Giá</th>
+                                    <th class="w-20">Giá Đề xuất</th>
+                                    <th style="width: 6rem;">Trạng thái</th>
+                                    <th style="width: 7rem;">Ngày tạo</thc>
                                     <!-- <th>Action</th> -->
                                 </tr>
                             </thead>
@@ -40,6 +41,7 @@ include(__DIR__ . '/../../models/contract.php');
                                     echo '<tr>
                                     <td>' . $stt . '</td>
                                     <td><a style="color:rgb(13, 110, 253)" href="../propertyDetail?id=' . $row['property_id'] . '">' . $row['property_title'] . '</a></td>
+                                    <td>' . $row['type'] . '</td>
                                     <td>' . $row['seller_name'] . '</td>
                                     <td>' . $row['buyer_name'] . '</td>
                                     <td>' . $row['price'] . '$</td>

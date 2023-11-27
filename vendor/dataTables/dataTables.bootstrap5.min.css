@@ -38,10 +38,10 @@ table.dataTable thead>tr>th.sorting:first-child{
     width: 25px !important;
 }
 table.dataTable thead>tr>th.sorting:last-child{
-    width: 50px !important;
+    /* width: 50px !important; */
 }
 
-table.dataTable thead>tr>th.sorting:nth-last-child(-n+2){
+table.dataTable thead>tr>th.sorting.last-child{
     width: 80px !important;
 }
 

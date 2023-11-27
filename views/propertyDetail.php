@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../config/config.php');
 include(__DIR__ . '/../admin/models/tags.php');
 include(__DIR__ . '/../admin/models/property.php');
+include(__DIR__ . '/../admin/models/schedule.php');
 include './vendor/process_send_mail.php';
 $database = new Database();
 $conn = $database->conn;
@@ -32,15 +33,21 @@ if (isset($_SESSION['user_info'])) {
 $id = $_GET['id'];
 $database = new Database();
 $Property = new Property($database);
+$Schedule = new Schedule($database);
 $result = $Property->renderPropertyDetail($id);
 $resultImage = $Property->renderImagePropertyDetail($id);
-$errorsNegotiate = "";
 $errors = [];
+$errorsTour = [];
+
 $resultNegotiate = $Property->negotiate($id);
 if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
     $errors = $resultNegotiate;
 }
 
+$resultScheduletour = $Schedule->scheduletour($id);
+if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
+    $errorsTour = $resultScheduletour;
+}
 // echo "<pre>";
 // print_r($_SESSION['user_info']);
 // echo "</pre>";
@@ -499,20 +506,29 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
                                                             <?php
                                                             $propertyId = $result['property_id']; 
                                                             $userId = $_SESSION['user_info']['user_id'];
-                                                            $query = "SELECT price_offered FROM negotiations WHERE property_id = '$propertyId' AND customer_id = '$userId' AND status = 'Chấp nhận'";
+                                                            $query = "SELECT negotiations.price_offered, properties.type FROM negotiations 
+                                                            JOIN properties ON negotiations.property_id = properties.property_id 
+                                                            WHERE negotiations.property_id = '$propertyId' AND negotiations.customer_id = '$userId' AND negotiations.status = 'Chấp nhận'";
                                                             $negotiationResult = $conn->query($query);
-
                                                             if ($negotiationResult->num_rows > 0) {
                                                                 $row = $negotiationResult->fetch_assoc();
                                                                 $acceptedPrice = $row['price_offered'];
+                                                                $price = $result['price'];
+                                                                echo "<del class='text-danger'>$price&#036;  </del>&ensp;";
                                                                 echo $acceptedPrice;
+                                                                $month = '';
+                                                                if($row['type'] == 'Thuê'){
+                                                                    $month = '/tháng';
+                                                                }
                                                             } else {
                                                                 echo $result['price'];
                                                             }
-                                                            ?>
-                                                            &#036; </span>
+                                                            
+                                                            
+                                                            ?>&#036; </span>
                                                         <span class="qodef-m-price-after">
-                                                            /tháng </span>
+                                                           <?php echo  $month ?>
+                                                          </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -546,17 +562,27 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
                                                         <?php echo $result['email'] ?>
                                                     </div>
                                                 </div>
-                                                <a class="qodef-shortcode qodef-m qodef-m-author-link qodef-button qodef-layout--filled qodef-size--normal-full qodef-html--link" href="https://newhome.qodeinteractive.com/author/rachel-gray/" target="_self"> <span class="qodef-m-text">View my
-                                                        properties</span></a>
+                                                <a class="qodef-shortcode qodef-m qodef-m-author-link qodef-button qodef-layout--filled qodef-size--normal-full qodef-html--link" href="https://newhome.qodeinteractive.com/author/rachel-gray/" target="_self"> <span class="qodef-m-text">Giao Dịch</span></a>
                                             </section>
                                             <section class="qodef-m-schedule-tour">
                                                 <h4 class="qodef-m-schedule-tour-title">Lịch trình tham quan</h4>
                                                 <p class="qodef-m-schedule-tour-description">
                                                     Vui lòng điền vào biểu mẫu dưới đây để hẹn lịch tham quan.
                                                 </p>
+                                                <span class="text-danger">
+                                                    <?php
+                                                    if (!empty($errorsTour)) {
+                                                        echo '<ul class="py-4 alert" style="background-color: #DC3545; color: white">';
+                                                        foreach ($errorsTour as $error) {
+                                                            echo '<li class="pl-2" style="list-style: none">' . $error . '</li>';
+                                                        }
+                                                        echo '</ul>';
+                                                    } ?>
+                                                </span>
                                                 <div class="qodef-m-schedule-tour-content">
-                                                    <form class="qodef-m-form" id="qodef-schedule-tour">
+                                                    <form method="POST" class="qodef-m-form" id="qodef-schedule-tour">
                                                         <div class="qodef-m-form-inner">
+                                                            <form action="POST">
                                                             <div class="qodef-m-form-row">
                                                                 <input type="text" name="user_name" placeholder="Họ và tên*">
                                                             </div>
@@ -567,17 +593,21 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
                                                                 <input type="text" name="user_phone" placeholder="Số điện thoại*">
                                                             </div>
                                                             <div class="qodef-m-form-row">
+                                                                <input type="date" name="date" placeholder="Thời gian*">
+                                                            </div>
+                                                            <div class="qodef-m-form-row">
                                                                 <textarea name="user_message" placeholder="Tin nhắn" rows="4"></textarea>
                                                             </div>
                                                             <input type="hidden" name="agent_id" value="5" />
                                                             <div class="qodef-m-action qodef-property-spinner">
-                                                                <button type="submit" class="qodef-shortcode qodef-m  qodef-button qodef-layout--filled qodef-size--normal-full ">
-                                                                    <span class="qodef-btn-text">Gửi</span></button><span class="qodef-m-spinner">
+                                                                <button type="submit" name="submitScheduletour" class="qodef-shortcode qodef-m  qodef-button qodef-layout--filled qodef-size--normal-full ">
+                                                                    <span class="qodef-btn-text">Đặt Lịch Tham Quan</span></button><span class="qodef-m-spinner">
                                                                     <svg width="20" height="20" viewBox="0 0 50 50">
                                                                         <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
                                                                     </svg>
                                                                 </span>
                                                             </div>
+                                                            </form>
                                                         </div>
                                                         <div class="qodef-m-form-result"></div>
                                                     </form>
@@ -587,9 +617,9 @@ if (is_array($resultNegotiate) && !empty($resultNegotiate)) {
 
                                             <section class="qodef-m-mortgage-calculator">
                                                 <h4 class="qodef-m-mortgage-calculator-title m-0">Thươnng lượng</h4>
-                                                <div class="qodef-m-schedule-tour-description py-4">
+                                                <p class="qodef-m-schedule-tour-description">
                                                     Vui lòng điền vào biểu mẫu dưới đây để gửi yêu cầu thương lượng giá.
-                                                </div>
+                                                </p>
                                                 <span class="text-danger">
                                                     <?php
                                                     if (!empty($errors)) {

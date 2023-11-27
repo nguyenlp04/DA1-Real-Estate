@@ -67,9 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <thead>
                   <tr>
                     <th>STT</th>
-                    <th style="width: 150px">Tags</th>
-                    <th>Mô tả</th>
-                    <th>Action</th>
+                    <th style="width: 12rem;">Tags</th>
+                    <th style="width: 12rem;">Mô tả</th>
+                    <th style="width: 2rem;">Action</th>
                   </tr>
                 </thead>
                 <tbody>

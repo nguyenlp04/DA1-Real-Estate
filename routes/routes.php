@@ -68,6 +68,8 @@ $router->addRoute('admin/updateTags', __DIR__ . '/../admin/controllers/property/
 $router->addRoute('admin/deleteTags', __DIR__ . '/../admin/controllers/property/deleteTags.php');
 $router->addRoute('admin/updateStatus', __DIR__ . '/../admin/controllers/property/updateStatus.php');
 
+$router->addRoute('admin/listSchedule', __DIR__ . '/../admin/controllers/schedule/listSchedule.php');
+
 $router->addRoute('admin/contract', __DIR__ . '/../admin/controllers/transactions/contract.php');
 $router->addRoute('admin/contractDetail', __DIR__ . '/../admin/controllers/transactions/contractDetail.php');
 $router->addRoute('admin/negotiations', __DIR__ . '/../admin/controllers/transactions/negotiations.php');

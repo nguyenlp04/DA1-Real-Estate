@@ -239,7 +239,7 @@ class Property
                 <ol>
                     <li>
                         <strong>Giá Bán Đề Xuất:</strong>
-                        <p>Chúng tôi đề xuất một giá là <b>' . $price_offered . '</b> cho bất động sản của Anh/Chị. Số này được xây dựng dựa trên thị trường hiện tại và các yếu tố như vị trí, kích thước và tiện ích.</p>
+                        <p>Chúng tôi đề xuất một giá là <b>' . $price_offered . '$</b> cho bất động sản của Anh/Chị. Số này được xây dựng dựa trên thị trường hiện tại và các yếu tố như vị trí, kích thước và tiện ích.</p>
                     </li>
                     <li>
                         <strong>Điều Kiện Thanh Toán:</strong>
@@ -440,10 +440,10 @@ class Property
         $city = isset($_GET['city']) ? $_GET['city'] : '';
         $address = '%' . $city . '%';
         $getApartment = isset($_GET['apartment']) ? $_GET['apartment'] : '';
-        if($getApartment == ''){
+        if ($getApartment == '') {
             $apartment = 'property_tags.tag_id > 0';
         } else {
-            $apartment = 'property_tags.tag_id = '.$getApartment.'';
+            $apartment = 'property_tags.tag_id = ' . $getApartment . '';
         }
         $priceRange = isset($_GET['price']) ? $_GET['price'] : '';
         $acreageRange = isset($_GET['acreage']) ? $_GET['acreage'] : '';

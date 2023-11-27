@@ -26,7 +26,7 @@ $posts = $Post->listPost();
                                     <th> Tiêu đề</th>
                                     <th>Mô tả</th>
                                     <th>Loại</th>
-                                    <th>Thao Tác</th>
+                                    <th style="width: 4rem;">Thao Tác</th>
                                 </tr>
                             </thead>
 
