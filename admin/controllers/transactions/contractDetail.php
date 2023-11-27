@@ -23,7 +23,7 @@ if (isset($_GET['transaction_id'])) {
             <div class="w-full bg-white rounded-lg min-h-screen">
                 <div class="w-full flex justify-center h-auto">
                     <div class="w-11/12">
-                        <p class="text-[#0957CB] font-semibold text-2xl py-4">Chi tiết hợp đồng</p>
+                        <p class="text-[#0957CB] font-semibold text-2xl py-4">Chi Tiết Hợp Đồng</p>
 
                         <p
                             style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);box-sizing:border-box;color:rgb(33, 37, 41);font-family:Helvetica, sans-serif;font-size:12px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:500;letter-spacing:normal;line-height:15pt;margin:0pt;orphans:2;text-align:center;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">

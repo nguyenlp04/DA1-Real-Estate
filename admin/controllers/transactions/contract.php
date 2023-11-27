@@ -29,7 +29,7 @@ $contracts = $contract->listContract();
             <div class="w-full bg-white rounded-lg min-h-screen">
                 <div class="w-full flex justify-center h-auto">
                     <div class="w-11/12">
-                        <p class="text-[#0957CB] font-semibold  text-2xl py-4">Danh sách bài viết</p>
+                        <p class="text-[#0957CB] font-semibold  text-2xl py-4">Danh Sách Hợp Đồng</p>
                         <table id="example" class="display" style="width:100%">
                             <thead>
                                 <tr>

@@ -44,8 +44,8 @@ include(__DIR__ . '/../../models/contract.php');
                                     <td>' . $row['type'] . '</td>
                                     <td>' . $row['seller_name'] . '</td>
                                     <td>' . $row['buyer_name'] . '</td>
-                                    <td>' . $row['price'] . '$</td>
-                                    <td>' . $row['price_offered'] . '$</td>
+                                    <td>' . number_format($row['price'], 2). '$</td>
+                                    <td>' . number_format($row['price_offered'], 2). '$</td>
                                     <td><span style="color: black; text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: ' . $statusColor . '">' . $row['status'] . '
                                     <i class="fa-solid fs-5 fa-pen-to-square overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModal' . $row['negotiation_id'] . '"></i></span></td>
                                     <td>' . $row['created_at'] . '</td>

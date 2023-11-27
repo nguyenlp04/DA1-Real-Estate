@@ -43,7 +43,7 @@ include(__DIR__ . '/../../models/property.php');
                             echo '<tr>
                                 <td>'. $stt .'</td>
                                 <td><a class="decoration-none" href="../propertyDetail?id='.$row['property_id'].'"> '. $row['title'] .'</a></td>
-                                <td>'. $row['price'] .'$</td>
+                                <td>'. number_format($row['price'], 2) .'$</td>
                                 <td>'. $row['location'] .'</td>
                                 <td>'. $row['type'] .'</td>
                                 <td>'. $row['full_name'] .'</td>

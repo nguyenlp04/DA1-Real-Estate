@@ -1,8 +1,16 @@
  <?php
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
+  include(__DIR__ . '/../admin/models/statistical.php');
   include('inc/sideBar.php');
   include('inc/navBar.php');
+  $database = new Database();
+  $statistical = new statistical($database);
+  $totalRevenue = $statistical->totalRevenue();
+  $totalTransactions = $statistical->totalTransactions();
+  $totalProperties = $statistical->totalProperties();
+  $totalUsers = $statistical->totalUsers();
+  $topSellers = $statistical->topSellers();
   ?>
  <!-- Begin Page Content -->
  <div class="container-fluid">
@@ -21,14 +29,14 @@
            <div class="row no-gutters align-items-center">
              <div class="col mr-2">
                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                 Earnings (Monthly)
+               Tổng doanh thu
                </div>
                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                 $40,000
+                 $<?php echo number_format($totalRevenue, 2); ?>
                </div>
              </div>
              <div class="col-auto">
-               <i class="fas fa-calendar fa-2x text-gray-300"></i>
+             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
              </div>
            </div>
          </div>
@@ -42,14 +50,14 @@
            <div class="row no-gutters align-items-center">
              <div class="col mr-2">
                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                 Earnings (Annual)
+                 Tổng giao dịch
                </div>
                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                 $215,000
+               <?php echo $totalTransactions ?>
                </div>
              </div>
              <div class="col-auto">
-               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+               <i class="fa-solid fa-handshake fa-2x text-gray-300"></i>
              </div>
            </div>
          </div>
@@ -63,23 +71,14 @@
            <div class="row no-gutters align-items-center">
              <div class="col mr-2">
                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                 Tasks
+               Bất động sản,
                </div>
-               <div class="row no-gutters align-items-center">
-                 <div class="col-auto">
-                   <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                     50%
-                   </div>
-                 </div>
-                 <div class="col">
-                   <div class="progress progress-sm mr-2">
-                     <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                   </div>
-                 </div>
+               <div class="h5 mb-0 font-weight-bold text-gray-800">
+               <?php echo $totalProperties ?>
                </div>
              </div>
              <div class="col-auto">
-               <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+               <i class="fa-solid fa-city fa-2x text-gray-300"></i>
              </div>
            </div>
          </div>
@@ -93,14 +92,14 @@
            <div class="row no-gutters align-items-center">
              <div class="col mr-2">
                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                 Pending Requests
+               Người dùng
                </div>
                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                 18
+               <?php echo $totalUsers ?>
                </div>
              </div>
              <div class="col-auto">
-               <i class="fas fa-comments fa-2x text-gray-300"></i>
+               <i class="fa-solid fa-user fa-2x text-gray-300"></i>
              </div>
            </div>
          </div>
@@ -117,20 +116,8 @@
          <!-- Card Header - Dropdown -->
          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
            <h6 class="m-0 font-weight-bold text-primary">
-             Earnings Overview
+           Tổng quan về thu nhập
            </h6>
-           <div class="dropdown no-arrow">
-             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-             </a>
-             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-               <div class="dropdown-header">Dropdown Header:</div>
-               <a class="dropdown-item" href="#">Action</a>
-               <a class="dropdown-item" href="#">Another action</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="#">Something else here</a>
-             </div>
-           </div>
          </div>
          <!-- Card Body -->
          <div class="card-body">
@@ -147,37 +134,46 @@
          <!-- Card Header - Dropdown -->
          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
            <h6 class="m-0 font-weight-bold text-primary">
-             Revenue Sources
+           Doanh Thu Tốt Nhất Tháng
            </h6>
-           <div class="dropdown no-arrow">
-             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-             </a>
-             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-               <div class="dropdown-header">Dropdown Header:</div>
-               <a class="dropdown-item" href="#">Action</a>
-               <a class="dropdown-item" href="#">Another action</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="#">Something else here</a>
-             </div>
-           </div>
          </div>
          <!-- Card Body -->
          <div class="card-body">
-           <div class="chart-pie pt-4 pb-2">
-             <canvas id="myPieChart"></canvas>
-           </div>
-           <div class="mt-4 text-center small">
-             <span class="mr-2">
-               <i class="fas fa-circle text-primary"></i> Direct
-             </span>
-             <span class="mr-2">
-               <i class="fas fa-circle text-success"></i> Social
-             </span>
-             <span class="mr-2">
-               <i class="fas fa-circle text-info"></i> Referral
-             </span>
-           </div>
+         <table style="width: 100% !important; min-width: unset">
+			<thead>
+				<tr class="bg-blue-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
+					<th class="px-2 py-3" style="width: 10%;">STT</th>
+					<th class="px-2 py-3" style="width: 60%;">Họ và tên</th>
+					<th class="px-2 py-3" style="width: 30%;">Doanh thu</th>
+				</tr>
+			</thead>
+			<tbody class="text-gray-500">
+        <?php 
+        $stt = 1;
+        foreach ($topSellers as $row) {
+				echo '<tr>
+					<td class="p-0 py-1 px-2">
+						<p class="whitespace-no-wrap">'.$stt.'</p>
+					</td>
+					<td class="p-0 py-1 px-2">
+						<div class="flex items-center">
+							<div class="h-10 w-10 flex-shrink-0">
+								<img style="width: 3rem; height:3rem" class="rounded-full mr-2" src="../assets/images/imguser'.$row['avatar'].'" alt="" />
+							</div>
+							<div class="">
+								<p class="whitespace-no-wrap">'.$row['full_name'].'</p>
+							</div>
+						</div>
+					</td>
+					<td class="p-0 py-1 px-2">
+						<p class="whitespace-no-wrap">'.number_format($row['totalRevenue'], 2).'$</p>
+					</td>
+				</tr>';
+        $stt++;
+      }
+        ?>
+			</tbody>
+		</table>
          </div>
        </div>
      </div>
