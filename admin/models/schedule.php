@@ -86,20 +86,29 @@ class Schedule
                     </li>
                 </ol>
                <p>Vui lòng đảm bảo bạn có đủ thời gian và sẵn sàng để tham gia tham quan. Nếu bạn gặp bất kỳ sự cố nào hoặc muốn thay đổi lịch trình, xin vui lòng thông báo cho chúng tôi trước ' . $date . ' để chúng tôi có thể điều chỉnh.</p>
-
                 <p>Nếu bạn có bất kỳ câu hỏi nào hoặc cần hỗ trợ thêm, xin vui lòng liên hệ với chúng tôi qua số điện thoại ' . $phone . ' hoặc gửi email về địa chỉ ' . $email . '. Chúng tôi sẽ sẵn lòng giúp bạn.</p>
-
                 <p>Chúng tôi mong chờ sự gặp mặt của bạn trong lịch trình tham quan. Xin lưu ý rằng việc tham quan bất động sản này không gây mất phí.</p>
-
                 <p>Trân trọng,</p>
                 <p>Trân trọng,<br>
                 ' . $full_name . '<br>
                 ' . $email . '
                 </p>';
+
+
+                $messageSeller = '<p>Xin chào '.$full_name.',</p>
+                <p>Có một người quan tâm đến bất động sản của bạn và muốn thực hiện cuộc thăm quan. Hãy liên hệ với họ ngay để sắp xếp chi tiết:</p>
+                <p>
+                    Tên người quan tâm: '.$user_name.'<br>
+                    Địa chỉ email: '.$user_email.'<br>
+                    Số điện thoại: '.$user_phone.'
+                </p>
+            
+                <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.</p>
+            ';
                     // seller
-                    send_email($email, $subject, $message, $full_name);
+                    send_email($email, $subject, $messageSeller, $full_name);
                     // custome
-                    send_email($user_name, $subject, $message, $user_name);
+                    send_email($user_email, $subject, $message, $user_name);
                 } else {
                     echo "Không tìm thấy dữ liệu";
                     exit;
