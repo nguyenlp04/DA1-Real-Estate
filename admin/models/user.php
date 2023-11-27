@@ -194,3 +194,53 @@ class User
         exit;
     }
 }
+class Profile {
+    private $db;
+
+    public function __construct($database)
+    {
+        $this->db = $database->conn;
+    }
+    public function updateProfile($fullname,$datebirth,$address,$email,$roles,$phone,$userid){
+        
+        $errors = [];
+       
+        if (empty($datebirth)) {
+            $errors["birthuser"] = "Ngày sinh không được để trống";
+        }
+
+        if (empty($address)) {
+            $errors["addressuser"] = "Địa chỉ không được để trống";
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors["email"] = "Email không hợp lệ";
+        }
+
+        if (empty($phone)) {
+            $errors["phonenumber"] = "Số điện thoại không được để trống";
+        } elseif (!preg_match('/^[0-9]{10}$/', $phone)) {
+            $errors["phonenumber"] = "Số điện thoại không hợp lệ. Vui lòng nhập 10 chữ số.";
+        }
+
+     
+        if (empty($errors)) {
+            $sql = "UPDATE `users` SET 
+            `full_name` = '$fullname',
+            `birth_user` = '$datebirth',
+            `address_user` = '$address',
+            `email` = '$email',
+            `roles` = '$roles',
+            `phone_number` = '$phone'
+            WHERE `user_id` = $userid";
+            if ($this->db->query($sql) === TRUE) {
+                return true;
+            } else {
+                $errors["errors"] = $this->db->error;
+                return $errors;
+            }
+        } else {
+            return $errors;
+        }
+    }   
+}

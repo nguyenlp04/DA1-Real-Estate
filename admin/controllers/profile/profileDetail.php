@@ -4,14 +4,53 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../../inc/sideBar.php');
 include(__DIR__ . '/../../inc/navBar.php');
 include(__DIR__ . '/../../models/auth.php');
+include(__DIR__ . '/../../models/User.php');
 $database = new Database();
-$auth = new Auth($database);
+
+$errors = [];
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['editinfo'])) {
-    } elseif (isset($_POST['editpassword'])) {
-        $errors = [];
+        $userid = $_SESSION['user_info']['user_id'];
+        
+        $Profile = new Profile($database);
+        $success = "block";
+        $fullname = $_POST["fullname"];
+        $datebirth = $_POST["birthuser"];
+        $address = $_POST["addressuser"];
+        $email = $_POST["email"];
+        $roles = $_POST["roles"];
+        $phone = $_POST["phonenumber"];
+        $sqlPass = $Profile->updateProfile($fullname,$datebirth,$address,$email,$roles,$phone,$userid);
+        if ($sqlPass === true) {
+            // Thông tin đã được cập nhật thành công
+            echo "<script>alert('Thông tin đã được cập nhật thành công!');</script>";
+        
+            // Lấy thông tin người dùng từ session
+            $infoUser = $_SESSION['user_info'];
+        
+            // Cập nhật thông tin mới (nếu có)
+            $infoUser['full_name'] = $fullname;
+            $infoUser['address_user'] = $address;
+            $infoUser['email'] = $email;
+            $infoUser['birth_user'] = $datebirth;
+            $infoUser['roles'] = $roles;
+            $infoUser['phone_number'] = $phone;
+        
+            // Lưu lại vào session
+            $_SESSION['user_info'] = $infoUser;
+        } else {
+            // Xử lý và hiển thị lỗi
+            foreach ($sqlPass as $error) {
+                echo "<script>alert('Thông tin không được cập nhật!');</script>";
+                echo $error . "<br>";
+            }
+        }
+        }
+        
+     elseif (isset($_POST['editpassword'])) {
+        $auth = new Auth($database);
         $currentPassword = $_POST['current-password'];
         $newPassword = $_POST['new-password'];
         $confirmPassword = $_POST['confirm-password'];
@@ -22,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result === true) {
             // Mật khẩu đã được cập nhật thành công
             echo "<script>alert('Mật khẩu đã được cập nhật thành công!');</script>";
+            
         } else {
             // Xử lý và hiển thị lỗi
             foreach ($result as $error) {
@@ -124,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <li
                                                         class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
                                                         <strong class="text-slate-700">Số điện thoại:</strong> &nbsp;
-                                                        +84<?php echo  $_SESSION['user_info']['phone_number'] ?>
+                                                        <?php echo  $_SESSION['user_info']['phone_number'] ?>
                                                     </li>
                                                     <li
                                                         class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
@@ -281,7 +321,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </div>
                                             </div>
                                             <div class="flex-auto pl-4 ">
-                                                <form action="" class="mb-6 mr-4">
+                                                <form class="mb-6 mr-4" method="POST">
                                                     <div
                                                         class="grid md:grid-cols-2 grid-cols-1 md:gap-x-4 md:gap-y-0 gap-4">
                                                         <div class="w-full flex flex-col py-2">
@@ -301,14 +341,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                 class="p-2 border border-[#a5abb5] rounded" name="email"
                                                                 value=" <?php echo  $_SESSION['user_info']['email'] ?>">
                                                         </div>
+                                                        <input type="hidden" id="roles"
+                                                            class="p-2 border border-[#a5abb5] rounded" name="roles"
+                                                            value="<?php echo  $_SESSION['user_info']['roles'] ?>">
                                                         <div class="w-full flex flex-col py-2">
                                                             <label for="phonenumber"
                                                                 class="text-black font-semibold pb-1 capitalize"> Số
                                                                 điện thoại</label>
-                                                            <input type="phonenumber" id="phonenumber"
+                                                            <input type="text" id="phonenumber"
                                                                 class="p-2 border border-[#a5abb5] rounded"
                                                                 name="phonenumber"
-                                                                value=" <?php echo  $_SESSION['user_info']['phone_number'] ?>">
+                                                                value="<?php echo  $_SESSION['user_info']['phone_number'] ?>">
                                                         </div>
                                                         <div class="w-full flex flex-col py-2">
                                                             <label for="confirm-password"
@@ -323,7 +366,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                             <label for="addressuser"
                                                                 class="text-black font-semibold pb-1 capitalize"> Địa
                                                                 chỉ</label>
-                                                            <input type="addressuser" id="addressuser"
+                                                            <input type="text" id="addressuser"
                                                                 class="p-2 border border-[#a5abb5] rounded"
                                                                 name="addressuser"
                                                                 value=" <?php echo  $_SESSION['user_info']['address_user'] ?>">
