@@ -19,7 +19,7 @@ class Statistical
         } else {
             $totalRevenue = 0;
         }
-    
+
         return $totalRevenue;
     }
 
@@ -63,7 +63,6 @@ class Statistical
     public  function topSellers()
     {
         $date = getdate();
-        $target_month = $date['mon'];
         $sql = "SELECT
         users.full_name,
         users.avatar,
@@ -74,20 +73,39 @@ class Statistical
             users ON transactions.seller_id = users.user_id
         WHERE MONTH(transactions.transaction_date) = MONTH(CURRENT_DATE())
             AND YEAR(transactions.transaction_date) = YEAR(CURRENT_DATE())
+            AND users.roles != 'user'
         GROUP BY
             users.user_id, users.username, users.full_name, users.email
         ORDER BY
             totalRevenue DESC
         LIMIT 5
         ";
-            $result = $this->db->query($sql);
-            $data = [];
-            if ($result->num_rows > 0) {
-                while ($item = $result->fetch_assoc()) {
-                    $data[] = $item;
-                }
+        $result = $this->db->query($sql);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
+                $data[] = $item;
             }
-            return $data;
         }
+        return $data;
+    }
+    public  function RecentSixMonthsRevenue()
+    {
+        $sql = "SELECT 
+            YEAR(transaction_date) AS transaction_year,
+            MONTH(transaction_date) AS transaction_month,
+            SUM(payment) AS total_payment
+        FROM transactions
+        WHERE transaction_date >= CURDATE() - INTERVAL 6 MONTH
+        GROUP BY transaction_year, transaction_month";
+
+        $result = $this->db->query($sql);
+
+        // Fetch data and store in an associative array
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
 }
-?>

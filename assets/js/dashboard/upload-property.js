@@ -121,7 +121,9 @@
         const districtSelect = document.getElementById('district').value;
         const wardSelect = document.getElementById('ward').value;
         const addressDetail = document.querySelector('#addressDetail').value;
-        const getAddress = `${addressDetail}, ${wardSelect}, ${districtSelect}, ${citySelect}`;
+        const getAddress = [addressDetail, wardSelect, districtSelect, citySelect]
+  .filter(value => value.trim() !== '') // Loại bỏ các giá trị trống
+  .join(', ');
 
         console.log(getAddress);
         document.querySelector('.showAddress').innerHTML = getAddress;
