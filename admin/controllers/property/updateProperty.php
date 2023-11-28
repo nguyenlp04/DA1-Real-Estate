@@ -328,7 +328,7 @@ label {
                                 <div class="w-fit flex flex-row items-center gap-4 my-4 text-xs">
                                     <input type="submit"
                                         class="hover:text-[#0957CB] bg-[#0957CB] text-white rounded-lg p-3 text-sm font-semibold"
-                                        value="Thêm Bất Động Sản">
+                                        value="Cập nhật">
                                 </div>
                             </div>
                         </form>
