@@ -96,7 +96,7 @@ class Transaction
         JOIN properties ON negotiations.property_id = properties.property_id
         JOIN users AS users_seller ON negotiations.seller_id = users_seller.user_id
         JOIN users AS users_buyer ON negotiations.customer_id = users_buyer.user_id;
-    ";
+        ";
         $result = $this->db->query($query);
         $data = [];
         if ($result->num_rows > 0) {
@@ -125,17 +125,17 @@ class Transaction
         users_customer.email AS customer_email,
         users_seller.full_name AS seller_name,
         users_seller.email AS seller_email
-    FROM 
-        negotiations
-    JOIN 
-        properties ON negotiations.property_id = properties.property_id
-    JOIN 
-        users AS users_customer ON negotiations.customer_id = users_customer.user_id
-    JOIN 
-        users AS users_seller ON negotiations.seller_id = users_seller.user_id
-    WHERE 
-        negotiations.property_id = $negotiationId;
-    ";
+        FROM 
+            negotiations
+        JOIN 
+            properties ON negotiations.property_id = properties.property_id
+        JOIN 
+            users AS users_customer ON negotiations.customer_id = users_customer.user_id
+        JOIN 
+            users AS users_seller ON negotiations.seller_id = users_seller.user_id
+        WHERE 
+            negotiations.property_id = $negotiationId;
+        ";
         $result = $this->db->query($sqlGetInfo);
 
         // Check if the query was successful
@@ -195,7 +195,23 @@ class Transaction
         JOIN users AS users_seller ON negotiations.seller_id = users_seller.user_id
         JOIN users AS users_buyer ON negotiations.customer_id = users_buyer.user_id
         WHERE customer_id = $id;
-    ";
+        ";
+        $result = $this->db->query($query);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
+                $data[] = $item;
+            }
+        }
+        return $data;
+    }
+
+    public  function renderPropertyById($id)
+    {
+        $query = "SELECT properties.*, users.full_name, property_tags.tag_name FROM properties
+          LEFT JOIN users ON properties.user_id = users.user_id
+          LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id
+          WHERE properties.user_id = $id";
         $result = $this->db->query($query);
         $data = [];
         if ($result->num_rows > 0) {

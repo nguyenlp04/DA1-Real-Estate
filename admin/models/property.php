@@ -130,14 +130,14 @@ class Property
     public  function renderProperty()
     {
         $query = "
-    SELECT properties.*, users.full_name, property_tags.tag_name, MIN(images.image_url) AS first_image_url
-    FROM properties
-    LEFT JOIN users ON properties.user_id = users.user_id
-    LEFT JOIN images ON properties.property_id = images.property_id
-    LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id
-    WHERE status = 'Đã duyệt'
-    GROUP BY properties.property_id
-";
+        SELECT properties.*, users.full_name, property_tags.tag_name, MIN(images.image_url) AS first_image_url
+        FROM properties
+        LEFT JOIN users ON properties.user_id = users.user_id
+        LEFT JOIN images ON properties.property_id = images.property_id
+        LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id
+        WHERE status = 'Đã duyệt'
+        GROUP BY properties.property_id
+        ";
         $result = $this->db->query($query);
         $data = [];
         if ($result->num_rows > 0) {

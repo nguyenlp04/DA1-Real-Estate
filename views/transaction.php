@@ -143,8 +143,9 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                                 <?php
                                                 $stt = 1;
                                                 $database = new Database();
-                                                $Property = new Property($database);
-                                                $result = $Property->renderPropertyList();
+                                                $Property = new Transaction($database);
+                                                $id = $_SESSION['user_info']['user_id'];
+                                                $result = $Property->renderPropertyById($id);
                                                 foreach ($result as $row) {
                                                     echo '<tr>
                                 <td>' . $stt . '</td>
