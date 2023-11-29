@@ -70,34 +70,47 @@ include 'inc/header.php'
                   ';
     }}?>
                 <?php 
-    if (isset($_GET['category'])) {
-        $category = $_GET['category'];
+          // Kiểm tra xem có tham số 'category' được truyền vào không
+if (isset($_GET['category'])) {
+    $category = $_GET['category'];
     
-        // Thực hiện truy vấn để lấy bài viết thuộc danh mục
+    // Nếu tham số 'category' không phải là 'all', lấy bài viết thuộc danh mục
+    if ($category != 'all') {
         $query = "SELECT * FROM posts WHERE category = '$category'";
-        $result = $conn->query($query);
-    
-        // Kiểm tra kết quả trả về
-        if ($result->num_rows > 0) {
-            // Lấy dữ liệu từ kết quả trả về
-            while ($post = $result->fetch_assoc()) {
-                echo '<div class="items-news">';
-                echo '<div class="news-main">';
-                echo '<img src="' . $post['article_photo'] . '" alt="' . $post['title'] . '">';
-                echo '<div class="content-news-main">';
-                echo '<a href="newDetail?post_id='. $post['post_id'].'"><h3 class="title-news-main">' . $post['title'] . '</h3></a>';
-                echo '<span class="time-post"><i class="fa-solid fa-calendar-days"></i>' . $post['created_at'] . '</span>';
-                echo '<span class="cmt-post"><i class="fa-solid fa-comments"></i>(0)Bình luận</span>';
-                echo '<p class="descript">' . $post['description'] . '</p>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '<hr>';
-            }
-        } else {
-            echo "Không có bài viết trong danh mục này.";
-        }
-    }?>
+    } else {
+        // Nếu tham số 'category' là 'all', lấy tất cả các bài viết
+        $query = "SELECT * FROM posts";
+    }
+} else {
+    // Nếu không có tham số 'category', lấy tất cả các bài viết
+    $query = "SELECT * FROM posts";
+}
+
+$result = $conn->query($query);
+
+// Kiểm tra kết quả trả về
+if ($result->num_rows > 0) {
+    // Lấy dữ liệu từ kết quả trả về
+    while ($post = $result->fetch_assoc()) {
+        echo '<div class="items-news">';
+        echo '<div class="news-main">';
+        echo '<img src="' . $post['article_photo'] . '" alt="' . $post['title'] . '">';
+        echo '<div class="content-news-main">';
+        echo '<a href="newDetail?post_id='. $post['post_id'].'"><h3 class="title-news-main">' . $post['title'] . '</h3></a>';
+        echo '<span class="time-post"><i class="fa-solid fa-calendar-days"></i>' . $post['created_at'] . '</span>';
+        echo '<span class="cmt-post"><i class="fa-solid fa-comments"></i>(0)Bình luận</span>';
+        echo '<p class="descript">' . $post['description'] . '</p>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '<hr>';
+    }
+} else {
+    echo "Không có bài viết trong danh mục này.";
+}
+
+  
+    ?>
 
             </div>
         </div>

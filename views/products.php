@@ -101,12 +101,12 @@ include 'inc/header.php'
                     } else {
                         $result = $Property->searchProperties();
                     }
-
                     foreach ($result as $row) {
+                        // $firstImageUrl = $row['first_image_url'];
                         echo '<div class="col-md-3 col-sm-6 card-product article-loop">
                     <div class="house-card">
                         <div class="house__thumb">
-                            <img src="./assets/images/house-03.jpeg" alt="house-03" />
+                            <img src="./assets/images/imgproperty' .  $row['first_image_url'] . '" alt="house-03" />
                             <div class="house__meta">
                                 <a href="">' . $row['tag_name'] . '</a>
                             </div>

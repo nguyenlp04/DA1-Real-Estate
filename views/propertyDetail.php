@@ -504,34 +504,33 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                     <div class="qodef-m-price-content">
                                                         <span class="qodef-m-price-amount qodef-h5">
                                                             <?php
-                                                            $propertyId = $result['property_id']; 
-                                                            if(isset($_SESSION['user_info']['user_id'])){
-                                                            $userId = $_SESSION['user_info']['user_id'];
-                                                            $query = "SELECT negotiations.price_offered, properties.type FROM negotiations 
+                                                            $propertyId = $result['property_id'];
+                                                            if (isset($_SESSION['user_info']['user_id'])) {
+                                                                $userId = $_SESSION['user_info']['user_id'];
+                                                                $query = "SELECT negotiations.price_offered, properties.type FROM negotiations 
                                                             JOIN properties ON negotiations.property_id = properties.property_id 
                                                             WHERE negotiations.property_id = '$propertyId' AND negotiations.customer_id = '$userId' AND negotiations.status = 'Chấp nhận'";
-                                                            $negotiationResult = $conn->query($query);
-                                                            if ($negotiationResult->num_rows > 0) {
-                                                                $row = $negotiationResult->fetch_assoc();
-                                                                $acceptedPrice = $row['price_offered'];
-                                                                $price = $result['price'];
-                                                                echo "<del class='text-danger'>$price&#036;  </del>&ensp;";
-                                                                echo $acceptedPrice;
-                                                                $month = '';
-                                                                if($row['type'] == 'Thuê'){
-                                                                    $month = '/tháng';
+                                                                $negotiationResult = $conn->query($query);
+                                                                if ($negotiationResult->num_rows > 0) {
+                                                                    $row = $negotiationResult->fetch_assoc();
+                                                                    $acceptedPrice = $row['price_offered'];
+                                                                    $price = $result['price'];
+                                                                    echo "<del class='text-danger'>$price&#036;  </del>&ensp;";
+                                                                    echo $acceptedPrice;
+                                                                    $month = '';
+                                                                    if ($row['type'] == 'Thuê') {
+                                                                        $month = '/tháng';
+                                                                    }
                                                                 }
-                                                            } 
-                                                        }
-                                                            else {
+                                                            } else {
                                                                 echo $result['price'];
                                                             }
                                                             ?>&#036; </span>
                                                         <span class="qodef-m-price-after">
-                                                           <?php if(isset($month)){
+                                                            <?php if (isset($month)) {
                                                                 echo  $month;
-                                                           }  ?>
-                                                          </span>
+                                                            }  ?>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -586,30 +585,30 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                     <form method="POST" class="qodef-m-form" id="qodef-schedule-tour">
                                                         <div class="qodef-m-form-inner">
                                                             <form action="POST">
-                                                            <div class="qodef-m-form-row">
-                                                                <input type="text" name="user_name" placeholder="Họ và tên*">
-                                                            </div>
-                                                            <div class="qodef-m-form-row">
-                                                                <input type="email" name="user_email" placeholder="Email*">
-                                                            </div>
-                                                            <div class="qodef-m-form-row">
-                                                                <input type="text" name="user_phone" placeholder="Số điện thoại*">
-                                                            </div>
-                                                            <div class="qodef-m-form-row">
-                                                                <input type="date" name="date" placeholder="Thời gian*">
-                                                            </div>
-                                                            <div class="qodef-m-form-row">
-                                                                <textarea name="user_message" placeholder="Tin nhắn" rows="4"></textarea>
-                                                            </div>
-                                                            <input type="hidden" name="agent_id" value="5" />
-                                                            <div class="qodef-m-action qodef-property-spinner">
-                                                                <button type="submit" name="submitScheduletour" class="qodef-shortcode qodef-m  qodef-button qodef-layout--filled qodef-size--normal-full ">
-                                                                    <span class="qodef-btn-text">Đặt Lịch Tham Quan</span></button><span class="qodef-m-spinner">
-                                                                    <svg width="20" height="20" viewBox="0 0 50 50">
-                                                                        <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
-                                                                    </svg>
-                                                                </span>
-                                                            </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <input type="text" name="user_name" placeholder="Họ và tên*">
+                                                                </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <input type="email" name="user_email" placeholder="Email*">
+                                                                </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <input type="text" name="user_phone" placeholder="Số điện thoại*">
+                                                                </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <input type="date" name="date" placeholder="Thời gian*">
+                                                                </div>
+                                                                <div class="qodef-m-form-row">
+                                                                    <textarea name="user_message" placeholder="Tin nhắn" rows="4"></textarea>
+                                                                </div>
+                                                                <input type="hidden" name="agent_id" value="5" />
+                                                                <div class="qodef-m-action qodef-property-spinner">
+                                                                    <button type="submit" name="submitScheduletour" class="qodef-shortcode qodef-m  qodef-button qodef-layout--filled qodef-size--normal-full ">
+                                                                        <span class="qodef-btn-text">Đặt Lịch Tham Quan</span></button><span class="qodef-m-spinner">
+                                                                        <svg width="20" height="20" viewBox="0 0 50 50">
+                                                                            <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="qodef-m-form-result"></div>
