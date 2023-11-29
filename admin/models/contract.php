@@ -106,6 +106,7 @@ class Transaction
         }
         return $data;
     }
+    
     public function updateStatus($negotiationId, $newStatus)
     {
         // Escape variables and use single quotes for string values

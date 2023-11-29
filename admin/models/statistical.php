@@ -48,6 +48,7 @@ class Statistical
         }
         return $totalProperties;
     }
+    
     public  function totalUsers()
     {
         $totalUsers = "SELECT COUNT(*) AS totalUsers FROM users";
@@ -60,6 +61,7 @@ class Statistical
         }
         return $totalUsers;
     }
+
     public  function topSellers()
     {
         $date = getdate();
@@ -89,6 +91,7 @@ class Statistical
         }
         return $data;
     }
+
     public  function RecentSixMonthsRevenue()
     {
         $sql = "SELECT 

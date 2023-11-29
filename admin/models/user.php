@@ -163,8 +163,6 @@ class User
         }
     }
 
-
-
     public  function renderUser()
     {
         $query = "SELECT * FROM users";
@@ -201,6 +199,7 @@ class Profile {
     {
         $this->db = $database->conn;
     }
+    
     public function updateProfile($fullname,$datebirth,$address,$email,$roles,$phone,$userid){
         
         $errors = [];

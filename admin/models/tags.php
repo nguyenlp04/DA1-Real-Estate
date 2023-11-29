@@ -46,7 +46,6 @@ class Tags
         return $data;
     }
 
-    
     public  function deleteTags($idtags)
     {
         $sql = "SELECT * FROM property_tags WHERE tag_id ='$idtags'";
@@ -60,6 +59,7 @@ class Tags
         echo "Không tìm thấy dữ liệu";
         exit;
     }
+
     public function getTagById($idtags){
     
         $query = "SELECT * FROM property_tags WHERE tag_id = $idtags";
@@ -72,31 +72,29 @@ class Tags
         } else {
             return null;
         }
-}
-public  function updateTags($idtags){
-    $errors = [];
-    $success = "block";
-    $name = $_POST["name"];
-    $description = $_POST["description"];
+    }
 
-    if (empty($name)) {
-        $errors["name"] = "Tags không được để trống";
-    } 
+    public  function updateTags($idtags){
+        $errors = [];
+        $success = "block";
+        $name = $_POST["name"];
+        $description = $_POST["description"];
 
-    if (empty($errors)) {
-        $sql = "UPDATE `property_tags` SET `tag_name` = '$name', `tag_description` = '$description' WHERE `tag_id` = '$idtags'";
+        if (empty($name)) {
+            $errors["name"] = "Tags không được để trống";
+        } 
 
-        if ($this->db->query($sql) === TRUE) {
-            return $success;
+        if (empty($errors)) {
+            $sql = "UPDATE `property_tags` SET `tag_name` = '$name', `tag_description` = '$description' WHERE `tag_id` = '$idtags'";
+
+            if ($this->db->query($sql) === TRUE) {
+                return $success;
+            } else {
+                $errors["errors"] = $this->db->error;
+                return $errors;
+            }
         } else {
-            $errors["errors"] = $this->db->error;
             return $errors;
         }
-    } else {
-        return $errors;
     }
-}
-    
-    
-
 }

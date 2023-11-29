@@ -1,7 +1,8 @@
-<?php 
+<?php
 include 'views/inc/header.php';
 include(__DIR__ . '/admin/models/tags.php');
-
+include(__DIR__ . '/admin/models/property.php');
+include(__DIR__ . '/admin/models/posts.php');
 ?>
 
 <!-- hero section start -->
@@ -44,7 +45,7 @@ include(__DIR__ . '/admin/models/tags.php');
         <div class="row">
             <div class="col-12">
                 <div class="advance-search">
-                    <form  class="inline-form" action="products">
+                    <form class="inline-form" action="products">
                         <div class="search__type">
                             <input type="radio" name="search-type" id="searchRent" value="Thuê" checked />
                             <label for="searchRent">Thuê</label>
@@ -68,18 +69,18 @@ include(__DIR__ . '/admin/models/tags.php');
                         <div class="input-group">
                             <label for="apantment">Loại</label>
                             <select name="apartment" id="apartment">
-                            <option value="">---</option>
-                            <?php
-                            $database = new Database();
-                            $Tags = new Tags($database);
-                            $result = $Tags->renderTags();
-                            foreach ($result as $row) {
-                                echo '
+                                <option value="">---</option>
+                                <?php
+                                $database = new Database();
+                                $Tags = new Tags($database);
+                                $result = $Tags->renderTags();
+                                foreach ($result as $row) {
+                                    echo '
                             <option value="' . $row['tag_id'] . '">' . $row['tag_name'] . '</option>
                                 ';
-                            }
-                            ?>
-                        </select>
+                                }
+                                ?>
+                            </select>
                             <div class="icon">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.25 6.75L9 1.5L15.75 6.75V15C15.75 15.3978 15.592 15.7794 15.3107 16.0607C15.0294 16.342 14.6478 16.5 14.25 16.5H3.75C3.35218 16.5 2.97064 16.342 2.68934 16.0607C2.40804 15.7794 2.25 15.3978 2.25 15V6.75Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -90,12 +91,12 @@ include(__DIR__ . '/admin/models/tags.php');
                         <div class="input-group">
                             <label for="price">Ngân sách</label>
                             <select name="price" id="price">
-                            <option value="---">---</option>
-                            <option value="1000-">dưới $1,000.00</option>
-                            <option value="1000-10000">$1,000.00 - $10,000.00</option>
-                            <option value="10000-30000">$10,000.00 - $30,000.00</option>
-                            <option value="30000-50000">$30,000.00 - $50,000.00</option>
-                            <option value="50000+">$Trên $50,000.00</option>
+                                <option value="---">---</option>
+                                <option value="1000-">dưới $1,000.00</option>
+                                <option value="1000-10000">$1,000.00 - $10,000.00</option>
+                                <option value="10000-30000">$10,000.00 - $30,000.00</option>
+                                <option value="30000-50000">$30,000.00 - $50,000.00</option>
+                                <option value="50000+">$Trên $50,000.00</option>
                             </select>
                             <div class="icon">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,7 +125,7 @@ include(__DIR__ . '/admin/models/tags.php');
                             <button class="btn btn-primary" type="submit">Tìm Kiếm</button>
                         </div>
                     </form>
-                    
+
                     <div class="suggest">
                         <p>Gợi ý: </p>
                         <span draggable="true" ondragstart="dragStart(event)">Hà Nội</span>
@@ -152,25 +153,30 @@ include(__DIR__ . '/admin/models/tags.php');
         </div>
         <div class="section-content">
             <div class="row">
-                <div class="col-md-4 col-sm-6">
+                <?php
+                $database = new Database();
+                $Property = new Property($database);
+                $result = $Property->renderThreeProperties();
+                foreach ($result as $row) {
+                    // $firstImageUrl = $row['first_image_url'];
+                    echo '<div class="col-md-4 col-sm-6">
                     <div class="house-card">
                         <div class="house__thumb">
-                            <img src="assets/images/house-01.jpeg" alt="house-01" />
+                            <img src="./assets/images/imgproperty' .  $row['first_image_url'] . '" alt="house-03" />
                             <div class="house__meta">
-                                <a href="#">Bất Động Sản</a>
+                                <a href="">' . $row['tag_name'] . '</a>
                             </div>
                         </div>
-
                         <div class="house__content">
                             <div class="house__content__top">
-                                <h4 class="price">$590,600.00</h4>
-                                <span class="status">Bán</span>
+                                <h4 class="price">$' . number_format($row['price'], 2) . '</h4>
+                                <span class="services">' . $row['type'] . '</span>
                             </div>
                             <div class="house__content__main">
-                                <h3 class="title"><a href="#">Nhà Ở Chung Cư</a></h3>
+                                <h3 class="title"><a href="propertyDetail?id=' . $row['property_id'] . '">' . $row['title'] . '</a></h3>
                                 <p class="location">
-                                    <span class="icon"><img src="assets/images/icons/map-pin.svg" alt="map pin" /></span>
-                                    <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
+                                    <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                                    <span>' . $row['location'] . '</span>
                                 </p>
                             </div>
                         </div>
@@ -180,134 +186,26 @@ include(__DIR__ . '/admin/models/tags.php');
                                     <div class="icon">
                                         <i class="fa-solid fa-bed"></i>
                                     </div>
-                                    <span>2</span>
+                                    <span>' . $row['beds'] . '</span>
                                 </div>
                                 <div class="info">
                                     <div class="icon">
-                                        <i class="fa-solid fa-house"></i>
+                                        <i class="fa-solid fa-bath"></i>
                                     </div>
-                                    <span>2</span>
-                                </div>
-                                <div class="info">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-car-tunnel"></i>
-                                    </div>
-                                    <span>3</span>
+                                    <span>' . $row['baths'] . '</span>
                                 </div>
                                 <div class="info info-right">
                                     <div class="icon">
                                         <i class="fa-solid fa-vector-square"></i>
                                     </div>
-                                    <span>3000 M<sup>2</sup></span>
+                                    <span class="acreage">' . $row['acreage'] . '</span><span>M<sup>2</sup></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="house-card">
-                        <div class="house__thumb">
-                            <img src="assets/images/house-02.jpeg" alt="house-02" />
-                            <div class="house__meta">
-                                <a href="#">Bất Động Sản</a>
-                            </div>
-                        </div>
-
-                        <div class="house__content">
-                            <div class="house__content__top">
-                                <h4 class="price">$4,600.00</h4>
-                                <span class="status">Thuê</span>
-                            </div>
-                            <div class="house__content__main">
-                                <h3 class="title"><a href="#">Biệt Thư</a></h3>
-                                <p class="location">
-                                    <span class="icon"><img src="assets/images/icons/map-pin.svg" alt="map pin" /></span>
-                                    <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="house__content__bottom">
-                            <div class="info-wrap">
-                                <div class="info">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-bed"></i>
-                                    </div>
-                                    <span>2</span>
-                                </div>
-                                <div class="info">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-house"></i>
-                                    </div>
-                                    <span>2</span>
-                                </div>
-                                <div class="info">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-car-tunnel"></i>
-                                    </div>
-                                    <span>3</span>
-                                </div>
-                                <div class="info info-right">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-vector-square"></i>
-                                    </div>
-                                    <span>3000 M<sup>2</sup></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="house-card">
-                        <div class="house__thumb">
-                            <img src="assets/images/house-03.jpeg" alt="house-03" />
-                            <div class="house__meta">
-                                <a href="#">Bất Động Sản</a>
-                            </div>
-                        </div>
-
-                        <div class="house__content">
-                            <div class="house__content__top">
-                                <h4 class="price">$260,600.00</h4>
-                                <span class="status">Bán</span>
-                            </div>
-                            <div class="house__content__main">
-                                <h3 class="title"><a href="#">Nhà Ở Thương Mại</a></h3>
-                                <p class="location">
-                                    <span class="icon"><img src="assets/images/icons/map-pin.svg" alt="map pin" /></span>
-                                    <span>Đại Dương, Đa Tốn, Gia Lâm, Hà Nội</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="house__content__bottom">
-                            <div class="info-wrap">
-                                <div class="info">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-bed"></i>
-                                    </div>
-                                    <span>2</span>
-                                </div>
-                                <div class="info">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-house"></i>
-                                    </div>
-                                    <span>2</span>
-                                </div>
-                                <div class="info">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-car-tunnel"></i>
-                                    </div>
-                                    <span>3</span>
-                                </div>
-                                <div class="info info-right">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-vector-square"></i>
-                                    </div>
-                                    <span>3000 M<sup>2</sup></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div>';
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -380,40 +278,52 @@ include(__DIR__ . '/admin/models/tags.php');
         <div class="section-content">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-                    <div class="city-card">
-                        <img src="./assets/images/cauvang-1654247842-9403-1654247849.jpeg" alt="city-01" />
-                        <h4 class="title">Đà Nẵng</h4>
-                    </div>
+                    <a href="products?city=Đà+Nẵng">
+                        <div class="city-card">
+                            <img src="./assets/images/cauvang-1654247842-9403-1654247849.jpeg" alt="city-01" />
+                            <h4 class="title">Đà Nẵng</h4>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="city-card">
-                        <img src="assets/images/cover-1578768419-1710-1578769015.jpeg" alt="city-02" />
-                        <h4 class="title">Hà Nội</h4>
-                    </div>
+                    <a href="products?city=Hà+Nội">
+                        <div class="city-card">
+                            <img src="assets/images/cover-1578768419-1710-1578769015.jpeg" alt="city-02" />
+                            <h4 class="title">Hà Nội</h4>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="city-card">
-                        <img src="assets/images/1(3).jpeg"" alt=" city-03" />
-                        <h4 class="title">Sài Gòn</h4>
-                    </div>
+                    <a href="products?city=Hồ+Chí+Minh">
+                        <div class="city-card">
+                            <img src="assets/images/1(3).jpeg"" alt=" city-03" />
+                            <h4 class="title">Hồ Chí Minh</h4>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="city-card">
-                        <img src="assets/images/abdffce43449f317aa58.jpeg" alt="city-04" />
-                        <h4 class="title">Nha Trang</h4>
-                    </div>
+                    <a href="products?city=Nha+Trang">
+                        <div class="city-card">
+                            <img src="assets/images/abdffce43449f317aa58.jpeg" alt="city-04" />
+                            <h4 class="title">Nha Trang</h4>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="city-card">
-                        <img src="assets/images/quynhon-binhdinh.jpeg" alt="city-05" />
-                        <h4 class="title">Quy Nhơn</h4>
-                    </div>
+                    <a href="products?city=Quy+Nhơn">
+                        <div class="city-card">
+                            <img src="assets/images/quynhon-binhdinh.jpeg" alt="city-05" />
+                            <h4 class="title">Quy Nhơn</h4>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="city-card">
-                        <img src="assets/images/dia-diem-du-lich-can-tho-cover.jpeg" alt="city-06" />
-                        <h4 class="title">Cần Thơ</h4>
-                    </div>
+                    <a href="products?city=Cần+Thơ">
+                        <div class="city-card">
+                            <img src="assets/images/dia-diem-du-lich-can-tho-cover.jpeg" alt="city-06" />
+                            <h4 class="title">Cần Thơ</h4>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -778,63 +688,52 @@ include(__DIR__ . '/admin/models/tags.php');
         </div>
         <div class="section-content">
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="blog-card">
-                        <div class="blog__thumb">
-                            <a href="#">
-                                <img src="assets/images/house-01.jpeg" alt="blog-1" />
-                            </a>
-                        </div>
+                <style>
+                    .description-post {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        padding: 0 !important;
+                        margin-bottom: 10px;
+                    }
 
-                        <div class="blog__meta">
-                            <a href="#" class="date">Tuesday 19 June, 2022</a>
-                            <!-- <span class="category">Auto mobile</span>
-                                    <span class="tags">Auto, mobile</span> -->
-                        </div>
-                        <div class="blog__content">
-                            <h4 class="title"><a href="#">Xuất hiện căn hộ cao cấp làm mê mẩn giới thượng lưu</a>
-                            </h4>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui cras adipiscing non odio elementum. Quis urna, tristique amet sit libero.</p> -->
-                            <a href="#" class="btn btn-primary btn-more">Đọc Thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="blog-card">
-                        <div class="blog__thumb">
-                            <a href="#">
-                                <img src="assets/images/house-02.jpeg" alt="blog-2" />
-                            </a>
-                        </div>
+                    .title-post {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 0;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        padding: 0 !important;
+                        margin-bottom: 10px;
+                    }
+                </style>
+                <?php
+                $database = new Database();
+                $Post = new Post($database);
+                $result = $Post->renderThreePost();
+                foreach ($result as $row) {
+                    echo '
+                        <div class="col-md-4 col-sm-6">
+                        <a href="newDetail?post_id=' . $row['post_id'] . '" style="color: unset;">
+                            <div class="blog-card">
+                                <div class="blog__thumb">
 
-                        <div class="blog__meta">
-                            <a href="#" class="date">Friday 20 June, 2021</a>
-                        </div>
-                        <div class="blog__content">
-                            <h4 class="title"><a href="#">Tiếp tục rà soát, đánh giá những bất cập liên quan đến
-                                    tích tụ đất đai</a></h4>
-                            <a href="#" class="btn btn-primary btn-more">Đọc Thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="blog-card">
-                        <div class="blog__thumb">
-                            <a href="#">
-                                <img src="assets/images/house-03.jpeg" alt="blog-3" />
-                            </a>
-                        </div>
+                                        <img src="assets/images/house-02.jpeg" alt="blog-2" />
+                                </div>
 
-                        <div class="blog__meta">
-                            <a href="#" class="date">Sunday 22 June, 2021</a>
-                        </div>
-                        <div class="blog__content">
-                            <h4 class="title"><a href="#">Buổi gặp gỡ cộng đồng cư dân danh giá tương lai của dự án
-                                    Dragon Fairy</a></h4>
-                            <a href="#" class="btn btn-primary btn-more">Đọc Thêm</a>
-                        </div>
-                    </div>
-                </div>
+                                <div class="blog__meta">
+                                    ' . $row['created_at'] . '
+                                </div>
+                                <div class="blog__content">
+                                    <h4 class="title title-post">' . $row['title'] . '</h4>
+                                    <p class="description description-post">' . $row['description'] . '.</p>
+                                    <a href="newDetail?post_id=' . $row['post_id'] . '" class="btn btn-primary btn-more">Đọc Thêm</a>
+                                </div>
+                                </div>
+                                </a>
+                        </div>';
+                }
+                ?>
             </div>
         </div>
     </div>

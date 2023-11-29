@@ -130,14 +130,14 @@ class Schedule
         users_seller.full_name AS seller_name,
         schedule_tour.status AS tour_status,
         schedule_tour.created_at AS tour_created_at
-    FROM
-        schedule_tour
-    JOIN
-        properties ON schedule_tour.property_id = properties.property_id
-    JOIN
-        users ON schedule_tour.customer_id = users.user_id
-    JOIN 
-        users AS users_seller ON schedule_tour.seller_id = users_seller.user_id";
+        FROM
+            schedule_tour
+        JOIN
+            properties ON schedule_tour.property_id = properties.property_id
+        JOIN
+            users ON schedule_tour.customer_id = users.user_id
+        JOIN 
+            users AS users_seller ON schedule_tour.seller_id = users_seller.user_id";
     
         $result = $this->db->query($query);
         $data = [];

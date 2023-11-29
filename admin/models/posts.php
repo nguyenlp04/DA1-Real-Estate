@@ -47,6 +47,7 @@ class Post
             }
         }
     }
+
     public function listPost()
     {
         $sql = "SELECT * FROM posts";
@@ -61,6 +62,21 @@ class Post
 
         return $posts;
     }
+
+    public function renderThreePost(){
+        $sql = "SELECT * FROM posts LIMIT 3";
+        $result = $this->db->query($sql);
+        $data = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+
+        return $data;
+    }
+
     public function updatePost($postid, $title, $content, $description, $category, $articlephoto)
     {
 
@@ -101,6 +117,7 @@ class Post
             return null;
         }
     }
+
     public function deletePost($postid)
     {
 
@@ -113,8 +130,6 @@ class Post
             return false; // Trả về false nếu có lỗi khi xóa
         }
     }
-
-
     // phần view 
     public function renderCategoryPost(){
         $query = "SELECT DISTINCT category FROM posts";
@@ -131,6 +146,7 @@ class Post
             return null;
         }
     }
+
     public function getLatestPosts($limit = 4) {
         $query = "SELECT * FROM posts ORDER BY created_at DESC LIMIT $limit";
         $result = $this->db->query($query);
@@ -145,6 +161,7 @@ class Post
 
         return $latestPosts;
     }
+
     public function getOneLatestPosts($limit = 1) {
         $query = "SELECT * FROM posts ORDER BY created_at DESC LIMIT $limit";
         $result = $this->db->query($query);

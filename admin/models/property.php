@@ -148,6 +148,26 @@ class Property
         return $data;
     }
 
+    public function renderThreeProperties(){
+        $query = "
+        SELECT properties.*, users.full_name, property_tags.tag_name, MIN(images.image_url) AS first_image_url
+        FROM properties
+        LEFT JOIN users ON properties.user_id = users.user_id
+        LEFT JOIN images ON properties.property_id = images.property_id
+        LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id
+        WHERE status = 'Đã duyệt'
+        GROUP BY properties.property_id
+        ORDER BY price DESC
+        LIMIT 3";
+        $result = $this->db->query($query);
+        $data = [];
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
+                $data[] = $item;
+            }
+        }
+        return $data;
+    }
 
     public  function renderPropertyDetail($id)
     {
@@ -163,7 +183,6 @@ class Property
         }
         return $item;
     }
-
 
     public  function renderImagePropertyDetail($id)
     {
@@ -440,7 +459,7 @@ class Property
     public function searchProperties()
     {
 
-        $searchType = isset($_GET['search-type']) ? $_GET['search-type'] : '';
+        $searchType = isset($_GET['search-type']) ? 'properties.type = \'' . $_GET['search-type'] . '\'' : 'properties.type <> ""';
         $city = isset($_GET['city']) ? $_GET['city'] : '';
         $address = '%' . $city . '%';
         $getApartment = isset($_GET['apartment']) ? $_GET['apartment'] : '';
@@ -498,7 +517,7 @@ class Property
         LEFT JOIN property_tags ON properties.tag_id = property_tags.tag_id 
         LEFT JOIN images ON properties.property_id = images.property_id
         WHERE status = 'Đã duyệt' AND
-        properties.type = '$searchType' AND
+        $searchType AND
         $apartment AND
         properties.location LIKE '$address' AND
             $apartment   AND

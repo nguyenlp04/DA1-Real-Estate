@@ -95,8 +95,8 @@ include 'inc/header.php'
                     $database = new Database();
                     $Property = new Property($database);
                     $result = $Property->renderProperty();
-                    $searchType = isset($_GET['search-type']) ? $_GET['search-type'] : '';
-                    if($searchType == ''){
+                    $cityType = isset($_GET['city']) ? $_GET['city'] : '';
+                    if($cityType == ''){
                         $result = $Property->renderProperty();
                     } else {
                         $result = $Property->searchProperties();
@@ -113,7 +113,7 @@ include 'inc/header.php'
                         </div>
                         <div class="house__content">
                             <div class="house__content__top">
-                                <h4 class="price">$' . $row['price'] . '</h4>
+                                <h4 class="price">$' . number_format($row['price'], 2) . '</h4>
                                 <span class="services">' . $row['type'] . '</span>
                             </div>
                             <div class="house__content__main">

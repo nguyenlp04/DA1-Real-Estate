@@ -61,6 +61,7 @@ class Auth
             }
         }
     }
+    
     public function login()
     {
         $addFailure = 'block';
@@ -195,7 +196,6 @@ class Auth
         }
     }
 
-
     public function recoverCode()
     {
         $codeError = '<span class="text-danger">Mã không hợp lệ</span>';
@@ -220,7 +220,8 @@ class Auth
             $sql = "UPDATE users SET password = '$passNew' WHERE email='$emailChangePass'";
             $old = $this->db->query($sql);
             header("Location: ./index.php");
-        }}
+        }
+    }
 
     public function updatePassword($currentPassword, $newPassword, $confirmPassword, $userid)
     {
