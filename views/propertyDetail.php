@@ -505,6 +505,7 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                         <span class="qodef-m-price-amount qodef-h5">
                                                             <?php
                                                             $propertyId = $result['property_id']; 
+                                                            if(isset($_SESSION['user_info']['user_id'])){
                                                             $userId = $_SESSION['user_info']['user_id'];
                                                             $query = "SELECT negotiations.price_offered, properties.type FROM negotiations 
                                                             JOIN properties ON negotiations.property_id = properties.property_id 
@@ -520,14 +521,16 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                                 if($row['type'] == 'Thuê'){
                                                                     $month = '/tháng';
                                                                 }
-                                                            } else {
+                                                            } 
+                                                        }
+                                                            else {
                                                                 echo $result['price'];
                                                             }
-                                                            
-                                                            
                                                             ?>&#036; </span>
                                                         <span class="qodef-m-price-after">
-                                                           <?php echo  $month ?>
+                                                           <?php if(isset($month)){
+                                                                echo  $month;
+                                                           }  ?>
                                                           </span>
                                                     </div>
                                                 </div>
