@@ -28,7 +28,7 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
 <section>
     <div class="container">
         <div class="path-page"><a href="home">Trang chủ </a><i class="fa-solid fa-angle-right"></i>
-            <p>Sản Phẩm</p>
+            <p>Giao dịch</p>
         </div>
         <div class="container d-block  ">
             <div class="row ">
@@ -65,10 +65,19 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                                 $stt = 1;
                                                 $database = new Database();
                                                 $Negotiation = new Transaction($database);
-                                                $id = $_SESSION['user_info']['user_id'];
+                                                if(isset($_SESSION['user_info'])){
+                                                    $id = $_SESSION['user_info']['user_id'];
+                                                } else {
+                                                    $id = 0;
+                                                }
                                                 $result = $Negotiation->renderNegotiationsByUser($id);
                                                 foreach ($result as $row) {
                                                     $statusColor = ($row['status'] === 'Chấp nhận') ? '#e67e22' : (($row['status'] === 'Đang thương lượng') ? '#0984e3' : '#e74c3c');
+                                                    if($row['seller_id'] != $id){
+                                                        $noneEdit = "d-none";
+                                                    } else {
+                                                        $noneEdit = "";
+                                                    }
                                                     echo '<tr>
                                     <td>' . $stt . '</td>
                                     <td><a href="propertyDetail?id=' . $row['property_id'] . '">' . $row['property_title'] . '</a></td>
@@ -77,7 +86,7 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                     <td>' . $row['price'] . '$</td>
                                     <td>' . $row['price_offered'] . '$</td>
                                     <td><span style="color: black; text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: ' . $statusColor . '">' . $row['status'] . '
-                                    <i class="fa-solid fs-5 fa-pen-to-square overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModal' . $row['negotiation_id'] . '"></i></span></td>
+                                    <i class="fa-solid fs-5 fa-pen-to-square overlay mr-2 '.$noneEdit.'" style="color: blue;" data-toggle="modal" data-target="#propertyModal' . $row['negotiation_id'] . '"></i></span></td>
                                     <td>' . $row['created_at'] . '</td>
                                 </tr>
                                 <div class="modal" id="propertyModal' . $row['negotiation_id'] . '">
@@ -144,7 +153,11 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                                 $stt = 1;
                                                 $database = new Database();
                                                 $Property = new Transaction($database);
-                                                $id = $_SESSION['user_info']['user_id'];
+                                                if(isset($_SESSION['user_info'])){
+                                                    $id = $_SESSION['user_info']['user_id'];
+                                                } else {
+                                                    $id = 0;
+                                                }
                                                 $result = $Property->renderPropertyById($id);
                                                 foreach ($result as $row) {
                                                     echo '<tr>

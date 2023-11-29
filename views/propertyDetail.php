@@ -507,9 +507,12 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                             $propertyId = $result['property_id'];
                                                             if (isset($_SESSION['user_info']['user_id'])) {
                                                                 $userId = $_SESSION['user_info']['user_id'];
+                                                            } else {
+                                                                $userId = 0;
+                                                            }
                                                                 $query = "SELECT negotiations.price_offered, properties.type FROM negotiations 
-                                                            JOIN properties ON negotiations.property_id = properties.property_id 
-                                                            WHERE negotiations.property_id = '$propertyId' AND negotiations.customer_id = '$userId' AND negotiations.status = 'Chấp nhận'";
+                                                                JOIN properties ON negotiations.property_id = properties.property_id 
+                                                                WHERE negotiations.property_id = '$propertyId' AND negotiations.customer_id = '$userId' AND negotiations.status = 'Chấp nhận'";
                                                                 $negotiationResult = $conn->query($query);
                                                                 if ($negotiationResult->num_rows > 0) {
                                                                     $row = $negotiationResult->fetch_assoc();
@@ -521,7 +524,7 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                                     if ($row['type'] == 'Thuê') {
                                                                         $month = '/tháng';
                                                                     }
-                                                                }
+                                                                // }
                                                             } else {
                                                                 echo $result['price'];
                                                             }
@@ -529,7 +532,8 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                         <span class="qodef-m-price-after">
                                                             <?php if (isset($month)) {
                                                                 echo  $month;
-                                                            }  ?>
+                                                            }  
+                                                            ?>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -538,7 +542,7 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                 <div class="qodef-m-author-top">
                                                     <div class="qodef-m-author-image">
                                                         <a itemprop="author" href="https://newhome.qodeinteractive.com/author/rachel-gray/">
-                                                            <img src="./assets/images/imguser<?php echo $result['avatar'] ?>" alt="f" width="100" height="100" data-ratio="1" /> </a>
+                                                            <img src="./assets/images/imguser<?php echo $result['avatar'] ?>" alt="f" style="width:70px; height:70px" data-ratio="1" /> </a>
                                                     </div>
                                                     <div class="qodef-m-author-heading">
                                                         <span class="qodef-m-author-heading-agency">

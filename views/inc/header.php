@@ -110,7 +110,7 @@ if (isset($_SESSION['user_info'])) {
                         <div class="group-login align-items-center dropdown <?php echo $hiddenUser ?>">
                             <a class=" dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" type="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                                 <img src="./assets/images/imguser/user.png" class="rounded-circle" style="height: 35px" alt="Avatar" loading="lazy" />
-                                <span class="ms-2 text-dark">Nguyen</span>
+                                <span class="ms-2 text-dark"><?php echo $rowGet['full_name'] ?></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar" style="font-size: 16px">
 
