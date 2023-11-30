@@ -555,12 +555,12 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                     <div class="qodef-m-author-content-item">
                                                         <span class="qodef-m-author-content-item-label">
                                                             Điện thoại văn phòng: </span>
-                                                        +1114445557
+                                                        +84989898989
                                                     </div>
                                                     <div class="qodef-m-author-content-item">
                                                         <span class="qodef-m-author-content-item-label">
                                                             Số điện thoại: </span>
-                                                        +84 <?php echo $result['phone_number'] ?>
+                                                        <?php echo $result['phone_number'] ?>
                                                     </div>
                                                     <div class="qodef-m-author-content-item">
                                                         <span class="qodef-m-author-content-item-label">
@@ -568,7 +568,7 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                         <?php echo $result['email'] ?>
                                                     </div>
                                                 </div>
-                                                <a class="qodef-shortcode qodef-m qodef-m-author-link qodef-button qodef-layout--filled qodef-size--normal-full qodef-html--link" href="https://newhome.qodeinteractive.com/author/rachel-gray/" target="_self"> <span class="qodef-m-text">Giao Dịch</span></a>
+                                                <a class="qodef-shortcode qodef-m qodef-m-author-link qodef-button qodef-layout--filled qodef-size--normal-full qodef-html--link" href="payment" target="_self"> <span class="qodef-m-text">Giao Dịch</span></a>
                                             </section>
                                             <section class="qodef-m-schedule-tour">
                                                 <h4 class="qodef-m-schedule-tour-title">Lịch trình tham quan</h4>

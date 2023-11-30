@@ -106,7 +106,12 @@ class Post
     public function getPostById($postid)
     {
 
-        $query = "SELECT * FROM posts WHERE post_id = $postid";
+        $query = "SELECT posts.*, 
+        author_user.full_name AS author
+        FROM posts 
+        INNER JOIN 
+        users AS author_user ON posts.user_id = author_user.user_id
+        WHERE post_id = $postid";
 
         $result = $this->db->query($query);
 

@@ -25,8 +25,17 @@ if (isset($_GET['post_id'])) {
         // Hiển thị thông tin bài viết
 
         echo '<h1 class="title-news-more" style="font-size: 4.5rem;">' . $post['title'] . '</h1>';
-        echo '<p class="time-post"><i class="fa-solid fa-calendar-days"></i>' . $post['created_at'] . '</p>';
+        echo '<p class="time-post"><i class="fa-solid fa-calendar-days"></i>&nbsp;' . $post['created_at'] . '</p>';
         echo '<p class="content-news">' . $post['content'] . '</p>';
+        echo '
+        <div class="row fw-bold text-light-emphasis fs-5">
+            <div class="col-6"></div>
+            <div class="col-6 text-center fs-6">Tác giả</div>
+            <div class="col-6"></div>
+            <div class="col-6 text-center"><em>' . $post['author'] . '</em></div>
+        </div>
+';
+
 
     } else {
         echo '<p>Bài viết không tồn tại.</p>';

@@ -20,7 +20,6 @@ include 'inc/header.php'
                         <select name="services" id="services">
                             <option value="">---</option>
                             <option value="Thuê">Thuê</option>
-                            <option value="Mua">Mua</option>
                             <option value="Bán">Bán</option>
                         </select>
                         <div class="icon">

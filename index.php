@@ -50,9 +50,6 @@ include(__DIR__ . '/admin/models/posts.php');
                             <input type="radio" name="search-type" id="searchRent" value="Thuê" checked />
                             <label for="searchRent">Thuê</label>
 
-                            <input type="radio" name="search-type" id="searchBuy" value="Mua" />
-                            <label for="searchBuy">Mua</label>
-
                             <input type="radio" name="search-type" id="searchSell" value="Bán" />
                             <label for="searchSell">Bán</label>
                         </div>
@@ -718,7 +715,7 @@ include(__DIR__ . '/admin/models/posts.php');
                             <div class="blog-card">
                                 <div class="blog__thumb">
 
-                                        <img src="assets/images/house-02.jpeg" alt="blog-2" />
+                                        <img src="' . $row['article_photo'] . '" alt="blog-2" />
                                 </div>
 
                                 <div class="blog__meta">

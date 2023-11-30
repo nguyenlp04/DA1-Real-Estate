@@ -33,8 +33,8 @@ $posts = $Post->listPost();
                             <?php foreach ($posts as $post) : ?>
                             <tr>
                                 <td><?php echo $post['post_id']; ?></td>
-                                <td><img src="../../.<?php echo $post['article_photo']; ?>" alt="Ảnh đại diện"
-                                        width="50"></td>
+                                <td><img src="./.<?php echo $post['article_photo']; ?>" alt="Ảnh đại diện"
+                                        width="100"></td>
                                 <td><?php echo $post['title']; ?></td>
                                 <td>
                                     <p
