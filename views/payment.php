@@ -1,5 +1,31 @@
 <?php 
-include 'inc/header.php'
+include 'inc/header.php';
+include(__DIR__ . '/../admin/models/property.php');
+include(__DIR__ . '/../admin/models/contract.php');
+
+
+$database = new Database();
+$Property = new Property($database);
+$errors = [];
+$success = 'none';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$payment = new Transaction($database);
+
+    $result = $payment->addTransaction();
+    if (is_array($result) && !empty($result)) {
+        $errors = $result;
+    } else if (is_string($result) && !empty($result)) {
+        $success = $result;
+    }}
+if (isset($_GET['id'])) {
+    $idproperty = $_GET['id'];
+    $property = $Property->getPropertyById($idproperty);
+    if (!$property) {
+        echo "Không tìm thấy giao dịch  với ID: $idproperty";
+    }
+}
+
+
 ?>
 <style>
 .img-property {
@@ -44,13 +70,14 @@ include 'inc/header.php'
                         <span class="text-primary">Chi tiết </span>
 
                     </h4>
+
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
                                 <h6 class="my-0">Tên bất động sản</h6>
-                                <small class="text-muted">Biệt thự sẩn vườn</small>
+                                <small class="text-muted"><?php echo $property['title']?></small>
                             </div>
-                            <span class="text-muted">$1200</span>
+                            <span class="text-muted">$<?php echo $property['price']?></span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -58,14 +85,15 @@ include 'inc/header.php'
                                 <h6 class="my-0">Số tiền đặt cọc</h6>
                                 <small class="text-muted">30%</small>
                             </div>
-                            <span class="text-muted">$360</span>
+                            <span
+                                class="text-muted">$<?php $deposit=0; $deposit=$property['price']*0.3; echo $deposit ;?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between bg-light">
                             <div class="text-success">
                                 <h6 class="my-0">Số tiền phải thanh toán</h6>
-                                <small>Biệt thự sân vườn</small>
+                                <small><?php echo $property['title']?></small>
                             </div>
-                            <span class="text-success">$360</span>
+                            <span class="text-success">$<?php echo $deposit;?></span>
                         </li>
 
                     </ul>
@@ -82,10 +110,11 @@ include 'inc/header.php'
                             <div class="house__content">
 
                                 <div class="house__content__main">
-                                    <h3 class="title"><a href="propertyDetail?id=90">Biệt thự sân vườn</a></h3>
+                                    <h3 class="title"><a href="propertyDetail?id=90"><?php echo $property['title']?></a>
+                                    </h3>
                                     <p class="location">
                                         <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-                                        <span>262 Tôn Đản, Phường Hòa An, Quận Cẩm Lệ, Thành phố Đà Nẵng, , ,
+                                        <span><?php echo $property['location']?>
                                         </span>
                                     </p>
                                 </div>
@@ -98,11 +127,24 @@ include 'inc/header.php'
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Thông tin thanh toán</h4>
-                    <form class="needs-validation" novalidate>
+
+                    <div class="alert alert-success h-full m-0	ml-2"
+                        style="background-color: #5cb85c; display: <?php echo $success ?>">
+                        <i class="text-white fas fa-circle-check"></i>&nbsp;<strong class="text-white">Đặt cọc thành
+                            công!</strong>
+                    </div>
+                    <form class="needs-validation" method="post">
+                        <input type="hidden" name="propertyid" value="<?php echo $idproperty?>">
+                        <input type="hidden" name="customerid" value="<?php echo  $_SESSION['user_info']['user_id'] ?>">
+                        <input type="hidden" name="sellerid" value="<?php echo $property['user_id']?>">
+                        <input type="hidden" name="transaction_type" value="<?php echo $property['type']?>">
+                        <input type="hidden" name="payment" value="<?php echo $deposit?>">
+
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Họ và tên</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="firstName" name="fullname" placeholder=""
+                                    value="<?php echo  $_SESSION['user_info']['full_name'] ?> " required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
                                 </div>
@@ -110,7 +152,8 @@ include 'inc/header.php'
 
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label">UserName</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="lastName" placeholder=""
+                                    value="<?php echo  $_SESSION['user_info']['username'] ?> " name="username" required>
                                 <div class="invalid-feedback">
                                     Valid last name is required.
                                 </div>
@@ -119,7 +162,9 @@ include 'inc/header.php'
 
                             <div class="col-12">
                                 <label for="email" class="form-label">Email </label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <input type="email" class="form-control" id="email"
+                                    value="<?php echo  $_SESSION['user_info']['email'] ?>" name="email"
+                                    placeholder="you@example.com">
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>
@@ -127,7 +172,8 @@ include 'inc/header.php'
 
                             <div class="col-12">
                                 <label for="address" class="form-label">Địa chỉ</label>
-                                <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                                <input type="text" class="form-control" id="address" name="address_user"
+                                    value="<?php echo  $_SESSION['user_info']['address_user']?>" placeholder=""
                                     required>
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
@@ -197,7 +243,7 @@ include 'inc/header.php'
 
                         <hr class="my-4">
 
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Xác nhận</button>
+                        <input class="w-100 btn btn-primary btn-lg" type="submit">
                     </form>
                 </div>
             </div>

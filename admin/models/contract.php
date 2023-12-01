@@ -223,4 +223,25 @@ class Transaction
         }
         return $data;
     }
+    public function addTransaction(){
+        $errors = [];
+        $success = "block";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Lấy dữ liệu từ form payment
+          $propertyid=$_POST['propertyid'];
+          $customerid=$_POST['customerid'];
+          $sellerid=$_POST['sellerid'];
+          $payment=$_POST['payment'];
+          $status="Đặt cọc ";
+          $transactiontype=$_POST['transaction_type'];
+          $sql = "INSERT INTO transactions (property_id , customer_id , seller_id , payment , status , transaction_type ) VALUES ('$propertyid','$customerid','$sellerid','$payment','$status','$transactiontype')";
+
+          if ($this->db->query($sql) === TRUE) {
+              return $success;
+          } else {
+              return $errors;
+          }
+        }
+        
+    }
 }
