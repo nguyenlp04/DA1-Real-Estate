@@ -64,7 +64,6 @@ class Statistical
 
     public  function topSellers()
     {
-        $date = getdate();
         $sql = "SELECT
         users.full_name,
         users.avatar,
@@ -90,6 +89,7 @@ class Statistical
             }
         }
         return $data;
+
     }
 
     public  function RecentSixMonthsRevenue()
