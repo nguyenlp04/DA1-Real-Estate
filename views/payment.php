@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
                                 <h6 class="my-0">Tên bất động sản</h6>
                                 <small class="text-muted"><?php echo $property['title']?></small>
                             </div>
-                            <span class="text-muted">$<?php echo $property['price']?></span>
+                            <span class="text-muted">$<?php echo number_format($property['price'] ,2); ?></span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -86,14 +86,14 @@ if (isset($_GET['id'])) {
                                 <small class="text-muted">30%</small>
                             </div>
                             <span
-                                class="text-muted">$<?php $deposit=0; $deposit=$property['price']*0.3; echo $deposit ;?></span>
+                                class="text-muted">$<?php $deposit=0; $deposit=$property['price']*0.3; echo number_format($deposit , 2);?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between bg-light">
                             <div class="text-success">
                                 <h6 class="my-0">Số tiền phải thanh toán</h6>
                                 <small><?php echo $property['title']?></small>
                             </div>
-                            <span class="text-success">$<?php echo $deposit;?></span>
+                            <span class="text-success">$<?php echo number_format($deposit , 2);?></span>
                         </li>
 
                     </ul>
@@ -110,7 +110,8 @@ if (isset($_GET['id'])) {
                             <div class="house__content">
 
                                 <div class="house__content__main">
-                                    <h3 class="title"><a href="propertyDetail?id=90"><?php echo $property['title']?></a>
+                                    <h3 class="title"><a
+                                            href="propertyDetail?id=<?php echo $idproperty ;?>"><?php echo $property['title']?></a>
                                     </h3>
                                     <p class="location">
                                         <span class="icon"><i class="fa-solid fa-location-dot"></i></span>

@@ -688,19 +688,21 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                             <script>
                                                             const getAddress = "<?php echo $result['location'] ?>";
                                                             fetch(
-                                                                    `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(getAddress)}&apiKey=70a97adee56547329de91aa39b2e0665`)
+                                                                    `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(getAddress)}&apiKey=70a97adee56547329de91aa39b2e0665`
+                                                                )
                                                                 .then(resp => resp.json())
                                                                 .then((geocodingResult) => {
                                                                     console.log(geocodingResult);
                                                                     var latitude = geocodingResult.features[0]
                                                                         .geometry.coordinates[
-                                                                        1]; // Lưu trữ kinh độ và vĩ độ
+                                                                            1]; // Lưu trữ kinh độ và vĩ độ
                                                                     var longitude = geocodingResult.features[0]
                                                                         .geometry.coordinates[0];
                                                                     console.log("Kinh độ:", longitude);
                                                                     console.log("Vĩ độ:", latitude);
                                                                     initMap(latitude,
-                                                                    longitude); // Gọi hàm initMap sau khi có kinh độ và vĩ độ
+                                                                        longitude
+                                                                    ); // Gọi hàm initMap sau khi có kinh độ và vĩ độ
                                                                 });
                                                             </script>
 
@@ -733,15 +735,16 @@ if (is_array($resultScheduletour) && !empty($resultScheduletour)) {
                                                                     $row = $negotiationResult->fetch_assoc();
                                                                     $acceptedPrice = $row['price_offered'];
                                                                     $price = $result['price'];
-                                                                    echo "<del class='text-danger'>$price&#036;  </del>&ensp;";
-                                                                    echo $acceptedPrice;
+                                                                    echo "<del class='text-danger'>" . number_format($price, 2) . '&#036;  </del>&ensp;';
+
+                                                                    echo number_format($acceptedPrice,2);
                                                                     $month = '';
                                                                     if ($row['type'] == 'Thuê') {
                                                                         $month = '/tháng';
                                                                     }
                                                                 // }
                                                             } else {
-                                                                echo $result['price'];
+                                                                echo number_format($result['price'],2);
                                                             }
                                                             ?>&#036; </span>
                                                         <span class="qodef-m-price-after">
