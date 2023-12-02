@@ -51,6 +51,7 @@ $router->addRoute('news', __DIR__ . '/../views/news.php');
 $router->addRoute('newDetail', __DIR__ . '/../views/newDetail.php');
 $router->addRoute('contact', __DIR__ . '/../views/contact.php');
 $router->addRoute('payment', __DIR__ . '/../views/payment.php');
+$router->addRoute('property', __DIR__ . '/../views/property.php');
 $router->addRoute('propertyDetail', __DIR__ . '/../views/propertyDetail.php');
 
 

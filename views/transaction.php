@@ -34,9 +34,10 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
             <div class="row ">
                 <div class="col-12">
                     <ul class="nav nav-pills rounded-2 d-flex justify-content-center">
-                        <li class="nav-item "><a href="#tab2-1" class="nav-link active" data-toggle='tab'>Thương lượng</a></li>
+                        <li class="nav-item "><a href="#tab2-1" class="nav-link active" data-toggle='tab'>Thương
+                                lượng</a></li>
                         <li class="nav-item"><a href="#tab2-2" class="nav-link " data-toggle='tab'>Bất động sản</a></li>
-                        <li class="nav-item"><a href="#tab2-3" class="nav-link" data-toggle='tab'>Đang cập nhật</a></li>
+
                         <li class="nav-item"><a href="#tab2-4" class="nav-link" data-toggle='tab'>Đang cập nhật</a></li>
                         <li class="nav-item"><a href="#tab2-5" class="nav-link" data-toggle='tab'>Đang cập nhật</a></li>
                         <li class="nav-item"><a href="#tab2-6" class="nav-link" data-toggle='tab'>Đang cập nhật</a></li>
@@ -48,7 +49,7 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                 <div class="row">
                                     <div class="col-12">
                                         <table id="example" class="table table-striped" style="width:100%">
-                                            <thead>       
+                                            <thead>
                                                 <tr>
                                                     <th>STT</th>
                                                     <th>Tên BĐS</th>
@@ -119,7 +120,7 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                             <tbody>
                                         </table>
                                         <script>
-                                            var table = new DataTable('#example');
+                                        var table = new DataTable('#example');
                                         </script>
                                     </div>
 
@@ -214,7 +215,7 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                             </tbody>
                                         </table>
                                         <script>
-                                            var table = new DataTable('#example1');
+                                        var table = new DataTable('#example1');
                                         </script>
                                     </div>
 
@@ -238,9 +239,9 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
 
         <body>
             <style>
-                table.dataTable thead>tr>th.sorting:nth-child(2) {
-                    max-width: 200px !important;
-                }
+            table.dataTable thead>tr>th.sorting:nth-child(2) {
+                max-width: 200px !important;
+            }
             </style>
             <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
             <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
