@@ -125,7 +125,7 @@ if (isset($_SESSION['user_info'])) {
                                     <a class="dropdown-item px-4" href="transaction">Giao dịch</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item px-4" href="transaction">Bất động sản</a>
+                                    <a class="dropdown-item px-4" href="property">Bất động sản</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item px-4" href="profile">Thông tin của tôi</a>
