@@ -11,7 +11,6 @@ include(__DIR__ . '/../../models/property.php');
             <div class="w-full bg-white rounded-lg min-h-screen">
                 <div class="w-full flex justify-center h-auto">
                     <div class="w-11/12">
-
                         <div class="title-container flex items-center">
                             <p class="text-[#0957CB] font-semibold  text-2xl py-4">Tất Cả Bất Động Sản</p>
                         </div>
@@ -31,9 +30,6 @@ include(__DIR__ . '/../../models/property.php');
                                 </tr>
                             </thead>
                             <tbody>
-                                <style>
-
-                                </style>
                                 <?php
                         $stt = 1;
                         $database = new Database();
@@ -113,7 +109,6 @@ include(__DIR__ . '/../../models/property.php');
                                 </div>';
                             $stt++;
                         }
-                        
                                 ?>
                             </tbody>
                         </table>

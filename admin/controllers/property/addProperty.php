@@ -174,7 +174,7 @@ label {
                                                 $Tags = new Tags($database);
                                                 $result = $Tags->renderTags();
                                                 foreach ($result as $row) {
-                                                    echo '<option value="' . $row['tag_name'] . '">' . $row['tag_name'] . '</option>';
+                                                    echo '<option value="' . $row['tag_id'] . '">' . $row['tag_name'] . '</option>';
 
                                                     $stt++;
                                                 }
