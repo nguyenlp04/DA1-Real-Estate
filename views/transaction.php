@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 include(__DIR__ . '/../admin/models/contract.php');
 include(__DIR__ . '/../admin/models/property.php');
 include 'inc/header.php';
+
 $database = new Database();
 if (isset($_POST['submitSetStatusNegotiation'])) {
     $negotiationId = $_POST["negotiationId"];
@@ -36,9 +37,9 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                     <ul class="nav nav-pills rounded-2 d-flex justify-content-center">
                         <li class="nav-item "><a href="#tab2-1" class="nav-link active" data-toggle='tab'>Thương
                                 lượng</a></li>
-                        <li class="nav-item"><a href="#tab2-2" class="nav-link " data-toggle='tab'>Bất động sản</a></li>
+                        <li class="nav-item"><a href="#tab2-2" class="nav-link " data-toggle='tab'>Hợp đồng bán</a></li>
 
-                        <li class="nav-item"><a href="#tab2-4" class="nav-link" data-toggle='tab'>Đang cập nhật</a></li>
+                        <li class="nav-item"><a href="#tab2-4" class="nav-link" data-toggle='tab'>Hợp đồng mua</a></li>
                         <li class="nav-item"><a href="#tab2-5" class="nav-link" data-toggle='tab'>Đang cập nhật</a></li>
                         <li class="nav-item"><a href="#tab2-6" class="nav-link" data-toggle='tab'>Đang cập nhật</a></li>
                     </ul>
@@ -134,85 +135,41 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                 <div class="row">
                                     <div class="col-12">
                                         <table id="example1" class="table table-striped" style="width:100%">
+                                            <?php
+                                               
+                                                $currentUserId = $_SESSION['user_info']['user_id'];
+                                                $person = "seller_id";
+
+                                                $database = new Database();
+                                                $contract = new Transaction($database);
+                                                $contracts = $contract->listContractByPersonID($currentUserId, $person);
+?>
                                             <thead>
                                                 <tr>
-                                                    <th>STT</th>
-                                                    <th>Tên</th>
-                                                    <th>Giá</th>
-                                                    <th>Địa chỉ</th>
-                                                    <th>Trạng thái</th>
-                                                    <th>Lượt xem</th>
-                                                    <th>Action</th>
+                                                    <th>Id</th>
+                                                    <th> Loại hợp đồng </th>
+                                                    <th> Bên đặt cọc </th>
 
+                                                    <th>Ngày tạo</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <style>
 
-                                                </style>
-                                                <?php
-                                                $stt = 1;
-                                                $database = new Database();
-                                                $Property = new Transaction($database);
-                                                if(isset($_SESSION['user_info'])){
-                                                    $id = $_SESSION['user_info']['user_id'];
-                                                } else {
-                                                    $id = 0;
-                                                }
-                                                $result = $Property->renderPropertyById($id);
-                                                foreach ($result as $row) {
-                                                    echo '<tr>
-                                <td>' . $stt . '</td>
-                                <td><a href="propertyDetail?id=' . $row['property_id'] . '"> ' . $row['title'] . '</a></td>
-                                <td>' . $row['price'] . '$</td>
-                                <td>' . $row['location'] . '</td>
-                                <td><span  style="color: black; text-transform: none;color: white;display:inline-block; border-radius: 0.375rem; padding: 5px; background-color: ' . ($row['status'] === 'Đã duyệt' ? '#e67e22' : '#d35400;') . '">
-                                    ' . $row['status'] . '
-                                </span></td>
-                                <td>' . $row['views'] . '</td>
-                                <td>
-                                    <i class="fa-solid fs-5 fa-eye overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModal' . $row['property_id'] . '"></i>
-                                    <a href="updateProperty?property_id=' . $row['property_id'] . '">
-                                        <i class="fa-solid fs-5 fa-pen-to-square text-primary mr-2"></i>
-                                    </a>
-                                    <a href="admin/deleteProperty?property_id=' . $row['property_id'] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bất động sản này không?\')">
-                                        <i class="fa-solid fs-5 fa-trash-can text-danger"></i>
-                                    </a>
-                                </td>
-                            </tr>';
-                                                    echo '<div class="modal text-black fade" id="propertyModal' . $row['property_id'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">' . $row['title'] . '</h5>
-                                                    <button type="button" class="btn-close border border-black" style="border:1px solid black !important" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                                                </div>
-                                                <div class="modal-body row">
-                                                <div class="col-6">Giá: ' . $row['price'] . ' $</div>
-                                                <div class="col-6">Địa chỉ: ' . $row['location'] . '</div>
-                                                <div class="col-6">Loại: ' . $row['type'] . '</div>
-                                                <div class="col-6">Tình trạng: ' . $row['status'] . '</div>
-                                                <div class="col-6">Phòng ngủ: ' . $row['beds'] . '</div>
-                                                <div class="col-6">Phòng tắm: ' . $row['baths'] . '</div>
-                                                <div class="col-6">Diện tích: ' . $row['acreage'] . ' m²</div>
-                                                <div class="col-6">Số phòng TV: ' . $row['tivis'] . '</div>
-                                                <div class="col-6">Số camera: ' . $row['cameras'] . '</div>
-                                                <div class="col-6">Nội thất: ' . $row['built_in'] . '</div>
-                                                <div class="col-6">Điều hòa: ' . $row['conditioner'] . '</div>
-                                                <div class="col-6">Wifi: ' . $row['wifi'] . '</div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn" style="border:1px solid !important" data-dismiss="modal" aria-label="Close">Đóng</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    ';
-                                                    $stt++;
-                                                }
+                                            <?php foreach ($contracts as $contract) : ?>
+                                            <tr>
+                                                <td><?php echo $contract['transaction_id']; ?></td>
+                                                <td><?php echo $contract['transaction_type']; ?></td>
+                                                <td><?php echo $contract['customer_fullname']; ?></td>
 
-                                                ?>
-                                            </tbody>
+                                                <td><?php echo $contract['transaction_date']; ?></td>
+                                                <td> <a
+                                                        href="contractDetail?transaction_id=<?php echo  $contract['transaction_id'];  ?>"><i
+                                                            class="fa-solid fa-file-contract"></i></a>
+                                                </td>
+
+                                            </tr>
+                                            <?php endforeach; ?>
+
                                         </table>
                                         <script>
                                         var table = new DataTable('#example1');
@@ -222,11 +179,57 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane text-center mt-3 fade show" id='tab2-3'>
-                            <span>Đang cập nhật</span>
+
+                        <div class="tab-pane text-center mt-3 fade show" id='tab2-4'>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table id="example2" class="table table-striped"
+                                            style="width:100% ; text-align:left">
+                                            <?php
+                                               
+                                              
+                                               $person = "customer_id"; // hoặc "seller_id" tùy vào ngữ cảnh của bạn
+
+                                               $database = new Database();
+                                               $contract = new Transaction($database);
+                                               $contracts = $contract->listContractByPersonID($currentUserId, $person);
+?>
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th> Loại hợp đồng </th>
+                                                    <th> Bên bán </th>
+
+                                                    <th>Ngày tạo</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+
+                                            <?php foreach ($contracts as $contract) : ?>
+                                            <tr>
+                                                <td><?php echo $contract['transaction_id']; ?></td>
+                                                <td><?php echo $contract['transaction_type']; ?></td>
+                                                <td><?php echo $contract['seller_fullname']; ?></td>
+
+                                                <td><?php echo $contract['transaction_date']; ?></td>
+                                                <td> <a
+                                                        href="contractDetail?transaction_id=<?php echo  $contract['transaction_id'];  ?>"><i
+                                                            class="fa-solid fa-file-contract"></i></a>
+                                                </td>
+
+                                            </tr>
+                                            <?php endforeach; ?>
+
+                                        </table>
+                                        <script>
+                                        var table = new DataTable('#example2');
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="tab-pane text-center mt-3 fade show" id='tab2-3'><span>Đang cập nhật</span></div>
-                        <div class="tab-pane text-center mt-3 fade show" id='tab2-4'><span>Đang cập nhật</span></div>
                         <div class="tab-pane text-center mt-3 fade show" id='tab2-5'><span>Đang cập nhật</span></div>
                         <div class="tab-pane text-center mt-3 fade show" id='tab2-6'><span>Đang cập nhật</span></div>
 

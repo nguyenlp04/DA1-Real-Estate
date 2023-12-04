@@ -38,6 +38,39 @@ class Transaction
 
         return $contracts;
     }
+   
+    public function listContractByPersonID($currentUserId,$person)
+    {
+        
+        $sql = "
+        SELECT 
+            transactions.*, 
+            customer_user.full_name AS customer_fullname, 
+            seller_user.full_name AS seller_fullname
+        FROM 
+            transactions
+        INNER JOIN 
+            users AS customer_user ON transactions.customer_id = customer_user.user_id
+        INNER JOIN 
+            users AS seller_user ON transactions.seller_id = seller_user.user_id
+        WHERE 
+            transactions.$person = $currentUserId;";
+
+        $result = $this->db->query($sql);
+        $contracts = [];
+
+        if ($result === false) {
+            die("có Lỗi Khi truy vấn " . $this->db->error);
+        }
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $contracts[] = $row;
+            }
+        }
+
+        return $contracts;
+    }
 
     public function getTransactionById($contractid)
     {
