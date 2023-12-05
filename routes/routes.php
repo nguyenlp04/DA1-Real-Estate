@@ -54,7 +54,6 @@ $router->addRoute('payment', __DIR__ . '/../views/payment.php');
 $router->addRoute('property', __DIR__ . '/../views/property.php');
 $router->addRoute('contractDetail', __DIR__ . '/../views/contractDetail.php');
 $router->addRoute('propertyDetail', __DIR__ . '/../views/propertyDetail.php');
-$router->addRoute('tt', __DIR__ . '/../views/profile_user.php');
 
 
 
