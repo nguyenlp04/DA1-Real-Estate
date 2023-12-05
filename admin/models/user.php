@@ -242,4 +242,27 @@ class Profile {
             return $errors;
         }
     }   
+    public function updateavta($avataprofile, $userid) {
+        // Lưu vào thư mục
+        $target_dir = dirname(__FILE__) . '/../../assets/images/imguser/';
+        $path = '' . basename($avataprofile["name"]);
+        $target_file = $target_dir . $path;
+    
+        if (move_uploaded_file($avataprofile["tmp_name"], $target_file)) {
+            // Cập nhật đường dẫn trong cơ sở dữ liệu
+            $avatarPath = '/' . $path;
+    
+            $sql = "UPDATE `users` SET `avatar` = '$avatarPath' WHERE `user_id` = $userid";
+            if ($this->db->query($sql) === TRUE) {
+                return true;
+            } else {
+                $errors["errors"] = $this->db->error;
+                return $errors;
+            }
+        } else {
+            $errors["errors"] = "Không thể tải lên hình ảnh";
+            return $errors;
+        }
+    }
+    
 }

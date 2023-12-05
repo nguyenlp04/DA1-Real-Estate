@@ -1,15 +1,15 @@
 <?php include "inc/header.php";?>
 <style>
-    html {
-  font-size: 62.5%;
+html {
+    font-size: 62.5%;
 }
 
 body {
-  background: transparent;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 2.7rem;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.7rem;
 }
 </style>
 <script src="https://cdn.tailwindcss.com"></script>

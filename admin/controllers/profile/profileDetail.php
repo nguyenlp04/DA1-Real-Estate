@@ -11,7 +11,33 @@ $errors = [];
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['editinfo'])) {
+    if (isset($_FILES["profileImage"])) {
+        $userid = $_SESSION['user_info']['user_id'];
+        $avataprofile = $_FILES["profileImage"];
+        $avtf4 = new Profile($database);
+        $sqlavt = $avtf4->updateavta($avataprofile, $userid);
+        if ($sqlavt === true) {
+            
+        
+            // Lấy thông tin người dùng từ session
+            $infoUser = $_SESSION['user_info'];
+        
+            // Cập nhật thông tin mới (nếu có)
+            $infoUser['avatar'] = "/".$avataprofile['name']; // hoặc đường dẫn đến ảnh nếu cần
+        
+            // Lưu lại vào session
+            $_SESSION['user_info'] = $infoUser;
+        } else {
+            // Xử lý và hiển thị lỗi
+            echo "<script>alert('Thông tin không được cập nhật!');</script>";
+            echo $sqlavt["errors"] . "<br>"; // Lưu ý sửa đổi ở đây để truy cập mảng errors
+        }
+    }
+    
+    
+
+
+        elseif (isset($_POST['editinfo'])) {
         $userid = $_SESSION['user_info']['user_id'];
         
         $Profile = new Profile($database);
@@ -65,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Xử lý và hiển thị lỗi
             foreach ($result as $error) {
-                echo "<script>alert('Mật khẩu  đéo cập nhật được !');</script>";
+                echo "<script>alert('$error');</script>";
                 echo $error . "<br>";
             }
         }
@@ -92,8 +118,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="flex-none w-auto max-w-full px-3">
                                             <div
                                                 class="text-base ease-soft-in-out h-18.5 w-18.5 relative inline-flex items-center justify-center rounded-xl text-white transition-all duration-200">
-                                                <img src="./../assets/images/imguser<?php echo  $_SESSION['user_info']['avatar'] ?>"
-                                                    alt="profile_image" class="w-full shadow-soft-sm rounded-xl" />
+                                                <form method="post" enctype="multipart/form-data" id="avataForm">
+                                                    <label for="profileImage" class="cursor-pointer">
+                                                        <input type="file" id="profileImage" name="profileImage"
+                                                            style="display: none;" onchange="uploadImage()" />
+                                                        <img src="./../assets/images/imguser<?php echo $_SESSION['user_info']['avatar'] ?>"
+                                                            id="previewImage" alt="profile_image"
+                                                            class="w-full shadow-soft-sm rounded-xl" />
+
+                                                    </label>
+                                                </form>
+
+                                                <script>
+                                                function uploadImage() {
+                                                    var input = document.getElementById('profileImage');
+                                                    var preview = document.getElementById('previewImage');
+
+                                                    if (input.files && input.files[0]) {
+                                                        var reader = new FileReader();
+
+                                                        reader.onload = function(e) {
+                                                            // Hiển thị hình ảnh đã chọn trong thẻ <img>
+                                                            preview.src = e.target.result;
+
+                                                            // Tự động submit form để tải lên ảnh
+                                                            document.forms[0].submit();
+                                                        };
+
+                                                        reader.readAsDataURL(input.files[0]);
+                                                    }
+                                                }
+                                                </script>
                                             </div>
                                         </div>
                                         <div class="flex-none w-auto max-w-full px-3 my-auto">
