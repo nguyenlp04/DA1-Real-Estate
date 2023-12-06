@@ -14,7 +14,7 @@ class Property
     {
         $errors = [];
         $success = "block";
-
+        $user_id = $_SESSION['user_info']['user_id'];
         $title = $_POST["title"];
         $property_price = intval($_POST["property_price"]);
         $property_tags = $_POST["property_tags"];
@@ -79,8 +79,8 @@ class Property
             $imgFloorPlanPath = '/property.jpeg';
         }
         if (empty($errors)) {
-            $resultSql = $sql = "INSERT INTO properties (`title`, `price`, `type`, `acreage`, `tag_id`, `beds`, `built_in`, `baths`, `wifi`, `conditioner`, `tivis`, `cameras`, `location`, `floor_plans`, `description`, `status`, `views`)
-            VALUES ('$title', '$property_price', '$property_type', '$property_area', '$property_tags','$property_bed', '$property_year', '$property_bath', '$property_wifi', '$property_conditioner', '$property_tv', '$property_cam', '$address', '$imgFloorPlanPath', '$description', '$status', 0)";
+            $resultSql = $sql = "INSERT INTO properties (`title`, `price`, `user_id`,`type`, `acreage`, `tag_id`, `beds`, `built_in`, `baths`, `wifi`, `conditioner`, `tivis`, `cameras`, `location`, `floor_plans`, `description`, `status`, `views`)
+            VALUES ('$title', '$property_price', '$user_id','$property_type', '$property_area', '$property_tags','$property_bed', '$property_year', '$property_bath', '$property_wifi', '$property_conditioner', '$property_tv', '$property_cam', '$address', '$imgFloorPlanPath', '$description', '$status', 0)";
             $this->db->query($sql);
             $propertyImage = $_FILES["propertyImage"];
             $propertyID = $this->db->insert_id;

@@ -254,7 +254,7 @@ label {
                                                 data-preview="floorPlanPreview">
                                                 <label for="floorPlanImage"
                                                     style="display:flex; align-items:center; margin-bottom: 0px; ">
-                                                    <i class="fa-solid fa-upload"></i>
+                                                    <i class="fa-solid fa-upload mr-2"></i>
                                                     <p>Tải lên</p>
                                                 </label>
                                             </div>
@@ -278,7 +278,7 @@ label {
                                                 data-preview="propertyPreview">
                                                 <label for="propertyImage"
                                                     style="display:flex; align-items:center; margin-bottom: 0px; ">
-                                                    <i class="fa-solid fa-upload"></i>
+                                                    <i class="fa-solid fa-upload mr-2"></i>
                                                     <p>Tải lên</p>
                                                 </label>
                                             </div>

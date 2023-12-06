@@ -30,6 +30,34 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
 ?>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <section>
+<style>
+#floorPlanPreview,
+#propertyPreview {
+    display: flex !important;
+    height: 130px !important;
+}
+
+#floorPlanPreview img,
+#propertyPreview img {
+    width: 130px !important;
+    object-fit: cover !important;
+    margin-right: 15px !important;
+}
+
+.image-upload-btn,
+.image-remove-btn {
+    color: black !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-left: 10px !important;
+    background-color: #fafafa !important;
+}
+
+label {
+    cursor: pointer !important;
+
+}
+</style>
     <div class="container">
         <div class="path-page"><a href="home">Trang chủ </a><i class="fa-solid fa-angle-right"></i>
             <p>Giao dịch</p>
@@ -171,12 +199,11 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                                 $Tags = new Tags($database);
                                                 $result = $Tags->renderTags();
                                                 foreach ($result as $row) {
-                                                    echo '<option value="' . $row['tag_name'] . '">' . $row['tag_name'] . '</option>';
+                                                    echo '<option value="' . $row['tag_id'] . '">' . $row['tag_name'] . '</option>';
 
                                                     $stt++;
                                                 }
                                                 ?>
-
                                                             </select>
 
                                                         </div>
@@ -248,21 +275,21 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                                             id="floorPlanImage"
                                                             class="p-2 hidden border border-[#E8F0FC] rounded"
                                                             style="display:none" accept="image/*">
-                                                        <div class=" flex items-center">
+                                                        <div class=" d-flex align-items-center">
                                                             <div id="floorPlanPreview">
                                                             </div>
                                                             <div class="image-upload-btn p-2 uploadImage rounded"
-                                                                data-preview="floorPlanPreview">
+                                                                data-preview="floorPlanPreview" style="background-color: #fafafa; margin-left: 10px; display:flex; align-items:center;">
                                                                 <label for="floorPlanImage"
                                                                     style="display:flex; align-items:center; margin-bottom: 0px; ">
-                                                                    <i class="fa-solid fa-upload"></i>
-                                                                    <p>Tải lên</p>
+                                                                    <i class="fa-solid fa-upload me-2"></i>
+                                                                    <p class="m-0">Tải lên</p>
                                                                 </label>
                                                             </div>
                                                             <div class="image-remove-btn deleteImage p-2 rounded"
-                                                                data-preview="floorPlanPreview">
-                                                                <i class="fa-solid fa-trash-can mr-2"></i>
-                                                                <p>Xóa ảnh</p>
+                                                                data-preview="floorPlanPreview" style="display:flex; align-items:center; background-color: #fafafa; margin-left: 10px;">
+                                                                <i class="fa-solid fa-trash-can  me-2"></i>
+                                                                <p class="m-0">Xóa ảnh</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -275,20 +302,20 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                                             id="propertyImage"
                                                             class="p-2  hidden border border-[#E8F0FC] rounded"
                                                             style="display:none" multiple accept="image/*">
-                                                        <div class=" flex items-center">
+                                                        <div class=" d-flex align-items-center">
                                                             <div id="propertyPreview"></div>
                                                             <div class="image-upload-btn uploadImage p-2 rounded"
-                                                                data-preview="propertyPreview">
+                                                                data-preview="propertyPreview" style="background-color: #fafafa; margin-left: 10px;">
                                                                 <label for="propertyImage"
-                                                                    style="display:flex; align-items:center; margin-bottom: 0px; ">
-                                                                    <i class="fa-solid fa-upload"></i>
-                                                                    <p>Tải lên</p>
+                                                                    style="display:flex; align-items:center; margin-bottom: 0px;">
+                                                                    <i class="fa-solid fa-upload me-2"></i>
+                                                                    <p class="m-0">Tải lên</p>
                                                                 </label>
                                                             </div>
                                                             <div class="image-remove-btn deleteImage p-2 rounded"
-                                                                data-preview="propertyPreview">
-                                                                <i class="fa-solid fa-trash-can mr-2"></i>
-                                                                <p>Xóa ảnh</p>
+                                                                data-preview="propertyPreview" style="display:flex; align-items:center; background-color:#fafafa; margin-left: 10px;">
+                                                                <i class="fa-solid fa-trash-can  me-2"></i>
+                                                                <p class="m-0">Xóa ảnh</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -307,7 +334,7 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
 
                                             </div>
                                             <div class="d-flex flex-row-reverse ">
-                                                <div class="w-fit flex flex-row items-center gap-4 my-4 text-xs">
+                                                <div class="w-fit flex flex-row align-items-center gap-4 my-4 text-xs">
                                                     <input type="submit" class="btn btn-primary"
                                                         value="Thêm Bất Động Sản">
                                                 </div>
@@ -363,9 +390,6 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
                                 <td>' . $row['views'] . '</td>
                                 <td>
                                     <i class="fa-solid fs-5 fa-eye overlay mr-2 " style="color: blue;" data-toggle="modal" data-target="#propertyModal' . $row['property_id'] . '"></i>
-                                    <a href="updateProperty?property_id=' . $row['property_id'] . '">
-                                        <i class="fa-solid fs-5 fa-pen-to-square text-primary mr-2"></i>
-                                    </a>
                                     <a href="admin/deleteProperty?property_id=' . $row['property_id'] . '" onclick="return confirm(\'Bạn có chắc chắn muốn xóa bất động sản này không?\')">
                                         <i class="fa-solid fs-5 fa-trash-can text-danger"></i>
                                     </a>
@@ -438,8 +462,7 @@ if (isset($_POST['submitSetStatusNegotiation'])) {
             <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
             <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-
-
+            <script src="./assets/js/dashboard/upload-property.js"></script>
     </div>
 </section>
 <?php include 'inc/footer.php' ?>
