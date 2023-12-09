@@ -118,7 +118,7 @@ class Statistical
             SELECT user_id, full_name, SUM(payment) as total_payment
             FROM users 
             JOIN transactions ON user_id = seller_id
-            WHERE roles != 'user'
+            WHERE roles != 'user' AND MONTH(transaction_date) = MONTH(NOW())
             GROUP BY user_id, full_name;
         ";
     
