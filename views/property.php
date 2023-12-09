@@ -104,14 +104,14 @@ label {
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="title"
-                                                                class="text-black  font-semibold pb-1 capitalize">Tên
+                                                                class="text-black  fw-medium p-2 capitalize">Tên
                                                                 bất động sản</label>
                                                             <input type="text" id="title" name="title"
                                                                 class="form-control">
                                                         </div>
                                                         <div class="col">
                                                             <label for="property_price"
-                                                                class="text-black  font-semibold pb-1 capitalize">Giá
+                                                                class="text-black  fw-medium p-2 capitalize">Giá
                                                                 bất động sản</label>
                                                             <input type="number" name="property_price"
                                                                 id="property_price" class="form-control">
@@ -121,7 +121,7 @@ label {
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="property_type"
-                                                                class="text-black  font-semibold pb-1 capitalize">Loại
+                                                                class="text-black  fw-medium p-2 capitalize">Loại
                                                                 hình</label>
                                                             <select name="property_type" id="property_type"
                                                                 class="form-control">
@@ -132,7 +132,7 @@ label {
                                                         </div>
                                                         <div class="col">
                                                             <label for="property_area"
-                                                                class="text-black  font-semibold pb-1 capitalize">Tổng
+                                                                class="text-black  fw-medium p-2 capitalize">Tổng
                                                                 diện tích (m<sup>2</sup>)</label>
                                                             <input type="number" name="property_area" id="property_area"
                                                                 class="form-control">
@@ -141,7 +141,7 @@ label {
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="property_bed"
-                                                                class="text-black  font-semibold pb-1 capitalize">Phòng
+                                                                class="text-black  fw-medium p-2 capitalize">Phòng
                                                                 ngủ</label>
                                                             <input type="number" name="property_bed" id="property_bed"
                                                                 class="form-control">
@@ -149,7 +149,7 @@ label {
 
                                                         <div class="col">
                                                             <label for="property_year"
-                                                                class="text-black  font-semibold pb-1 capitalize">Năm
+                                                                class="text-black  fw-medium p-2 capitalize">Năm
                                                                 xây dựng</label>
                                                             <input type="number" name="property_year" id="property_year"
                                                                 class="form-control">
@@ -159,7 +159,7 @@ label {
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="property_bath"
-                                                                class="text-black  font-semibold pb-1 capitalize">Phòng
+                                                                class="text-black  fw-medium p-2 capitalize">Phòng
                                                                 tắm</label>
                                                             <input type="number" name="property_bath" id="property_bath"
                                                                 class="form-control">
@@ -167,7 +167,7 @@ label {
                                                         <div class="col">
 
                                                             <label for="property_wifi"
-                                                                class="text-black  font-semibold pb-1 capitalize">WiFi</label>
+                                                                class="text-black  fw-medium p-2 capitalize">WiFi</label>
                                                             <input type="number" name="property_wifi" id="property_wifi"
                                                                 class="form-control">
                                                         </div>
@@ -175,14 +175,14 @@ label {
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="property_conditioner"
-                                                                class="text-black  font-semibold pb-1 capitalize">Điều
+                                                                class="text-black  fw-medium p-2 capitalize">Điều
                                                                 hòa</label>
                                                             <input type="number" name="property_conditioner"
                                                                 id="property_conditioner" class="form-control">
                                                         </div>
                                                         <div class="col">
                                                             <label for="property_tv"
-                                                                class="text-black  font-semibold pb-1 capitalize">TV</label>
+                                                                class="text-black  fw-medium p-2 capitalize">TV</label>
                                                             <input type="number" name="property_tv" id="property_tv"
                                                                 class="form-control">
                                                         </div>
@@ -190,7 +190,7 @@ label {
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="property_tags"
-                                                                class="text-black  font-semibold pb-1 capitalize">Tags</label>
+                                                                class="text-black  fw-medium p-2 capitalize">Tags</label>
                                                             <select name="property_tags" id="property_tags"
                                                                 class="form-control">
                                                                 <?php
@@ -217,7 +217,7 @@ label {
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="city"
-                                                                class="text-black  font-semibold pb-1 capitalize">Thành
+                                                                class="text-black  fw-medium p-2 capitalize">Thành
                                                                 phố</label>
                                                             <select id="city" name="city" class="p-2 form-select">
                                                                 <option value="" selected>Chọn tỉnh thành</option>
@@ -225,7 +225,7 @@ label {
                                                         </div>
                                                         <div class="col">
                                                             <label for="district"
-                                                                class="text-black  font-semibold pb-1 capitalize">Quận/Huyện</label>
+                                                                class="text-black  fw-medium p-2 capitalize">Quận/Huyện</label>
                                                             <select id="district" name="district"
                                                                 class="p-2 form-select">
                                                                 <option value="" selected>Chọn quận huyện</option>
@@ -233,7 +233,7 @@ label {
                                                         </div>
                                                         <div class="col">
                                                             <label for="ward"
-                                                                class="text-black  font-semibold pb-1 capitalize">Phường/Xã</label>
+                                                                class="text-black  fw-medium p-2 capitalize">Phường/Xã</label>
                                                             <select id="ward" name="wards" class="p-2 form-select">
                                                                 <option value="" selected>Chọn phường xã</option>
                                                             </select>
@@ -241,7 +241,7 @@ label {
                                                     </div>
                                                     <div class="w-full flex flex-col py-2">
                                                         <label for="addressDetail"
-                                                            class="text-black  font-semibold pb-1 capitalize">Địa
+                                                            class="text-black  fw-medium p-2 capitalize">Địa
                                                             chỉ chi tiết</label>
                                                         <input name="addressDetail" id="addressDetail" type="text"
                                                             placeholder="Địa chỉ chi tiết"
@@ -255,7 +255,7 @@ label {
 
                                                     <div class="w-full flex flex-col py-2">
                                                         <label for=""
-                                                            class="text-black flex font-semibold pb-1 capitalize">Vị trí
+                                                            class="text-black d-flex fw-medium p-2 capitalize">Vị trí
                                                             trên
                                                             bản đồ &nbsp;
                                                             <p class="showAddress" style="color: #888; "></p>
@@ -267,7 +267,7 @@ label {
                                                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8&callback=initMap"
                                                         async defer></script>
                                                     <div class="w-full flex flex-col py-2 mt-10">
-                                                        <div class="text-black pb-3 capitalize inline-block"> <i
+                                                        <div class="text-black pb-3 capitalize fw-medium inline-block"> <i
                                                                 class="fa-solid fa-file-image fa-2xl"></i> Tải lên ảnh
                                                             sơ đồ mặt bảng
                                                         </div>
@@ -294,7 +294,7 @@ label {
                                                         </div>
                                                     </div>
                                                     <div class="w-full flex flex-col py-2 mt-10">
-                                                        <div class="text-black pb-3 capitalize inline-block"> <i
+                                                        <div class="text-black pb-3 capitalize fw-medium inline-block"> <i
                                                                 class="fa-solid fa-file-image fa-2xl"></i> Tải lên ảnh
                                                             bất động sản
                                                         </div>
@@ -322,7 +322,7 @@ label {
                                                     <div class="flex flex-col md:flex-row gap-4">
                                                         <div class="w-full flex flex-col py-2">
                                                             <label for="description"
-                                                                class="text-black  font-semibold pb-1 capitalize">Mô
+                                                                class="text-black  fw-medium p-2 capitalize">Mô
                                                                 tả</label>
                                                             <textarea name="description" id="description" rows="4"
                                                                 class="form-control"></textarea>

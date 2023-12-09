@@ -267,7 +267,8 @@ class Transaction
           $payment=$_POST['payment'];
           $status="Đặt cọc ";
           $transactiontype=$_POST['transaction_type'];
-          $sql = "INSERT INTO transactions (property_id , customer_id , seller_id , payment , status , transaction_type ) VALUES ('$propertyid','$customerid','$sellerid','$payment','$status','$transactiontype')";
+          $transaction_date = date('Y-m-d');
+          $sql = "INSERT INTO transactions (property_id , customer_id , seller_id , payment , status , transaction_type, transaction_date) VALUES ('$propertyid','$customerid','$sellerid','$payment','$status','$transactiontype', '$transaction_date')";
 
           if ($this->db->query($sql) === TRUE) {
               return $success;

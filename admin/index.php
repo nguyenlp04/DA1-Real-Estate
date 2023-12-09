@@ -28,8 +28,7 @@
 
   var recentMonths = " . json_encode($recentMonths) . "; console.log(recentMonths)
   </script>";
- 
-  
+
   ?>
  <!-- Begin Page Content -->
  <div class="container-fluid">

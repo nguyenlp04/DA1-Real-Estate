@@ -94,7 +94,7 @@ if (isset($_SESSION['user_info'])) {
                         </a>
                     </div>
                     <div class="header-menu">
-                        <ul class="main-menu">
+                        <ul class="main-menu m-0">
                             <li><a href="home">Trang Chủ</a></li>
                             <li><a href="introduce">Giới Thiệu</a></li>
                             <li><a href="products">Sản Phẩm</a></li>
