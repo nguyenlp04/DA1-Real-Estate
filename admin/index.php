@@ -18,6 +18,8 @@
       $month = date('Y-m', strtotime("-$i months"));
       $recentMonths[] = $month;
   }
+  $exportReport = $statistical->exportReport();
+  // print_r($exportReport);
   // Chuyển dữ liệu JSON vào biến JavaScript
   echo "<script>var chartData = $jsonData;
   var totalPaymentArray = [];
@@ -30,12 +32,51 @@
   </script>";
 
   ?>
+
+<script>
+    function generateReport() {
+        // Tạo một workbook mới
+        var wb = XLSX.utils.book_new();
+		    var currentDate = new Date();
+        var currentMonth = currentDate.getMonth() + 1;
+        var dataObject = <?php echo json_encode($exportReport); ?>;
+        var data = Object.values(dataObject);
+        
+        console.log(data);
+        console.log(typeof(data));
+
+        var total = 0;
+
+        data.unshift(['Tổng doanh thu tháng ' + currentMonth]);
+
+        for (var i = 1; i < data.length; i++) {
+          var revenue = parseFloat(data[i][1].replace(/[^\d.-]/g, '')); // Loại bỏ tất cả các ký tự ngoại trừ số và dấu trừ
+          
+          console.log(revenue);
+          total += revenue;
+        }
+        console.log(total);
+
+        var formattedTotal = total.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+        console.log(formattedTotal);
+        // Thêm dữ liệu vào worksheet
+        var ws = XLSX.utils.aoa_to_sheet(data.concat([['Tổng', formattedTotal]]));
+
+        // Thêm worksheet vào workbook
+        XLSX.utils.book_append_sheet(wb, ws, 'BaoCaoThang'+currentMonth);
+
+        // Tạo tệp Excel và tải xuống
+        XLSX.writeFile(wb, 'BaoCaoThang' + currentMonth + '.xlsx');
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
  <!-- Begin Page Content -->
  <div class="container-fluid">
    <!-- Page Heading -->
    <div class="d-sm-flex align-items-center justify-content-between mb-4">
      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tạo báo cáo</a>
+     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="generateReport()"><i class="fas fa-download fa-sm text-white-50"></i> Tạo báo cáo</a>
    </div>
 
    <!-- Content Row -->

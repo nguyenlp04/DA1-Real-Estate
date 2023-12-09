@@ -111,4 +111,50 @@ class Statistical
         }
         return $data;
     }
+
+    public function exportReport()
+    {
+        $sqlQuery = "
+            SELECT user_id, full_name, SUM(payment) as total_payment
+            FROM users 
+            JOIN transactions ON user_id = seller_id
+            WHERE roles != 'user'
+            GROUP BY user_id, full_name;
+        ";
+    
+        // Thực hiện truy vấn
+        $result = $this->db->query($sqlQuery);
+    
+        // Kiểm tra và xử lý kết quả
+        if ($result->num_rows > 0) {
+            // Mảng để lưu trữ kết quả
+            $dataArray = array();
+    
+            // Lặp qua các dòng kết quả
+            while ($row = $result->fetch_assoc()) {
+                $userId = $row['user_id'];
+                $fullName = $row['full_name'];
+                $totalPayment =  '$'.number_format($row['total_payment'], 2);
+               
+                // Kiểm tra xem user_id đã tồn tại trong mảng chưa
+                if (isset($dataArray[$userId])) {
+                    // Nếu tồn tại, cộng dồn giá trị payment vào tổng cộng
+                    $dataArray[$userId][1] += $totalPayment;
+                } else {
+                    // Nếu chưa tồn tại, thêm một mảng mới vào mảng chính
+                    $dataArray[$userId] = array($fullName, $totalPayment);
+                }
+            }
+    
+            // Hiển thị kết quả
+            // echo '<pre>';
+            // print_r($dataArray);
+            // echo '</pre>';
+            return $dataArray;
+    
+        } else {
+            echo "Không có kết quả.";
+        }
+    }
+    
 }
