@@ -13,7 +13,7 @@ include(__DIR__ . '../../../config/config.php');
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Prorealty - Dashboard</title>
     <link rel="shortcut icon" href="../assets/images/logo.png" type="image/f-icon" />
     <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
     <link
