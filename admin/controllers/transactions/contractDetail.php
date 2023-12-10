@@ -26,7 +26,7 @@ if (isset($_GET['transaction_id'])) {
                     <div class="w-11/12">
                         <div class="flex justify-between items-center">
                         <p class="text-[#0957CB] font-semibold text-2xl py-4">Chi Tiết Hợp Đồng</p>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-file-arrow-down download"></i> Tải xuống</a>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm download"><i class="fa-solid fa-file-arrow-down"></i> Tải xuống</a>
                         
                         </div>
 
