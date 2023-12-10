@@ -478,7 +478,7 @@ const blob = new Blob(['<html><body>' + content + '</body></html>'], {
 // Tạo một đường dẫn URL tạm thời và tải tệp Word
 const link = document.createElement('a');
 link.href = window.URL.createObjectURL(blob);
-link.download = 'output.doc';
+link.download = 'HopDong.docx';
 link.click();
     })
 </script>
