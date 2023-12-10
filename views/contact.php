@@ -12,18 +12,18 @@ include 'inc/header.php'
                 <div class="descript">Được thành lập vào ngày 20/08/2008 với niềm đam mê và khát vọng thành công trong lĩnh vực bất động sản. Nhờ chiến lược rõ ràng và hướng đi đúng, PROREALTY đã nhanh chóng phát triển và đạt được những thành công nhất định.
                 </div>
                 <div class="box-contact">
-                    <ul>
+                    <ul class="ps-0">
                         <li><i class="fa-solid fa-location-dot"></i>TT. Gio Linh, Gio Linh, Quảng Trị 520000, Việt Nam</li>
                         <li><i class="fa-solid fa-phone"></i>0763 636 353</li>
                         <li><i class="fa-solid fa-envelope"></i>lphuonguye.ecn.2182004@gmail.com</li>
                     </ul>
                 </div>
                 <div class="social">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-google-plus-g"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-youtube"></i>
+                    <i class="me-2 ms-0 fa-brands fa-facebook-f"></i>
+                    <i class="me-2 ms-0 fa-brands fa-twitter"></i>
+                    <i class="me-2 ms-0 fa-brands fa-google-plus-g"></i>
+                    <i class="me-2 ms-0 fa-brands fa-instagram"></i>
+                    <i class="me-2 ms-0 fa-brands fa-youtube"></i>
                 </div>
             </div>
             <div class="item-box">
