@@ -14,6 +14,7 @@ include(__DIR__ . '../../../config/config.php');
     <meta name="author" content="" />
 
     <title>SB Admin 2 - Dashboard</title>
+    <link rel="shortcut icon" href="../assets/images/logo.png" type="image/f-icon" />
     <script src="https://kit.fontawesome.com/59847bd5e5.js" crossorigin="anonymous"></script>
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -45,7 +46,7 @@ include(__DIR__ . '../../../config/config.php');
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">prorealty </div>
             </a>
 
             <!-- Divider -->
