@@ -8,6 +8,7 @@ $database = new Database();
 $Property = new Property($database);
 $errors = [];
 $success = 'none';
+$user__id=$_SESSION['user_info']['user_id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $payment = new Transaction($database);
 
@@ -77,7 +78,18 @@ if (isset($_GET['id'])) {
                                 <h6 class="my-0">Tên bất động sản</h6>
                                 <small class="text-muted"><?php echo $property['title']?></small>
                             </div>
-                            <span class="text-muted fw-bold">$<?php echo number_format($property['price'] ,2); ?></span>
+                            <span class="text-muted fw-bold">$<?php 
+                            $sql = "SELECT price_offered FROM negotiations WHERE property_id = $idproperty AND customer_id = $user__id  AND status = 'Chấp nhận' ORDER BY negotiation_id DESC LIMIT 1";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $price = $row['price_offered'];
+                                echo number_format($price, 2);
+                            } else {
+                                $price=$property['price'];
+                                echo number_format($price, 2);
+                            }
+                            ?></span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -86,7 +98,7 @@ if (isset($_GET['id'])) {
                                 <small class="text-muted">30%</small>
                             </div>
                             <span
-                                class="text-muted fw-bold">$<?php $deposit=0; $deposit=$property['price']*0.3; echo number_format($deposit , 2);?></span>
+                                class="text-muted fw-bold">$<?php $deposit=0; $deposit=$price*0.3; echo number_format($deposit , 2);?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between bg-light">
                             <div class="text-success">
