@@ -6,7 +6,7 @@ include 'inc/header.php'
         <div class="path-page"><a href="home">Trang chủ </a><i class="fa-solid fa-angle-right"></i> <p>Giới Thiệu</p></div>
         <div class="about-content">
             <h2 class="title-about">Về Chúng Tôi</h2>
-            <span class="sum-title-about">Hơn một năm hình thành và phát triển, NGUYENLP LAND luôn vững vàng với mục tiêu mang lại cho khách hàng những sản phẩm bất động sản tốt nhất bằng dịch vụ chuyên nghiệp nhất.
+            <span class="sum-title-about">Hơn một năm hình thành và phát triển, PROREALTY luôn vững vàng với mục tiêu mang lại cho khách hàng những sản phẩm bất động sản tốt nhất bằng dịch vụ chuyên nghiệp nhất.
             </span>
         </div>
         <div class="section-img"><img src="./assets/images/banner.jpeg" alt=""></div>
@@ -16,7 +16,7 @@ include 'inc/header.php'
                     <img src="./assets/images/about_1_icon.jpeg" alt="">
                     <b>HOÀI BẢO</b>
                 </div>
-                <p>Hoài bão của chúng tôi là đưa NGUYENLP LAND trở thành một công ty trong lãnh vực BDS uy tín, hùng mạnh và đóng góp vào sự phát triển phồn thịnh của đất nước.</p>
+                <p>Hoài bão của chúng tôi là đưa PROREALTY trở thành một công ty trong lãnh vực BDS uy tín, hùng mạnh và đóng góp vào sự phát triển phồn thịnh của đất nước.</p>
             </div>
             <div class="about-item">
                 <div class="title-about-item">
@@ -31,7 +31,7 @@ include 'inc/header.php'
                     <b>SỨ MỆNH</b>
                 </div>
                 <p>
-                    Sứ mệnh của NGUYENLP LAND là đặt chất lượng cuộc sống khách hàng trở thành ưu tiên số 1 để đem lại sự an tâm và lợi ích phát triển cho khách hàng, góp phần tích cực vào một xã hội
+                    Sứ mệnh của PROREALTY là đặt chất lượng cuộc sống khách hàng trở thành ưu tiên số 1 để đem lại sự an tâm và lợi ích phát triển cho khách hàng, góp phần tích cực vào một xã hội
                 </p>
             </div> 
             <div class="about-item">

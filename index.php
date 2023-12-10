@@ -341,7 +341,7 @@ include(__DIR__ . '/admin/models/posts.php');
             <div class="col-md-6">
                 <div class="section-header__content v2">
                     <h4 class="sub-title">LIÊN HỆ VỚI CHÚNG TÔI</h4>
-                    <h2 class="title">Tìm cách Mua một tài sản mới hoặc Bán một tài sản hiện có? NguyenLP Land cung
+                    <h2 class="title">Tìm cách Mua một tài sản mới hoặc Bán một tài sản hiện có? PROREALTY cung
                         cấp một giải pháp tuyệt vời!</h2>
                     <p class="text">
                         Một cộng đồng hoàn toàn mới có các căn hộ cao cấp và tiện nghi đầy phong cách tại một trong

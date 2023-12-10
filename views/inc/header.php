@@ -41,7 +41,7 @@ if (isset($_SESSION['user_info'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Primary Meta Tags -->
-    <title>NguyenLP Land - Property Buy & Seles</title>
+    <title>PROREALTY - Property Buy & Seles</title>
     <meta name="title" content="Property Buy & Seles HTML Template" />
     <meta name="description"
         content="Rents is an property buy and seles websites template. This is a clean and modern template that you can use for your rental or property buy/selling business website. this is fully responsive with 100% Retina readiness which means it will be able to adapt to any screen size or resolution." />
