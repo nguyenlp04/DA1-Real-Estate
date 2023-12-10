@@ -459,7 +459,6 @@ class Property
 
     public function searchProperties()
     {
-
         $searchType = isset($_GET['search-type']) ? 'properties.type = \'' . $_GET['search-type'] . '\'' : 'properties.type <> ""';
         $city = isset($_GET['city']) ? $_GET['city'] : '';
         $address = '%' . $city . '%';

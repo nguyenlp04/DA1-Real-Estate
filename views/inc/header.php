@@ -151,3 +151,4 @@ if (isset($_SESSION['user_info'])) {
             </div>
         </nav>
     </header>
+    

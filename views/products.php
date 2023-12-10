@@ -95,7 +95,8 @@ include 'inc/header.php'
                     $Property = new Property($database);
                     $result = $Property->renderProperty();
                     $cityType = isset($_GET['city']) ? $_GET['city'] : '';
-                    if($cityType == ''){
+                    $search_type = isset($_GET['search-type']) ? $_GET['search-type'] : '';
+                    if($search_type == ''){
                         $result = $Property->renderProperty();
                     } else {
                         $result = $Property->searchProperties();
