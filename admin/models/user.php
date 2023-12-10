@@ -262,7 +262,7 @@ class Profile {
         } else {
             $errors["errors"] = "Không thể tải lên hình ảnh";
             return $errors;
-        }
-    }
+        }}
+       
     
 }
